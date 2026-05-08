@@ -13,76 +13,83 @@
     :root {
       --yellow: #f5c518;
       --cyan: #5de0f0;
-      --bg: #03101a;
-      --bg-dark: #02090f;
-      --bg-card: #030d14;
-      --border: #0a2535;
-      --text: #d8f4f8;
-      --muted: #2a7088;
-      --muted2: #1e5060;
+      --bg: #0d0d0d;
+      --bg-card: #141414;
+      --bg-card2: #111111;
+      --border: #242424;
+      --border-y: rgba(245,197,24,0.2);
+      --text: #f0f0f0;
+      --text-muted: #999999;
+      --text-dim: #555555;
       --font: 'Space Grotesk', sans-serif;
+      --diag: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 6px,
+        rgba(245,197,24,0.06) 6px,
+        rgba(245,197,24,0.06) 7px
+      );
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+    body {
+      font-family: var(--font);
+      background: #080808;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
 
     /* ─── NAV ─── */
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 0.875rem 2.5rem;
-      background: rgba(2,12,20,0.95);
+      background: rgba(13,13,13,0.97);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
       gap: 1.5rem;
     }
-
-    /*
-      LOGO SLOT
-      ─────────
-      Current state: dashed placeholder box + text wordmark side by side.
-
-      To use an image logo (Option A — image only):
-        1. Upload logo.png (or .svg) to the repo root alongside index.html
-        2. Inside .nav-logo-slot, replace everything with:
-              <img src="logo.png" alt="Guardrails Alliance" style="height:32px;width:auto;display:block;" />
-
-      To use an icon mark + wordmark (Option B — lockup):
-        1. Upload logo-mark.svg to the repo root
-        2. Inside .nav-logo-slot, replace the placeholder div with:
-              <img src="logo-mark.svg" alt="" aria-hidden="true" style="height:32px;width:auto;display:block;" />
-           and keep the .nav-logo-text span beside it.
-
-      To hide the dashed placeholder once a real logo is in place,
-      just delete the <div class="nav-logo-placeholder"> element.
-    */
-    .nav-logo-slot {
-      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
-    }
+    .nav-logo-slot { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
     .nav-logo-placeholder {
       width: 32px; height: 32px;
-      border: 1px dashed rgba(93,224,240,0.22);
-      border-radius: 4px;
+      border: 1px dashed rgba(245,197,24,0.25);
+      border-radius: 3px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-      color: rgba(93,224,240,0.22); flex-shrink: 0;
+      font-size: 8px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(245,197,24,0.25); flex-shrink: 0;
     }
+    /*
+      LOGO SLOT — swap options:
+      A) Text only (current): keep as-is.
+      B) Image only: replace .nav-logo-slot contents with
+            <img src="logo.png" alt="Guardrails Alliance" style="height:32px;width:auto;" />
+      C) Mark + wordmark: replace .nav-logo-placeholder with
+            <img src="logo-mark.svg" alt="" aria-hidden="true" style="height:32px;width:auto;" />
+         and keep .nav-logo-text.
+    */
     .nav-logo-text {
       font-size: 14px; font-weight: 700;
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--cyan);
+      color: var(--text);
     }
-
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
-      font-size: 12px; font-weight: 500; color: var(--muted);
+      font-size: 12px; font-weight: 500; color: var(--text-muted);
       letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--yellow); }
     .nav-cta {
       font-family: var(--font); font-size: 12px; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 8px 18px; background: var(--yellow); color: #020c14;
+      padding: 8px 18px; background: var(--yellow); color: #0d0d0d;
       border: none; cursor: pointer; flex-shrink: 0;
     }
     .nav-cta:hover { background: #fdd835; }
@@ -93,40 +100,40 @@
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 3rem 2.5rem; overflow: hidden;
     }
-    .hero-bg { position: absolute; inset: 0; background: var(--bg-dark); }
-    .hero-scan {
+    .hero-bg { position: absolute; inset: 0; background: #080808; }
+    /* diagonal yellow stripe texture */
+    .hero-diag {
       position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        0deg, transparent, transparent 3px,
-        rgba(93,224,240,0.012) 3px, rgba(93,224,240,0.012) 4px
-      );
+      background: var(--diag);
+      opacity: 0.7;
     }
+    /* vertical road dashes in yellow */
     .hero-dashes {
       position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 2px; height: 65%;
+      width: 2px; height: 70%;
       background: repeating-linear-gradient(
-        to top, var(--yellow) 0, var(--yellow) 20px, transparent 20px, transparent 50px
+        to top, var(--yellow) 0, var(--yellow) 22px, transparent 22px, transparent 52px
       );
-      opacity: 0.22;
+      opacity: 0.3;
     }
-    .hero-lane { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(93,224,240,0.05); }
+    .hero-lane { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.04); }
     .hero-vignette {
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, var(--bg-dark) 0%, rgba(2,9,15,0.2) 40%, rgba(2,9,15,0.96) 100%);
+      background: linear-gradient(to bottom, rgba(8,8,8,0.6) 0%, rgba(8,8,8,0.1) 35%, rgba(8,8,8,0.97) 100%);
     }
-    .hero-content { position: relative; z-index: 2; max-width: 680px; }
+    .hero-content { position: relative; z-index: 2; max-width: 660px; }
     .eyebrow {
       font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--cyan); margin-bottom: 1rem;
+      text-transform: uppercase; color: var(--yellow); margin-bottom: 1rem;
     }
     .hero h1 {
       font-size: clamp(28px,4.5vw,50px); font-weight: 700;
-      line-height: 1.08; margin-bottom: 1.25rem; color: var(--text);
+      line-height: 1.08; margin-bottom: 1.25rem; color: #ffffff;
     }
     .hero h1 em { color: var(--yellow); font-style: normal; }
     .hero-sub {
-      font-size: 15px; font-weight: 400; color: var(--muted);
-      max-width: 500px; line-height: 1.75; margin-bottom: 2rem;
+      font-size: 15px; font-weight: 400; color: #bbbbbb;
+      max-width: 520px; line-height: 1.75; margin-bottom: 2rem;
     }
     .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn {
@@ -135,25 +142,24 @@
       padding: 12px 24px; border: none; cursor: pointer;
       text-decoration: none; display: inline-block;
     }
-    .btn-primary { background: var(--yellow); color: #020c14; }
+    .btn-primary { background: var(--yellow); color: #0d0d0d; }
     .btn-primary:hover { background: #fdd835; }
-    .btn-ghost { background: transparent; color: var(--cyan); border: 1px solid #1a4f60; }
-    .btn-ghost:hover { background: rgba(93,224,240,0.06); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
 
-    /* ─── DIVIDERS ─── */
-    .divider { display: flex; align-items: center; gap: 14px; padding: 1.1rem 2.5rem; }
-    .dline { flex: 1; height: 1px; }
-    .dline-y {
-      background: repeating-linear-gradient(90deg, var(--yellow) 0, var(--yellow) 10px, transparent 10px, transparent 22px);
-      opacity: 0.18;
+    /* ─── DIVIDERS — yellow diagonal stripe band ─── */
+    .divider {
+      height: 20px;
+      background: transparent;
+      border-top: 4px solid rgba(245, 197, 24, 0.5);
+      border-bottom: 4px solid rgba(245, 197, 24, 0.5);
     }
-    .dline-c {
-      background: repeating-linear-gradient(90deg, var(--cyan) 0, var(--cyan) 10px, transparent 10px, transparent 22px);
-      opacity: 0.12;
+
+    .divider-thin {
+      height: 4px;
+      background: rgba(245, 197, 24, 0.5);
+      margin: 0;
     }
-    .ddot { width: 4px; height: 4px; border-radius: 50%; }
-    .ddot-y { background: var(--yellow); opacity: 0.4; }
-    .ddot-c { background: var(--cyan); opacity: 0.3; }
 
     /* ─── SECTIONS ─── */
     section { padding: 3rem 2.5rem; border-bottom: 1px solid var(--border); }
@@ -161,111 +167,118 @@
       font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
       text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem;
     }
-    .label-c {
+    .label-dim {
       font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem;
+      text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem;
     }
     section h2 {
       font-size: clamp(20px,2.8vw,30px); font-weight: 700;
-      color: var(--text); margin-bottom: 0.75rem;
+      color: #ffffff; margin-bottom: 0.75rem;
     }
-    .section-sub { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 560px; }
+    .section-sub { font-size: 14px; color: #aaaaaa; line-height: 1.8; max-width: 580px; }
+    .section-sub a { color: var(--yellow); text-decoration: none; }
+    .section-sub a:hover { text-decoration: underline; }
 
     /* ─── STATS ─── */
     .stats-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
       gap: 1px; background: var(--border); margin-top: 2rem;
     }
-    .stat { background: var(--bg-card); padding: 1.5rem; }
+    .stat {
+      background: var(--bg-card); padding: 1.5rem;
+      /* subtle diagonal texture */
+      background-image: var(--diag);
+      background-color: var(--bg-card);
+    }
     .stat-num { font-size: clamp(24px,3.5vw,36px); font-weight: 700; color: var(--yellow); margin-bottom: 4px; }
-    .stat-label { font-size: 12px; color: var(--muted2); line-height: 1.5; }
+    .stat-label { font-size: 12px; color: #888; line-height: 1.5; }
 
     /* ─── VILLAIN CARDS ─── */
     .villain-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
       gap: 16px; margin-top: 2rem;
     }
-    .vcard { background: var(--bg-card); border: 1px solid var(--border); overflow: hidden; }
-
+    .vcard {
+      background: var(--bg-card2);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--yellow);
+      overflow: hidden;
+    }
     .vcard-photo {
-      width: 100%; height: 180px; position: relative; overflow: hidden;
-      background: #060f18;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 8px;
+      width: 100%; height: 200px;
+      position: relative; overflow: hidden;
+      background: #1a1a1a;
     }
-    /*
-      TO ADD A PHOTO
-      ──────────────
-      1. Upload the image (jpg or png) to your GitHub repo root, same folder as index.html.
-      2. Inside the matching .vcard-photo div, DELETE the three child divs
-         (.vcard-photo-inner, .vcard-photo-hint, .vcard-photo-filename).
-      3. In their place, paste:
-
-           <img src="FILENAME.jpg" alt="PERSON NAME"
-                style="width:100%;height:180px;object-fit:cover;
-                       object-position:top;display:block;
-                       filter:grayscale(100%) contrast(1.1);" />
-
-      The .vcard-subject and .vcard-warning strips are positioned absolutely
-      and will sit on top of the photo automatically — no other changes needed.
-    */
-    .vcard-photo-inner {
-      width: 80px; height: 80px; border-radius: 50%;
-      border: 2px dashed rgba(93,224,240,0.18);
-      display: flex; align-items: center; justify-content: center;
-      background: #040c14;
+    .vcard-photo img {
+      width: 100%; height: 200px;
+      object-fit: cover; object-position: center;
+      display: block;
+      filter: grayscale(100%) contrast(1.15) brightness(0.9);
     }
-    .vcard-photo-hint {
-      font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: rgba(93,224,240,0.18);
+    /* diagonal overlay on photo */
+    .vcard-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 4px,
+        rgba(245,197,24,0.04) 4px,
+        rgba(245,197,24,0.04) 5px
+      );
+      pointer-events: none;
     }
-    .vcard-photo-filename { font-size: 9px; color: rgba(93,224,240,0.1); font-style: italic; }
     .vcard-subject {
-      position: absolute; top: 10px; right: 10px;
+      position: absolute; top: 10px; right: 10px; z-index: 2;
       font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(245,197,24,0.45); border: 1px solid rgba(245,197,24,0.15); padding: 3px 7px;
+      color: rgba(245,197,24,0.7); border: 1px solid rgba(245,197,24,0.3);
+      background: rgba(0,0,0,0.6);
+      padding: 3px 7px;
     }
     .vcard-warning {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: rgba(245,197,24,0.07); border-top: 1px solid rgba(245,197,24,0.18);
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      background: rgba(245,197,24,0.2);
+      border-top: 1px solid rgba(245,197,24,0.3);
       padding: 5px 10px; font-size: 9px; font-weight: 700;
       letter-spacing: 0.13em; text-transform: uppercase;
-      color: rgba(245,197,24,0.55); text-align: center;
+      color: rgba(245,197,24,1); text-align: center;
     }
-
     .vcard-body { padding: 1.25rem; }
-    .vcard-name { font-size: 16px; font-weight: 700; color: #c0eaf2; margin-bottom: 3px; }
+    .vcard-name { font-size: 16px; font-weight: 700; color: #f0f0f0; margin-bottom: 3px; }
     .vcard-title {
       font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--muted2); margin-bottom: 1rem;
+      text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem;
     }
-    .vcard-charges { border-top: 1px solid #0a2030; padding-top: 0.875rem; margin-bottom: 0.875rem; }
+    .vcard-charges { border-top: 1px solid var(--border); padding-top: 0.875rem; margin-bottom: 0.875rem; }
     .vcard-charge-label {
       font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--yellow); opacity: 0.7; margin-bottom: 6px;
+      text-transform: uppercase; color: var(--yellow); margin-bottom: 6px;
     }
     .vcard-charge {
-      font-size: 12px; color: #2a6878; line-height: 1.75;
+      font-size: 12px; color: #999; line-height: 1.75;
       padding-left: 0.9em; text-indent: -0.9em;
     }
-    .vcard-charge::before { content: '— '; color: var(--yellow); opacity: 0.45; }
+    .vcard-charge::before { content: '— '; color: var(--yellow); opacity: 0.6; }
     .vcard-quote {
-      background: #020810; border-left: 2px solid rgba(245,197,24,0.3);
-      padding: 9px 11px; font-size: 12px; color: var(--muted2);
+      background: #0d0d0d; border-left: 2px solid var(--yellow);
+      padding: 9px 11px; font-size: 12px; color: #aaa;
       font-style: italic; line-height: 1.6;
     }
 
     /* ─── MAP PLACEHOLDER ─── */
     .map-placeholder {
-      margin-top: 2rem; background: var(--bg-card); border: 1px solid var(--border);
+      margin-top: 2rem; background: var(--bg-card);
+      border: 1px solid var(--border);
+      background-image: var(--diag);
+      background-color: var(--bg-card);
       min-height: 240px; display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 14px; padding: 2rem;
     }
     .map-bars { display: flex; align-items: flex-end; gap: 8px; height: 110px; }
-    .map-bar { background: var(--yellow); opacity: 0.55; border-radius: 1px 1px 0 0; width: 18px; }
+    .map-bar { background: var(--yellow); opacity: 0.6; border-radius: 1px 1px 0 0; width: 18px; }
     .map-caption {
       font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; color: rgba(93,224,240,0.15);
+      text-transform: uppercase; color: var(--text-dim);
     }
 
     /* ─── CONCERNS ─── */
@@ -273,43 +286,51 @@
       display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
       gap: 16px; margin-top: 2rem;
     }
-    .concern { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; }
+    .concern {
+      background: var(--bg-card2); border: 1px solid var(--border);
+      border-top: 2px solid var(--border-y);
+      padding: 1.5rem;
+    }
     .concern-icon { color: var(--yellow); margin-bottom: 0.75rem; }
     .concern-icon svg { display: block; }
-    .concern-title { font-size: 13px; font-weight: 700; color: #7ed8e8; margin-bottom: 6px; }
-    .concern-text { font-size: 12px; color: var(--muted2); line-height: 1.65; }
+    .concern-title { font-size: 13px; font-weight: 700; color: #f0f0f0; margin-bottom: 6px; }
+    .concern-text { font-size: 12px; color: #888; line-height: 1.65; }
 
     /* ─── CTA ─── */
-    .cta-section { text-align: center; padding: 4rem 2.5rem; }
-    .cta-section h2 { max-width: 440px; margin: 0 auto 0.875rem; }
-    .cta-section .section-sub { margin: 0 auto 2rem; text-align: center; max-width: 400px; }
+    .cta-section {
+      text-align: center; padding: 4rem 2.5rem;
+      background-image: var(--diag);
+      background-color: var(--bg-card);
+    }
+    .cta-section h2 { max-width: 440px; margin: 0 auto 0.875rem; color: #fff; }
+    .cta-section .section-sub { margin: 0 auto 2rem; text-align: center; max-width: 420px; }
     .email-form { display: flex; max-width: 400px; margin: 0 auto; }
     .email-form input {
-      flex: 1; padding: 12px 14px; background: #040d16;
+      flex: 1; padding: 12px 14px; background: #0d0d0d;
       border: 1px solid var(--border); border-right: none;
       color: var(--text); font-family: var(--font); font-size: 13px; outline: none;
     }
-    .email-form input::placeholder { color: #1e4050; }
+    .email-form input::placeholder { color: #444; }
     .email-form input:focus { border-color: var(--yellow); }
 
     /* ─── FOOTER ─── */
     footer {
-      padding: 1.5rem 2.5rem; background: #020c14;
+      padding: 1.5rem 2.5rem; background: #0d0d0d;
       border-top: 1px solid var(--border);
       display: flex; justify-content: space-between;
       align-items: center; flex-wrap: wrap; gap: 12px;
     }
     .footer-logo {
       font-size: 13px; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: #0d3040;
+      text-transform: uppercase; color: #444;
     }
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a {
-      font-size: 11px; font-weight: 500; color: #0d2535;
+      font-size: 11px; font-weight: 500; color: #444;
       letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
     }
-    .footer-links a:hover { color: var(--muted); }
-    .footer-legal { font-size: 10px; color: #0a2030; }
+    .footer-links a:hover { color: var(--yellow); }
+    .footer-legal { font-size: 10px; color: #333; }
 
     /* ─── MOBILE ─── */
     @media (max-width: 640px) {
@@ -317,7 +338,6 @@
       .nav-links { display: none; }
       .hero { padding: 2rem 1.25rem; min-height: 440px; }
       section { padding: 2.5rem 1.25rem; }
-      .divider { padding: 1rem 1.25rem; }
       .cta-section { padding: 3rem 1.25rem; }
       footer { padding: 1.25rem; flex-direction: column; align-items: flex-start; }
       .email-form { flex-direction: column; }
@@ -326,16 +346,16 @@
   </style>
 </head>
 <body>
+<div class="page-wrap">
 
   <nav>
     <!--
-      LOGO SLOT — three options, pick one:
-
-      A) Text only (current): keep as-is. Delete .nav-logo-placeholder when real logo arrives.
-      B) Image logo only: replace entire .nav-logo-slot contents with
-            <img src="logo.png" alt="Guardrails Alliance" style="height:32px;width:auto;display:block;" />
-      C) Icon mark + wordmark: replace .nav-logo-placeholder with
-            <img src="logo-mark.svg" alt="" aria-hidden="true" style="height:32px;width:auto;display:block;" />
+      LOGO SLOT — three options:
+      A) Text only (current): keep as-is. Delete .nav-logo-placeholder when logo is ready.
+      B) Image only: replace .nav-logo-slot contents with
+            <img src="logo.png" alt="Guardrails Alliance" style="height:32px;width:auto;" />
+      C) Mark + wordmark: replace .nav-logo-placeholder with
+            <img src="logo-mark.svg" alt="" aria-hidden="true" style="height:32px;width:auto;" />
          and keep .nav-logo-text beside it.
     -->
     <div class="nav-logo-slot">
@@ -358,16 +378,16 @@
   <!-- ─── HERO ─── -->
   <div class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-scan"></div>
+    <div class="hero-diag"></div>
     <div class="hero-lane" style="left:18%"></div>
-    <div class="hero-lane" style="left:35%"></div>
+    <div class="hero-lane" style="left:36%"></div>
     <div class="hero-lane" style="right:18%"></div>
-    <div class="hero-lane" style="right:35%"></div>
+    <div class="hero-lane" style="right:36%"></div>
     <div class="hero-dashes"></div>
     <div class="hero-vignette"></div>
     <div class="hero-content">
-      <p class="eyebrow">AI Guardrails Alliance</p>
-      <h1>AI billionaires are buying<br>your <em>government.</em><br>We're fighting back.</h1>
+    
+      <h1>AI billionaires are <br><em>buying our government.</em><br/>We're fighting back.</h1>
       <p class="hero-sub">A small group of tech oligarchs is spending hundreds of millions to block AI regulation — and elect politicians who'll let them do whatever they want. We're on the road ahead, fighting for guardrails that protect everyone.</p>
       <div class="btn-group">
         <a href="#threat" class="btn btn-primary">Learn more</a>
@@ -376,7 +396,7 @@
     </div>
   </div>
 
-  <div class="divider"><div class="dline dline-y"></div><div class="ddot ddot-y"></div><div class="dline dline-y"></div></div>
+  <div class="divider"></div>
 
   <!-- ─── THREAT ─── -->
   <section id="threat">
@@ -399,7 +419,7 @@
     </div>
   </section>
 
-  <div class="divider"><div class="dline dline-c"></div><div class="ddot ddot-c"></div><div class="dline dline-c"></div></div>
+  <div class="divider"></div>
 
   <!-- ─── VILLAINS ─── -->
   <section id="villains">
@@ -411,12 +431,10 @@
 
       <div class="vcard">
         <div class="vcard-photo">
-          <!-- PHOTO SLOT: replace the three divs below with an <img> tag — see CSS comment above -->
-          <div class="vcard-photo-inner">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(93,224,240,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          </div>
-          <div class="vcard-photo-hint">Photo goes here</div>
-          <div class="vcard-photo-filename">andreessen.jpg</div>
+          <img
+            src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/MA-villain-headshot.PNG"
+            alt="Marc Andreessen"
+          />
           <div class="vcard-subject">Subject #001</div>
           <div class="vcard-warning">⚠ High risk · $22M donated</div>
         </div>
@@ -435,12 +453,10 @@
 
       <div class="vcard">
         <div class="vcard-photo">
-          <!-- PHOTO SLOT: replace the three divs below with an <img> tag — see CSS comment above -->
-          <div class="vcard-photo-inner">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(93,224,240,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          </div>
-          <div class="vcard-photo-hint">Photo goes here</div>
-          <div class="vcard-photo-filename">lonsdale.jpg</div>
+          <img
+            src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JL-villain-headshot.PNG"
+            alt="Joe Lonsdale"
+          />
           <div class="vcard-subject">Subject #002</div>
           <div class="vcard-warning">⚠ High risk · 30+ candidates</div>
         </div>
@@ -459,12 +475,10 @@
 
       <div class="vcard">
         <div class="vcard-photo">
-          <!-- PHOTO SLOT: replace the three divs below with an <img> tag — see CSS comment above -->
-          <div class="vcard-photo-inner">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(93,224,240,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          </div>
-          <div class="vcard-photo-hint">Photo goes here</div>
-          <div class="vcard-photo-filename">brockman.jpg</div>
+          <img
+            src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JB-villain-headshot.PNG"
+            alt="Greg Brockman"
+          />
           <div class="vcard-subject">Subject #003</div>
           <div class="vcard-warning">⚠ High risk · SB 1047 defeat</div>
         </div>
@@ -484,13 +498,13 @@
     </div>
   </section>
 
-  <div class="divider"><div class="dline dline-y"></div><div class="ddot ddot-y"></div><div class="dline dline-y"></div></div>
+  <div class="divider"></div>
 
   <!-- ─── MAP ─── -->
   <section id="map">
     <p class="label-y">Follow the money</p>
     <h2>LTF spending by district</h2>
-    <p class="section-sub">Leading the Future has targeted key swing districts — here's where the money is flowing. Full interactive map on the <a href="map.html" style="color:var(--cyan);text-decoration:none;">money map page</a>.</p>
+    <p class="section-sub">Leading the Future has targeted key swing districts — here's where the money is flowing. Full interactive map on the <a href="map.html">money map page</a>.</p>
     <div class="map-placeholder">
       <div class="map-bars">
         <div class="map-bar" style="height:35%"></div>
@@ -510,11 +524,11 @@
     </div>
   </section>
 
-  <div class="divider"><div class="dline dline-c"></div><div class="ddot ddot-c"></div><div class="dline dline-c"></div></div>
+  <div class="divider"></div>
 
   <!-- ─── STAKES ─── -->
   <section id="stakes">
-    <p class="label-c">Why it matters</p>
+    <p class="label-y">Why it matters</p>
     <h2>What's at stake</h2>
     <p class="section-sub">Unregulated AI isn't just an abstract concern. Real people are already feeling the consequences.</p>
     <div class="concerns-grid">
@@ -542,12 +556,12 @@
     </div>
   </section>
 
-  <div class="divider"><div class="dline dline-c"></div><div class="ddot ddot-c"></div><div class="dline dline-c"></div></div>
+  <div class="divider"></div>
 
   <!-- ─── CTA ─── -->
   <section id="join" class="cta-section">
-    <p class="label-y">Join the fight</p>
-    <h2>We're fighting for a path forward that benefits everyone</h2>
+    <p class="label-y" style="text-align:center;">Join the fight</p>
+    <h1>We're fighting for a path forward<br>that benefits <em>everyone.</em></h1>
     <p class="section-sub">Sign up for updates, volunteer, and help us put guardrails on AI before it's too late.</p>
     <form class="email-form" onsubmit="return false;">
       <input type="email" placeholder="your@email.com" aria-label="Email address" />
@@ -566,5 +580,6 @@
     <div class="footer-legal">Paid for by AI Guardrails Alliance PAC · Not authorized by any candidate or candidate's committee</div>
   </footer>
 
+</div>
 </body>
 </html>
