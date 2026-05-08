@@ -109,14 +109,14 @@
     }
     /* vertical road dashes in yellow */
     .hero-dashes {
-      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 2px; height: 70%;
+      position: absolute; bottom: 0; left: 65%; transform: translateX(-50%);
+      width: 4px; height: 70%;
       background: repeating-linear-gradient(
         to top, var(--yellow) 0, var(--yellow) 22px, transparent 22px, transparent 52px
       );
       opacity: 0.3;
     }
-    .hero-lane { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.04); }
+    .hero-lane { position: absolute; top: 0; bottom: 0; width: 4px; background: rgba(255,255,255,0.04); }
     .hero-vignette {
       position: absolute; inset: 0;
       background: linear-gradient(to bottom, rgba(8,8,8,0.6) 0%, rgba(8,8,8,0.1) 35%, rgba(8,8,8,0.97) 100%);
@@ -148,13 +148,38 @@
     .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
 
     /* ─── DIVIDERS — yellow diagonal stripe band ─── */
-    .divider {
+    .divider-double {
       height: 20px;
       background: transparent;
       border-top: 4px solid rgba(245, 197, 24, 0.5);
       border-bottom: 4px solid rgba(245, 197, 24, 0.5);
     }
 
+    .divider-dash {
+      height: 0;
+      border: none;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--yellow) 0px,
+        var(--yellow) 30px,
+        transparent 30px,
+        transparent 50px
+      );
+      height: 3px;
+      opacity: 0.6;
+    }
+
+    .divider-hazard {
+      height: 24px;
+      background: repeating-linear-gradient(
+        -45deg,
+       #f5c518,
+       #f5c518 10px,
+       #111111 10px,
+       #111111 20px
+      );
+      opacity: 0.8;
+    }
     .divider-thin {
       height: 4px;
       background: rgba(245, 197, 24, 0.5);
@@ -359,8 +384,8 @@
          and keep .nav-logo-text beside it.
     -->
     <div class="nav-logo-slot">
-      <div class="nav-logo-placeholder">logo</div>
-      <span class="nav-logo-text">Guardrails Alliance</span>
+     <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo.jpg" alt="" aria-hidden="true" style="height:32px;width:auto;" />
+     <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-wordmark.jpg" alt="Guardrails Alliance" style="height:32px;width:auto;" />
     </div>
 
     <ul class="nav-links">
@@ -396,7 +421,7 @@
     </div>
   </div>
 
-  <div class="divider"></div>
+  <div class="divider-double"></div>
 
   <!-- ─── THREAT ─── -->
   <section id="threat">
@@ -419,7 +444,7 @@
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="divider-hazard"></div>
 
   <!-- ─── VILLAINS ─── -->
   <section id="villains">
@@ -498,7 +523,7 @@
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="divider-hazard"></div>
 
   <!-- ─── MAP ─── -->
   <section id="map">
@@ -524,7 +549,7 @@
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="divider-double"></div>
 
   <!-- ─── STAKES ─── -->
   <section id="stakes">
@@ -556,7 +581,7 @@
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="divider-dash"></div>
 
   <!-- ─── CTA ─── -->
   <section id="join" class="cta-section">
