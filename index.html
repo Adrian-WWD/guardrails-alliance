@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Guardrails Alliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #c8f135;
+      --green-dim: rgba(200,241,53,0.08);
+      --bg: #0a0a0a;
+      --bg-card: #111111;
+      --bg-card2: #0d0d0d;
+      --border: #1e1e1e;
+      --text: #f0f0f0;
+      --muted: #888888;
+      --muted2: #555555;
+      --font: 'Space Grotesk', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2.5rem;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { font-size: 13px; font-weight: 700; padding: 8px 18px; background: var(--green); color: #000; text-decoration: none; letter-spacing: 0.04em; }
+
+    /* HERO */
+    .hero {
+      position: relative; min-height: 540px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 3rem 2.5rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: #080808;
+      overflow: hidden;
+    }
+    /* road lanes */
+    .hero-bg::before {
+      content: '';
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; height: 100%;
+      background:
+        repeating-linear-gradient(to top,
+          var(--green) 0px, var(--green) 28px,
+          transparent 28px, transparent 60px
+        );
+      opacity: 0.25;
+      width: 3px;
+    }
+    .hero-road-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,241,53,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,241,53,0.015) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-road-lanes {
+      position: absolute; inset: 0;
+      display: flex; justify-content: center;
+    }
+    .lane-center {
+      width: 2px;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--green) 0px, var(--green) 30px,
+        transparent 30px, transparent 62px
+      );
+      opacity: 0.5;
+    }
+    .lane-solid {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .lane-solid.l1 { left: 18%; }
+    .lane-solid.l2 { left: 35%; }
+    .lane-solid.r1 { right: 18%; }
+    .lane-solid.r2 { right: 35%; }
+    .hero-vignette {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.5) 0%, rgba(8,8,8,0.9) 70%, #0a0a0a 100%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 700px; }
+    .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; }
+    .hero h1 { font-size: clamp(28px, 4.5vw, 48px); font-weight: 700; line-height: 1.12; margin-bottom: 1.25rem; }
+    .hero h1 em { color: var(--green); font-style: normal; }
+    .hero-sub { font-size: 16px; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 2rem; }
+    .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 12px 24px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; cursor: pointer; border: none; font-family: var(--font); }
+    .btn-primary { background: var(--green); color: #000; }
+    .btn-primary:hover { background: #d4f84a; }
+    .btn-ghost { background: transparent; color: var(--green); border: 1px solid var(--green); }
+    .btn-ghost:hover { background: var(--green-dim); }
+
+    /* DIVIDER */
+    .road-divider {
+      display: flex; align-items: center; gap: 16px;
+      padding: 1.25rem 2.5rem;
+    }
+    .road-line {
+      flex: 1; height: 1px;
+      background: repeating-linear-gradient(
+        90deg, var(--green) 0px, var(--green) 14px,
+        transparent 14px, transparent 28px
+      );
+      opacity: 0.2;
+    }
+    .road-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); opacity: 0.4; }
+
+    /* SECTIONS */
+    section { padding: 3rem 2.5rem; border-bottom: 1px solid var(--border); }
+    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 0.5rem; }
+    section h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; margin-bottom: 0.75rem; }
+    .section-sub { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 560px; }
+
+    /* STATS */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px; background: var(--border); margin-top: 2rem;
+    }
+    .stat { background: var(--bg-card2); padding: 1.5rem; }
+    .stat-num { font-size: clamp(24px, 3.5vw, 36px); font-weight: 700; color: var(--green); }
+    .stat-label { font-size: 12px; color: var(--muted2); margin-top: 6px; line-height: 1.5; }
+
+    /* VILLAINS */
+    .villain-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px; margin-top: 2rem;
+    }
+    .villain-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; }
+    .villain-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #1a1a1a; border: 1px solid #333;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; font-weight: 700; color: #555;
+      margin-bottom: 1rem;
+    }
+    .villain-name { font-size: 14px; font-weight: 700; color: #ddd; }
+    .villain-title { font-size: 11px; color: var(--muted2); margin-bottom: 1rem; }
+    .villain-bullets { font-size: 12px; color: #777; line-height: 1.8; }
+    .villain-bullets span { display: block; padding-left: 1em; text-indent: -1em; }
+    .villain-bullets span::before { content: '·  '; color: var(--green); }
+    .speech {
+      background: #080808; border-left: 2px solid var(--green);
+      padding: 10px 12px; font-size: 12px; color: #aaa;
+      font-style: italic; margin-top: 1rem; line-height: 1.6;
+    }
+
+    /* MAP */
+    .map-placeholder {
+      margin-top: 2rem; background: var(--bg-card2);
+      border: 1px solid var(--border);
+      min-height: 220px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+      padding: 2rem;
+    }
+    .map-bars { display: flex; align-items: flex-end; gap: 8px; height: 100px; }
+    .map-bar { background: var(--green); opacity: 0.65; border-radius: 1px 1px 0 0; width: 16px; }
+    .map-caption { font-size: 11px; color: #333; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    /* CONCERNS */
+    .concerns-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px; margin-top: 2rem;
+    }
+    .concern { background: var(--bg-card2); border: 1px solid var(--border); padding: 1.5rem; }
+    .concern-icon { font-size: 28px; margin-bottom: 0.75rem; }
+    .concern-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+    .concern-text { font-size: 12px; color: var(--muted2); line-height: 1.6; }
+
+    /* CTA */
+    .cta-section { text-align: center; padding: 4rem 2.5rem; }
+    .cta-section h2 { font-size: clamp(24px, 3vw, 36px); max-width: 460px; margin: 0 auto 1rem; }
+    .cta-section p { color: var(--muted); font-size: 15px; max-width: 420px; margin: 0 auto 2rem; }
+    .email-form { display: flex; gap: 0; max-width: 400px; margin: 0 auto; }
+    .email-form input {
+      flex: 1; padding: 12px 16px; background: #111; border: 1px solid var(--border);
+      border-right: none; color: var(--text); font-family: var(--font); font-size: 14px;
+      outline: none;
+    }
+    .email-form input::placeholder { color: #444; }
+    .email-form input:focus { border-color: var(--green); }
+    .email-form button { padding: 12px 20px; font-family: var(--font); }
+
+    /* FOOTER */
+    footer {
+      padding: 1.5rem 2.5rem;
+      background: #000;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #333; }
+    .footer-text { font-size: 11px; color: #333; }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 2rem 1.25rem; min-height: 420px; }
+      section { padding: 2.5rem 1.25rem; }
+      .road-divider { padding: 1rem 1.25rem; }
+      footer { padding: 1.25rem; flex-direction: column; align-items: flex-start; }
+      .email-form { flex-direction: column; }
+      .email-form input { border-right: 1px solid var(--border); border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Guardrails Alliance</div>
+    <ul class="nav-links">
+      <li><a href="#threat">The threat</a></li>
+      <li><a href="#villains">Who's behind it</a></li>
+      <li><a href="#map">Follow the money</a></li>
+      <li><a href="#stakes">What's at stake</a></li>
+    </ul>
+    <a href="#join" class="btn btn-primary">Get involved</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-bg">
+      <div class="hero-road-grid"></div>
+      <div class="hero-road-lanes">
+        <div class="lane-solid l1"></div>
+        <div class="lane-solid l2"></div>
+        <div class="lane-center"></div>
+        <div class="lane-solid r1"></div>
+        <div class="lane-solid r2"></div>
+      </div>
+      <div class="hero-vignette"></div>
+    </div>
+    <div class="hero-content">
+      <p class="eyebrow">AI Guardrails Alliance</p>
+      <h1>AI billionaires are buying<br>your <em>government.</em><br>We're fighting back.</h1>
+      <p class="hero-sub">A small group of tech oligarchs is spending hundreds of millions to block AI regulation — and elect politicians who'll let them do whatever they want. We're on the road ahead, fighting for guardrails that protect everyone.</p>
+      <div class="btn-group">
+        <a href="#threat" class="btn btn-primary">Learn more</a>
+        <a href="#villains" class="btn btn-ghost">Meet the villains</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="road-divider"><div class="road-line"></div><div class="road-dot"></div><div class="road-line"></div></div>
+
+  <section id="threat">
+    <p class="section-label">The problem</p>
+    <h2>The road ahead is being blocked</h2>
+    <p class="section-sub">Leading the Future and their allies are pouring dark money into elections — backing candidates who will gut oversight, block safety rules, and hand the keys to AI development to a handful of unaccountable billionaires.</p>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">$250M+</div>
+        <div class="stat-label">Spent on AI-friendly candidates in 2024</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">47</div>
+        <div class="stat-label">Congressional races targeted by LTF</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Federal AI safety laws passed</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="road-divider"><div class="road-line"></div><div class="road-dot"></div><div class="road-line"></div></div>
+
+  <section id="villains">
+    <p class="section-label">Who's behind it</p>
+    <h2>Meet the villains</h2>
+    <p class="section-sub">The same people getting rich from unregulated AI are funding the campaigns to keep it that way.</p>
+    <div class="villain-grid">
+      <div class="villain-card">
+        <div class="villain-avatar">MA</div>
+        <div class="villain-name">Marc Andreessen</div>
+        <div class="villain-title">a16z — $35B AUM</div>
+        <div class="villain-bullets">
+          <span>$22M donated to GOP in 2024</span>
+          <span>Opposes all AI safety legislation</span>
+          <span>Direct financial stake in deregulation</span>
+        </div>
+        <div class="speech">"AI regulation is a form of political control."</div>
+      </div>
+      <div class="villain-card">
+        <div class="villain-avatar">JL</div>
+        <div class="villain-name">Joe Lonsdale</div>
+        <div class="villain-title">8VC / Palantir co-founder</div>
+        <div class="villain-bullets">
+          <span>Backed 30+ anti-regulation candidates</span>
+          <span>Funds "AI freedom" think tanks</span>
+          <span>Ties to Project 2025</span>
+        </div>
+        <div class="speech">"Safety boards are just government surveillance."</div>
+      </div>
+      <div class="villain-card">
+        <div class="villain-avatar">GB</div>
+        <div class="villain-name">Greg Brockman</div>
+        <div class="villain-title">OpenAI co-founder</div>
+        <div class="villain-bullets">
+          <span>Lobbied against EU AI Act</span>
+          <span>Opposed SB 1047 in California</span>
+          <span>Frames safety rules as "innovation killers"</span>
+        </div>
+        <div class="speech">"We can't let bureaucrats slow down the future."</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="road-divider"><div class="road-line"></div><div class="road-dot"></div><div class="road-line"></div></div>
+
+  <section id="map">
+    <p class="section-label">Follow the money</p>
+    <h2>LTF spending by district</h2>
+    <p class="section-sub">Leading the Future has targeted key swing districts — here's where the money is flowing.</p>
+    <div class="map-placeholder">
+      <div class="map-bars">
+        <div class="map-bar" style="height:35%"></div>
+        <div class="map-bar" style="height:60%"></div>
+        <div class="map-bar" style="height:45%"></div>
+        <div class="map-bar" style="height:100%"></div>
+        <div class="map-bar" style="height:70%"></div>
+        <div class="map-bar" style="height:25%"></div>
+        <div class="map-bar" style="height:80%"></div>
+        <div class="map-bar" style="height:55%"></div>
+        <div class="map-bar" style="height:40%"></div>
+        <div class="map-bar" style="height:65%"></div>
+        <div class="map-bar" style="height:90%"></div>
+        <div class="map-bar" style="height:50%"></div>
+      </div>
+      <div class="map-caption">Interactive district spending map — coming soon</div>
+    </div>
+  </section>
+
+  <div class="road-divider"><div class="road-line"></div><div class="road-dot"></div><div class="road-line"></div></div>
+
+  <section id="stakes">
+    <p class="section-label">Why it matters</p>
+    <h2>What's at stake</h2>
+    <p class="section-sub">Unregulated AI isn't just an abstract concern. Real people are already feeling the consequences.</p>
+    <div class="concerns-grid">
+      <div class="concern">
+        <div class="concern-icon">🏭</div>
+        <div class="concern-title">Data centers</div>
+        <div class="concern-text">Massive energy and water usage in communities that never consented — with no environmental review required.</div>
+      </div>
+      <div class="concern">
+        <div class="concern-icon">🛡️</div>
+        <div class="concern-title">Child safety</div>
+        <div class="concern-text">AI-generated abuse material, manipulative algorithms targeting kids — and no legal framework to stop it.</div>
+      </div>
+      <div class="concern">
+        <div class="concern-icon">💼</div>
+        <div class="concern-title">Jobs</div>
+        <div class="concern-text">Mass automation without worker protections or transition support — displacing millions with no safety net.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="road-divider"><div class="road-line"></div><div class="road-dot"></div><div class="road-line"></div></div>
+
+  <section id="join" class="cta-section">
+    <p class="section-label" style="text-align:center">Join the fight</p>
+    <h2>We're fighting for a path forward that benefits everyone</h2>
+    <p>Sign up for updates, volunteer, and help us put guardrails on AI before it's too late.</p>
+    <form class="email-form" onsubmit="return false;">
+      <input type="email" placeholder="your@email.com" aria-label="Email address" />
+      <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Guardrails Alliance</div>
+    <div class="footer-text">Paid for by AI Guardrails Alliance PAC · Not authorized by any candidate or candidate's committee</div>
+  </footer>
+
+</body>
+</html>
