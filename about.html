@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Guardrails Alliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #f5c518;
+      --bg-page: #080808;
+      --bg: #0d0d0d;
+      --bg-card: #141414;
+      --bg-card2: #111111;
+      --border: #242424;
+      --border-y: rgba(245,197,24,0.2);
+      --text: #f0f0f0;
+      --text-muted: #999999;
+      --text-dim: #555555;
+      --font: 'Space Grotesk', sans-serif;
+      --diag: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.06) 6px,rgba(245,197,24,0.06) 7px);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg-page); color: var(--text); line-height: 1.6; }
+    .page-wrap { max-width: 900px; margin: 0 auto; background: var(--bg); border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.875rem 2.5rem;
+      background: rgba(13,13,13,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      gap: 1.5rem;
+    }
+    .nav-logo-slot { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-logo-slot img { height: 48px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--yellow); }
+    .nav-cta { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 18px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; }
+    .nav-cta:hover { background: #fdd835; }
+
+    /* ─── DIVIDERS ─── */
+    .divider-double { height: 20px; background: transparent; border-top: 4px solid rgba(245,197,24,0.5); border-bottom: 4px solid rgba(245,197,24,0.5); }
+    .divider-hazard { height: 24px; background: repeating-linear-gradient(-45deg,#f5c518,#f5c518 10px,#111 10px,#111 20px); opacity: 0.8; }
+    .divider-dash { height: 3px; background: repeating-linear-gradient(90deg,var(--yellow) 0px,var(--yellow) 30px,transparent 30px,transparent 50px); opacity: 0.6; }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      position: relative; overflow: hidden;
+      padding: 3.5rem 2.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header-bg { position: absolute; inset: 0; background: #080808; }
+    .page-header-diag { position: absolute; inset: 0; background: var(--diag); opacity: 0.7; }
+    .page-header-dashes {
+      position: absolute; bottom: 0; right: 15%; width: 3px; height: 100%;
+      background: repeating-linear-gradient(to top,var(--yellow) 0,var(--yellow) 20px,transparent 20px,transparent 48px);
+      opacity: 0.2;
+    }
+    .page-header-vignette { position: absolute; inset: 0; background: linear-gradient(to bottom,rgba(8,8,8,0.5) 0%,rgba(8,8,8,0.05) 40%,rgba(8,8,8,0.92) 100%); }
+    .page-header-content { position: relative; z-index: 2; }
+    .label-y { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem; }
+    .page-header h1 { font-size: clamp(28px,4.5vw,48px); font-weight: 700; color: #fff; line-height: 1.08; margin-bottom: 1rem; }
+    .page-header h1 em { color: var(--yellow); font-style: normal; }
+    .page-header .lead { font-size: 16px; color: #ccc; line-height: 1.8; max-width: 580px; }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 3rem 2.5rem; border-bottom: 1px solid var(--border); }
+    section h2 { font-size: clamp(20px,2.8vw,28px); font-weight: 700; color: #fff; margin-bottom: 1rem; }
+    section h2 em { color: var(--yellow); font-style: normal; }
+    .body-text { font-size: 14px; color: #cccccc; line-height: 1.9; max-width: 640px; }
+    .body-text + .body-text { margin-top: 1rem; }
+    .body-text strong { color: #fff; font-weight: 700; }
+
+    /* ─── MISSION PILLARS ─── */
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1px; background: var(--border); margin-top: 2rem; }
+    .pillar { background: var(--bg-card); padding: 1.5rem; background-image: var(--diag); background-color: var(--bg-card); border-top: 2px solid var(--border-y); }
+    .pillar-num { font-size: 28px; font-weight: 700; color: var(--yellow); margin-bottom: 0.5rem; line-height: 1; }
+    .pillar-title { font-size: 15px; font-weight: 700; color: #f0f0f0; margin-bottom: 8px; }
+    .pillar-text { font-size: 14px; color: #aaaaaa; line-height: 1.7; }
+
+    /* ─── BELIEFS ─── */
+    .belief-list { margin-top: 1.5rem; }
+    .belief { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    .belief:last-child { border-bottom: none; }
+    .belief-marker { width: 3px; background: var(--yellow); flex-shrink: 0; opacity: 0.6; }
+    .belief-text { font-size: 15px; color: #cccccc; line-height: 1.8; }
+    .belief-text strong { color: #fff; }
+
+    /* ─── STAT STRIP ─── */
+    .stat-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+    .stat-item { background: var(--bg-card2); padding: 1.5rem 2rem; background-image: var(--diag); background-color: var(--bg-card2); }
+    .stat-item .num { font-size: clamp(22px,3vw,32px); font-weight: 700; color: var(--yellow); }
+    .stat-item .lbl { font-size: 11px; color: var(--text-dim); margin-top: 4px; line-height: 1.5; }
+
+    /* ─── PULL QUOTE ─── */
+    .pull-quote {
+      margin: 2rem 0 0;
+      padding: 1.5rem 2rem;
+      background: #0d0d0d;
+      border-left: 3px solid var(--yellow);
+    }
+    .pull-quote blockquote { font-size: 17px; font-style: italic; color: #e8e8e8; line-height: 1.7; margin-bottom: 0.5rem; }
+    .pull-quote blockquote em { color: var(--yellow); font-style: normal; }
+    .pull-quote cite { font-size: 11px; color: #555; font-style: normal; letter-spacing: 0.05em; }
+
+    /* ─── DISCLAIMER ─── */
+    .disclaimer { padding: 1.5rem 2.5rem; background: var(--bg-card); border-top: 1px solid var(--border); }
+    .disclaimer p { font-size: 12px; color: #555; line-height: 1.7; max-width: 640px; }
+    .disclaimer strong { color: #888; }
+
+    /* ─── CTA ─── */
+    .cta-section { text-align: center; padding: 4rem 2.5rem; background-image: var(--diag); background-color: var(--bg-card); }
+    .cta-section h2 { font-size: clamp(22px,3vw,34px); font-weight: 700; color: #fff; max-width: 460px; margin: 0 auto 0.875rem; line-height: 1.2; }
+    .cta-section h2 em { color: var(--yellow); font-style: normal; }
+    .cta-section p { font-size: 14px; color: #aaa; max-width: 400px; margin: 0 auto 2rem; line-height: 1.75; }
+    .email-form { display: flex; max-width: 400px; margin: 0 auto; }
+    .email-form input { flex: 1; padding: 12px 14px; background: #0d0d0d; border: 1px solid var(--border); border-right: none; color: var(--text); font-family: var(--font); font-size: 13px; outline: none; }
+    .email-form input::placeholder { color: #444; }
+    .email-form input:focus { border-color: var(--yellow); }
+    .btn { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 24px; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn-primary { background: var(--yellow); color: #0d0d0d; }
+    .btn-primary:hover { background: #fdd835; }
+
+    /* ─── FOOTER ─── */
+    footer { padding: 1.5rem 2.5rem; background: #0d0d0d; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #444; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 11px; font-weight: 500; color: #444; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; }
+    .footer-links a:hover { color: var(--yellow); }
+    .footer-legal { font-size: 10px; color: #333; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 640px) {
+      nav { padding: 0.875rem 1.25rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 2.5rem 1.25rem 2rem; }
+      section { padding: 2.5rem 1.25rem; }
+      .cta-section { padding: 3rem 1.25rem; }
+      .stat-strip { grid-template-columns: 1fr; }
+      .disclaimer, footer { padding: 1.25rem; }
+      .email-form { flex-direction: column; }
+      .email-form input { border-right: 1px solid var(--border); border-bottom: none; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <nav>
+    <div class="nav-logo-slot">
+      <a href="index.html">
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo.png" alt="Guardrails Alliance" />
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="about.html" class="active">ABOUT</a></li>      
+      <li><a href="index.html#threat">THE THREAT</a></li>
+      <li><a href="villains.html">WHO'S BEHIND IT</a></li>
+      <li><a href="map.html">FOLLOW THE MONEY</a></li>
+    </ul>
+    <a href="#join" class="nav-cta">Get involved</a>
+  </nav>
+
+  <!-- ─── HEADER ─── -->
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-diag"></div>
+    <div class="page-header-dashes"></div>
+    <div class="page-header-vignette"></div>
+    <div class="page-header-content">
+      <div style="text-align:center; margin-bottom: -1rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border);">
+        <img
+          src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-wordmark.png"
+          alt="Guardrails Alliance"
+          style="max-width: 480px; width: 100%; height: auto; display: block; margin: 0 auto;"
+        />
+      </div>
+      <p class="label-y">About us</p>
+      <h1>We didn't start this fight.<br><em>But we're going to finish it.</em></h1>
+      <p class="lead">The AI Guardrails Alliance is a political action committee built to counter the flood of Silicon Valley money trying to buy a deregulated future — and the politicians who will hand it to them.</p>
+    </div>
+  </div>
+
+  <div class="divider-hazard"></div>
+
+  <!-- ─── WHO WE ARE ─── -->
+  <section>
+    <p class="label-y">Who we are</p>
+    <h2>A coalition that <em>refuses to look the other way</em></h2>
+    <p class="body-text">The AI Guardrails Alliance is made up of workers, organizers, policy experts, and everyday people who believe that the most powerful technology ever built shouldn't be controlled by a handful of unaccountable billionaires — and that our democracy shouldn't be for sale to the highest bidder.</p>
+    <p class="body-text">We are <strong>not anti-technology.</strong> We believe AI can be transformative, beneficial, and genuinely good for people. But that future doesn't happen by accident — it requires rules, accountability, and a government that actually represents the public, not just its donors.</p>
+    <p class="body-text">We were formed in direct response to <strong>Leading the Future</strong> — a $125 million super PAC bankrolled almost entirely by five Silicon Valley figures — and the broader campaign to elect politicians who will gut AI oversight before it can take root.</p>
+
+    <div class="pull-quote">
+      <blockquote>The question isn't whether AI will change the world. It's whether the people affected by that change will have any say in <em>how.</em></blockquote>
+      <cite>— AI Guardrails Alliance</cite>
+    </div>
+  </section>
+
+  <div class="divider-double"></div>
+
+  <!-- ─── MISSION ─── -->
+  <section>
+    <p class="label-y">Our mission</p>
+    <h2>Put guardrails on AI before<br>it's <em>too late to matter</em></h2>
+    <p class="body-text">We exist to do three things: expose the money behind the deregulation push, elect candidates who will stand up for AI accountability, and build a broad public coalition that can outlast any single election cycle.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">Expose</div>
+        <div class="pillar-text">Follow the money. Publish the donor networks. Name the politicians and the PACs buying their way to deregulation.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Elect</div>
+        <div class="pillar-text">Support candidates at every level who will pass meaningful AI safety rules and resist the pressure of tech money.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Organize</div>
+        <div class="pillar-text">Build the grassroots coalition — workers, parents, advocates — whose voices carry further than any billionaire's checkbook.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-double"></div>
+
+  <!-- ─── WHAT WE BELIEVE ─── -->
+  <section>
+    <p class="label-y">What we believe</p>
+    <h2>The principles behind<br>everything we do</h2>
+    <div class="belief-list">
+      <div class="belief">
+        <div class="belief-marker"></div>
+        <div class="belief-text"><strong>AI must be accountable.</strong> Systems that affect jobs, healthcare, housing, and civil rights need oversight, transparency, and legal accountability — not blanket immunity.</div>
+      </div>
+      <div class="belief">
+        <div class="belief-marker"></div>
+        <div class="belief-text"><strong>Democracy isn't for sale.</strong> No individual or company — however rich — should be able to purchase a regulatory environment that protects their profits at the expense of the public.</div>
+      </div>
+      <div class="belief">
+        <div class="belief-marker"></div>
+        <div class="belief-text"><strong>Workers come first.</strong> The people whose jobs are being displaced by AI deserve a seat at the table — and a safety net that actually catches them.</div>
+      </div>
+      <div class="belief">
+        <div class="belief-marker"></div>
+        <div class="belief-text"><strong>Children must be protected.</strong> AI-generated abuse, manipulative algorithms, and addictive systems designed to exploit kids are not acceptable byproducts of innovation — they are failures of governance.</div>
+      </div>
+      <div class="belief">
+        <div class="belief-marker"></div>
+        <div class="belief-text"><strong>Communities have rights.</strong> Massive data centers that consume local water and power without consent are not progress — they are extraction. Affected communities deserve a voice.</div>
+      </div>
+      <div class="belief">
+        <div class="belief-marker"></div>
+        <div class="belief-text"><strong>The road forward benefits everyone.</strong> We don't have to choose between technological progress and human dignity. The guardrails we're fighting for make AI better — not just safer.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-hazard"></div>
+
+  <!-- ─── BY THE NUMBERS ─── -->
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="num">$125M+</div>
+      <div class="lbl">Raised by LTF to fight regulation</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">5</div>
+      <div class="lbl">Billionaires behind 99% of that money</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">0</div>
+      <div class="lbl">Federal AI safety laws passed</div>
+    </div>
+  </div>
+
+  <div class="divider-double"></div>
+
+  <!-- ─── LEGAL ─── -->
+  <div class="disclaimer">
+    <p><strong>AI Guardrails Alliance</strong> is a federally registered political action committee (PAC). We are required to disclose all contributions and expenditures to the Federal Election Commission. Our filings are publicly available at <strong>FEC.gov</strong>. We do not coordinate with any candidate or candidate's committee. Contributions to the AI Guardrails Alliance PAC are not tax-deductible.</p>
+  </div>
+
+  <div class="divider-dash"></div>
+
+  <!-- ─── CTA ─── -->
+  <section id="join" class="cta-section">
+    <p class="label-y" style="text-align:center;">Join the fight</p>
+    <h2>We're fighting for a path forward that benefits <em>everyone.</em></h2>
+    <p>Sign up for updates, volunteer, and help us put guardrails on AI before it's too late.</p>
+    <form class="email-form" onsubmit="return false;">
+      <input type="email" placeholder="your@email.com" aria-label="Email address" />
+      <button type="submit" class="btn btn-primary" style="border:none;">Sign up</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Guardrails Alliance</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="villains.html">Villains</a>
+      <a href="map.html">Money map</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-legal">Paid for by AI Guardrails Alliance PAC · Not authorized by any candidate or candidate's committee</div>
+  </footer>
+
+</div>
+</body>
+</html>
