@@ -12,36 +12,25 @@
 
     :root {
       --yellow: #f5c518;
-      --cyan: #5de0f0;
+      --bg-page: #080808;
       --bg: #0d0d0d;
       --bg-card: #141414;
       --bg-card2: #111111;
       --border: #242424;
       --border-y: rgba(245,197,24,0.2);
       --text: #f0f0f0;
+      --text-sub: #bbbbbb;
       --text-muted: #999999;
       --text-dim: #555555;
       --font: 'Space Grotesk', sans-serif;
-      --diag: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 6px,
-        rgba(245,197,24,0.06) 6px,
-        rgba(245,197,24,0.06) 7px
-      );
+      --diag: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.06) 6px,rgba(245,197,24,0.06) 7px);
     }
 
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font);
-      background: #080808;
-      color: var(--text);
-      line-height: 1.6;
-    }
+    body { font-family: var(--font); background: var(--bg-page); color: var(--text); line-height: 1.6; }
 
     .page-wrap {
-      max-width: 900px;
-      margin: 0 auto;
+      max-width: 900px; margin: 0 auto;
       background: var(--bg);
       border-left: 1px solid var(--border);
       border-right: 1px solid var(--border);
@@ -57,41 +46,12 @@
       border-bottom: 1px solid var(--border);
       gap: 1.5rem;
     }
-    .nav-logo-slot { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .nav-logo-placeholder {
-      width: 32px; height: 32px;
-      border: 1px dashed rgba(245,197,24,0.25);
-      border-radius: 3px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 8px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-      color: rgba(245,197,24,0.25); flex-shrink: 0;
-    }
-    /*
-      LOGO SLOT — swap options:
-      A) Text only (current): keep as-is.
-      B) Image only: replace .nav-logo-slot contents with
-            <img src="logo.png" alt="Guardrails Alliance" style="height:32px;width:auto;" />
-      C) Mark + wordmark: replace .nav-logo-placeholder with
-            <img src="logo-mark.svg" alt="" aria-hidden="true" style="height:32px;width:auto;" />
-         and keep .nav-logo-text.
-    */
-    .nav-logo-text {
-      font-size: 14px; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--text);
-    }
+    .nav-logo-slot { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-logo-slot img { height: 48px; width: auto; display: block; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-size: 12px; font-weight: 500; color: var(--text-muted);
-      letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s;
-    }
+    .nav-links a { font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--yellow); }
-    .nav-cta {
-      font-family: var(--font); font-size: 12px; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 8px 18px; background: var(--yellow); color: #0d0d0d;
-      border: none; cursor: pointer; flex-shrink: 0;
-    }
+    .nav-cta { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 18px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; }
     .nav-cta:hover { background: #fdd835; }
 
     /* ─── HERO ─── */
@@ -101,259 +61,111 @@
       padding: 3rem 2.5rem; overflow: hidden;
     }
     .hero-bg { position: absolute; inset: 0; background: #080808; }
-    /* diagonal yellow stripe texture */
-    .hero-diag {
-      position: absolute; inset: 0;
-      background: var(--diag);
-      opacity: 0.7;
-    }
-    /* vertical road dashes in yellow */
+    .hero-diag { position: absolute; inset: 0; background: var(--diag); opacity: 0.7; }
     .hero-dashes {
       position: absolute; bottom: 0; left: 65%; transform: translateX(-50%);
       width: 4px; height: 70%;
-      background: repeating-linear-gradient(
-        to top, var(--yellow) 0, var(--yellow) 22px, transparent 22px, transparent 52px
-      );
+      background: repeating-linear-gradient(to top,var(--yellow) 0,var(--yellow) 22px,transparent 22px,transparent 52px);
       opacity: 0.3;
     }
     .hero-lane { position: absolute; top: 0; bottom: 0; width: 4px; background: rgba(255,255,255,0.04); }
-    .hero-vignette {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(8,8,8,0.6) 0%, rgba(8,8,8,0.1) 35%, rgba(8,8,8,0.97) 100%);
-    }
+    .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to bottom,rgba(8,8,8,0.6) 0%,rgba(8,8,8,0.1) 35%,rgba(8,8,8,0.97) 100%); }
     .hero-content { position: relative; z-index: 2; max-width: 660px; }
-    .eyebrow {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--yellow); margin-bottom: 1rem;
-    }
-    .hero h1 {
-      font-size: clamp(28px,4.5vw,50px); font-weight: 700;
-      line-height: 1.08; margin-bottom: 1.25rem; color: #ffffff;
-    }
+    .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 1rem; }
+    .hero h1 { font-size: clamp(28px,4.5vw,50px); font-weight: 700; line-height: 1.08; margin-bottom: 1.25rem; color: #ffffff; }
     .hero h1 em { color: var(--yellow); font-style: normal; }
-    .hero-sub {
-      font-size: 15px; font-weight: 400; color: #bbbbbb;
-      max-width: 520px; line-height: 1.75; margin-bottom: 2rem;
+    .hero-sub { font-size: 15px; font-weight: 400; color: #bbbbbb; max-width: 520px; line-height: 1.75; margin-bottom: 1.5rem; }
+
+    /* Hero inline signup */
+    .hero-signup { display: flex; gap: 0; max-width: 380px; margin-bottom: 1.25rem; }
+    .hero-signup input {
+      flex: 1; padding: 11px 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2); border-right: none;
+      color: #fff; font-family: var(--font); font-size: 13px; outline: none;
     }
-    .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn {
+    .hero-signup input::placeholder { color: rgba(255,255,255,0.35); }
+    .hero-signup input:focus { border-color: var(--yellow); }
+    .hero-signup button {
       font-family: var(--font); font-size: 12px; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 12px 24px; border: none; cursor: pointer;
-      text-decoration: none; display: inline-block;
+      padding: 11px 18px; background: var(--yellow); color: #0d0d0d;
+      border: none; cursor: pointer; white-space: nowrap;
     }
+    .hero-signup button:hover { background: #fdd835; }
+
+    .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 24px; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
     .btn-primary { background: var(--yellow); color: #0d0d0d; }
     .btn-primary:hover { background: #fdd835; }
     .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
     .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
 
-    /* ─── DIVIDERS — yellow diagonal stripe band ─── */
-    .divider-double {
-      height: 20px;
-      background: transparent;
-      border-top: 4px solid rgba(245, 197, 24, 0.5);
-      border-bottom: 4px solid rgba(245, 197, 24, 0.5);
-    }
-
-    .divider-dash {
-      height: 0;
-      border: none;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--yellow) 0px,
-        var(--yellow) 30px,
-        transparent 30px,
-        transparent 50px
-      );
-      height: 3px;
-      opacity: 0.6;
-    }
-
-    .divider-hazard {
-      height: 24px;
-      background: repeating-linear-gradient(
-        -45deg,
-       #f5c518,
-       #f5c518 10px,
-       #111111 10px,
-       #111111 20px
-      );
-      opacity: 0.8;
-    }
-    .divider-thin {
-      height: 4px;
-      background: rgba(245, 197, 24, 0.5);
-      margin: 0;
-    }
+    /* ─── DIVIDERS ─── */
+    .divider-double { height: 20px; background: transparent; border-top: 4px solid rgba(245,197,24,0.5); border-bottom: 4px solid rgba(245,197,24,0.5); }
+    .divider-dash { height: 3px; background: repeating-linear-gradient(90deg,var(--yellow) 0px,var(--yellow) 30px,transparent 30px,transparent 50px); opacity: 0.6; }
+    .divider-hazard { height: 24px; background: repeating-linear-gradient(-45deg,#f5c518,#f5c518 10px,#111 10px,#111 20px); opacity: 0.8; }
 
     /* ─── SECTIONS ─── */
     section { padding: 3rem 2.5rem; border-bottom: 1px solid var(--border); }
-    .label-y {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem;
-    }
-    .label-dim {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem;
-    }
-    section h2 {
-      font-size: clamp(20px,2.8vw,30px); font-weight: 700;
-      color: #ffffff; margin-bottom: 0.75rem;
-    }
+    .label-y { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem; }
+    section h2 { font-size: clamp(20px,2.8vw,30px); font-weight: 700; color: #ffffff; margin-bottom: 0.75rem; }
     .section-sub { font-size: 14px; color: #aaaaaa; line-height: 1.8; max-width: 580px; }
     .section-sub a { color: var(--yellow); text-decoration: none; }
     .section-sub a:hover { text-decoration: underline; }
 
     /* ─── STATS ─── */
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
-      gap: 1px; background: var(--border); margin-top: 2rem;
-    }
-    .stat {
-      background: var(--bg-card); padding: 1.5rem;
-      /* subtle diagonal texture */
-      background-image: var(--diag);
-      background-color: var(--bg-card);
-    }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 1px; background: var(--border); margin-top: 2rem; }
+    .stat { background: var(--bg-card); padding: 1.5rem; background-image: var(--diag); background-color: var(--bg-card); }
     .stat-num { font-size: clamp(24px,3.5vw,36px); font-weight: 700; color: var(--yellow); margin-bottom: 4px; }
     .stat-label { font-size: 12px; color: #888; line-height: 1.5; }
 
     /* ─── VILLAIN CARDS ─── */
-    .villain-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-      gap: 16px; margin-top: 2rem;
-    }
-    .vcard {
-      background: var(--bg-card2);
-      border: 1px solid var(--border);
-      border-top: 2px solid var(--yellow);
-      overflow: hidden;
-    }
-    .vcard-photo {
-      width: 100%; height: 200px;
-      position: relative; overflow: hidden;
-      background: #1a1a1a;
-    }
-    .vcard-photo img {
-      width: 100%; height: 200px;
-      object-fit: cover; object-position: center;
-      display: block;
-      filter: grayscale(100%) contrast(1.15) brightness(0.9);
-    }
-    /* diagonal overlay on photo */
-    .vcard-photo::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 4px,
-        rgba(245,197,24,0.04) 4px,
-        rgba(245,197,24,0.04) 5px
-      );
-      pointer-events: none;
-    }
-    .vcard-subject {
-      position: absolute; top: 10px; right: 10px; z-index: 2;
-      font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(245,197,24,0.7); border: 1px solid rgba(245,197,24,0.3);
-      background: rgba(0,0,0,0.6);
-      padding: 3px 7px;
-    }
-    .vcard-warning {
-      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-      background: rgba(245,197,24,0.2);
-      border-top: 1px solid rgba(245,197,24,0.3);
-      padding: 5px 10px; font-size: 9px; font-weight: 700;
-      letter-spacing: 0.13em; text-transform: uppercase;
-      color: rgba(245,197,24,1); text-align: center;
-    }
+    .villain-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 16px; margin-top: 2rem; }
+    .vcard { background: var(--bg-card2); border: 1px solid var(--border); border-top: 2px solid var(--yellow); overflow: hidden; }
+    .vcard-photo { width: 100%; height: 200px; position: relative; overflow: hidden; background: #1a1a1a; }
+    .vcard-photo img { width: 100%; height: 200px; object-fit: cover; object-position: center; display: block; filter: grayscale(100%) contrast(1.15) brightness(0.9); }
+    .vcard-photo::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg,transparent,transparent 4px,rgba(245,197,24,0.04) 4px,rgba(245,197,24,0.04) 5px); pointer-events: none; }
+    .vcard-subject { position: absolute; top: 10px; right: 10px; z-index: 2; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,197,24,0.7); border: 1px solid rgba(245,197,24,0.3); background: rgba(0,0,0,0.6); padding: 3px 7px; }
+    .vcard-warning { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; background: rgba(245,197,24,0.2); border-top: 1px solid rgba(245,197,24,0.3); padding: 5px 10px; font-size: 9px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(245,197,24,1); text-align: center; }
     .vcard-body { padding: 1.25rem; }
     .vcard-name { font-size: 16px; font-weight: 700; color: #f0f0f0; margin-bottom: 3px; }
-    .vcard-title {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem;
-    }
+    .vcard-title { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
     .vcard-charges { border-top: 1px solid var(--border); padding-top: 0.875rem; margin-bottom: 0.875rem; }
-    .vcard-charge-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--yellow); margin-bottom: 6px;
-    }
-    .vcard-charge {
-      font-size: 12px; color: #999; line-height: 1.75;
-      padding-left: 0.9em; text-indent: -0.9em;
-    }
+    .vcard-charge-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); margin-bottom: 6px; }
+    .vcard-charge { font-size: 12px; color: #999; line-height: 1.75; padding-left: 0.9em; text-indent: -0.9em; }
     .vcard-charge::before { content: '— '; color: var(--yellow); opacity: 0.6; }
-    .vcard-quote {
-      background: #0d0d0d; border-left: 2px solid var(--yellow);
-      padding: 9px 11px; font-size: 12px; color: #aaa;
-      font-style: italic; line-height: 1.6;
-    }
+    .vcard-quote { background: #0d0d0d; border-left: 2px solid var(--yellow); padding: 9px 11px; font-size: 12px; color: #aaa; font-style: italic; line-height: 1.6; }
 
     /* ─── MAP PLACEHOLDER ─── */
-    .map-placeholder {
-      margin-top: 2rem; background: var(--bg-card);
-      border: 1px solid var(--border);
-      background-image: var(--diag);
-      background-color: var(--bg-card);
-      min-height: 240px; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 14px; padding: 2rem;
-    }
+    .map-placeholder { margin-top: 2rem; background: var(--bg-card); border: 1px solid var(--border); background-image: var(--diag); background-color: var(--bg-card); min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 2rem; }
     .map-bars { display: flex; align-items: flex-end; gap: 8px; height: 110px; }
     .map-bar { background: var(--yellow); opacity: 0.6; border-radius: 1px 1px 0 0; width: 18px; }
-    .map-caption {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--text-dim);
-    }
+    .map-caption { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
 
     /* ─── CONCERNS ─── */
-    .concerns-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-      gap: 16px; margin-top: 2rem;
-    }
-    .concern {
-      background: var(--bg-card2); border: 1px solid var(--border);
-      border-top: 2px solid var(--border-y);
-      padding: 1.5rem;
-    }
+    .concerns-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 16px; margin-top: 2rem; }
+    .concern { background: var(--bg-card2); border: 1px solid var(--border); border-top: 2px solid var(--border-y); padding: 1.5rem; }
     .concern-icon { color: var(--yellow); margin-bottom: 0.75rem; }
     .concern-icon svg { display: block; }
     .concern-title { font-size: 13px; font-weight: 700; color: #f0f0f0; margin-bottom: 6px; }
     .concern-text { font-size: 12px; color: #888; line-height: 1.65; }
 
     /* ─── CTA ─── */
-    .cta-section {
-      text-align: center; padding: 4rem 2.5rem;
-      background-image: var(--diag);
-      background-color: var(--bg-card);
-    }
-    .cta-section h2 { max-width: 440px; margin: 0 auto 0.875rem; color: #fff; }
+    .cta-section { text-align: center; padding: 4rem 2.5rem; background-image: var(--diag); background-color: var(--bg-card); }
+    .cta-section h1 { font-size: clamp(24px,3.5vw,40px); font-weight: 700; color: #ffffff; max-width: 520px; margin: 0 auto 0.875rem; line-height: 1.15; }
+    .cta-section h1 em { color: var(--yellow); font-style: normal; }
     .cta-section .section-sub { margin: 0 auto 2rem; text-align: center; max-width: 420px; }
     .email-form { display: flex; max-width: 400px; margin: 0 auto; }
-    .email-form input {
-      flex: 1; padding: 12px 14px; background: #0d0d0d;
-      border: 1px solid var(--border); border-right: none;
-      color: var(--text); font-family: var(--font); font-size: 13px; outline: none;
-    }
+    .email-form input { flex: 1; padding: 12px 14px; background: #0d0d0d; border: 1px solid var(--border); border-right: none; color: var(--text); font-family: var(--font); font-size: 13px; outline: none; }
     .email-form input::placeholder { color: #444; }
     .email-form input:focus { border-color: var(--yellow); }
 
     /* ─── FOOTER ─── */
-    footer {
-      padding: 1.5rem 2.5rem; background: #0d0d0d;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 12px;
-    }
-    .footer-logo {
-      font-size: 13px; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: #444;
-    }
+    footer { padding: 1.5rem 2.5rem; background: #0d0d0d; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #444; }
     .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a {
-      font-size: 11px; font-weight: 500; color: #444;
-      letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
-    }
+    .footer-links a { font-size: 11px; font-weight: 500; color: #444; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; }
     .footer-links a:hover { color: var(--yellow); }
     .footer-legal { font-size: 10px; color: #333; }
 
@@ -365,6 +177,7 @@
       section { padding: 2.5rem 1.25rem; }
       .cta-section { padding: 3rem 1.25rem; }
       footer { padding: 1.25rem; flex-direction: column; align-items: flex-start; }
+      .hero-signup { max-width: 100%; }
       .email-form { flex-direction: column; }
       .email-form input { border-right: 1px solid var(--border); border-bottom: none; }
     }
@@ -374,27 +187,17 @@
 <div class="page-wrap">
 
   <nav>
-    <!--
-      LOGO SLOT — three options:
-      A) Text only (current): keep as-is. Delete .nav-logo-placeholder when logo is ready.
-      B) Image only: replace .nav-logo-slot contents with
-            <img src="logo.png" alt="Guardrails Alliance" style="height:32px;width:auto;" />
-      C) Mark + wordmark: replace .nav-logo-placeholder with
-            <img src="logo-mark.svg" alt="" aria-hidden="true" style="height:32px;width:auto;" />
-         and keep .nav-logo-text beside it.
-    -->
     <div class="nav-logo-slot">
-     <img src="https://github.com/Adrian-WWD/guardrails-alliance/raw/main/GA-PAC-sqlogo.jpg" alt="" aria-hidden="true" style="height:32px;width:auto;" />
-     <img src="https://github.com/Adrian-WWD/guardrails-alliance/raw/main/GA-PAC-wordmark.jpg" alt="Guardrails Alliance" style="height:32px;width:auto;" />
+      <a href="index.html">
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo.png" alt="Guardrails Alliance" />
+      </a>
     </div>
-
     <ul class="nav-links">
       <li><a href="#threat">The threat</a></li>
       <li><a href="#villains">Who's behind it</a></li>
       <li><a href="map.html">Follow the money</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
-
     <button class="nav-cta" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">
       Get involved
     </button>
@@ -411,9 +214,12 @@
     <div class="hero-dashes"></div>
     <div class="hero-vignette"></div>
     <div class="hero-content">
-    
-      <h1>AI billionaires are <br><em>buying our government.</em><br/>We're fighting back.</h1>
+      <h1>AI billionaires are <br><em>buying our government.</em><br>We're fighting back.</h1>
       <p class="hero-sub">A small group of tech oligarchs is spending hundreds of millions to block AI regulation — and elect politicians who'll let them do whatever they want. We're on the road ahead, fighting for guardrails that protect everyone.</p>
+      <form class="hero-signup" onsubmit="return false;">
+        <input type="email" placeholder="Sign up for updates" aria-label="Email address" />
+        <button type="submit">Sign up</button>
+      </form>
       <div class="btn-group">
         <a href="#threat" class="btn btn-primary">Learn more</a>
         <a href="#villains" class="btn btn-ghost">Meet the villains</a>
@@ -429,18 +235,9 @@
     <h2>The road ahead is being blocked</h2>
     <p class="section-sub">Leading the Future and their allies are pouring dark money into elections — backing candidates who will gut oversight, block safety rules, and hand the keys to AI development to a handful of unaccountable billionaires.</p>
     <div class="stats-grid">
-      <div class="stat">
-        <div class="stat-num">$250M+</div>
-        <div class="stat-label">Spent on AI-friendly candidates in 2024</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">47</div>
-        <div class="stat-label">Congressional races targeted by LTF</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">0</div>
-        <div class="stat-label">Federal AI safety laws passed</div>
-      </div>
+      <div class="stat"><div class="stat-num">$250M+</div><div class="stat-label">Spent on AI-friendly candidates in 2024</div></div>
+      <div class="stat"><div class="stat-num">47</div><div class="stat-label">Congressional races targeted by LTF</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Federal AI safety laws passed</div></div>
     </div>
   </section>
 
@@ -451,15 +248,11 @@
     <p class="label-y">Who's behind it</p>
     <h2>Meet the villains</h2>
     <p class="section-sub">The same people getting rich from unregulated AI are funding the campaigns to keep it that way.</p>
-
     <div class="villain-grid">
 
       <div class="vcard">
         <div class="vcard-photo">
-          <img
-            src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/MA-villain-headshot.PNG"
-            alt="Marc Andreessen"
-          />
+          <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/MA-villain-headshot.PNG" alt="Marc Andreessen" crossorigin="anonymous" />
           <div class="vcard-subject">Subject #001</div>
           <div class="vcard-warning">⚠ High risk · $22M donated</div>
         </div>
@@ -478,10 +271,7 @@
 
       <div class="vcard">
         <div class="vcard-photo">
-          <img
-            src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JL-villain-headshot.PNG"
-            alt="Joe Lonsdale"
-          />
+          <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JL-villain-headshot.PNG" alt="Joe Lonsdale" crossorigin="anonymous" />
           <div class="vcard-subject">Subject #002</div>
           <div class="vcard-warning">⚠ High risk · 30+ candidates</div>
         </div>
@@ -500,10 +290,7 @@
 
       <div class="vcard">
         <div class="vcard-photo">
-          <img
-            src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JB-villain-headshot.PNG"
-            alt="Greg Brockman"
-          />
+          <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JB-villain-headshot.PNG" alt="Greg Brockman" crossorigin="anonymous" />
           <div class="vcard-subject">Subject #003</div>
           <div class="vcard-warning">⚠ High risk · SB 1047 defeat</div>
         </div>
@@ -606,5 +393,8 @@
   </footer>
 
 </div>
+
+
+
 </body>
 </html>
