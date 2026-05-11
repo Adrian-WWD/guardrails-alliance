@@ -21,7 +21,7 @@
       --border-y: rgba(245,197,24,0.2);
       --text: #f0f0f0;
       --text-muted: #999;
-      --text-dim: #555;
+      --text-dim: #adadad;
       --font: 'Space Grotesk', sans-serif;
       --diag: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.06) 6px,rgba(245,197,24,0.06) 7px);
     }
@@ -122,9 +122,9 @@
     }
     .race-ledger-row:hover { background: rgba(245,197,24,0.03); }
     .race-ledger-row:last-child { border-bottom: none; }
-    .ledger-district { font-size: 13px; font-weight: 700; color: #f0f0f0; }
-    .ledger-total { font-size: 15px; font-weight: 700; color: var(--yellow); text-align: center; }
-    .ledger-details { font-size: 11px; color: #888; line-height: 1.65; }
+    .ledger-district { font-size: 14px; font-weight: 700; color: #f0f0f0; }
+    .ledger-total { font-size: 16px; font-weight: 700; color: var(--yellow); text-align: center; }
+    .ledger-details { font-size: 12px; color: #888; line-height: 1.65; }
     .ledger-badge {
       display: inline-block; font-size: 9px; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
@@ -140,7 +140,7 @@
       transition: border-color 0.2s;
     }
     .race-card:hover { border-color: var(--yellow); border-top-color: var(--yellow); }
-    .race-card-district { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .race-card-district { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
     .race-card-total { font-size: 28px; font-weight: 700; color: var(--yellow); line-height: 1; margin-bottom: 8px; }
     .race-card-badge {
       display: inline-block; font-size: 9px; font-weight: 700;
@@ -182,8 +182,8 @@
     .pac-card .pac-received { font-size: 22px; font-weight: 700; color: var(--yellow); margin-bottom: 4px; }
     .pac-card .pac-spent { font-size: 12px; color: #888; }
     .pac-spending { margin-top: 0.75rem; border-top: 1px solid var(--border); padding-top: 0.75rem; }
-    .pac-row { display: flex; justify-content: space-between; font-size: 11px; color: #777; padding: 3px 0; }
-    .pac-row .pac-row-amt { color: #aaa; font-weight: 500; }
+    .pac-row { display: flex; justify-content: space-between; font-size: 11px; color: #a7a7a7; padding: 3px 0; }
+    .pac-row .pac-row-amt { color: #e9e8d6; font-weight: 500; }
 
     /* ─── UPDATE NOTE ─── */
     .update-note { padding: 1.5rem 2.5rem; background: var(--bg-card); border-top: 1px solid var(--border); }
@@ -242,7 +242,7 @@
   <!-- ─── HEADER ─── -->
   <div class="page-header">
     <p class="label-y">Follow the money</p>
-    <h1>$125 million.<br>Five donors.<em> One agenda.</em></h1>
+    <h1>$125 million.<br>Five megadonors. <em>One agenda.</em></h1>
     <p>Leading the Future raised over $125 million — almost entirely from a handful of Silicon Valley billionaires. Here's where it came from, and where it's going.</p>
     <form class="header-signup" onsubmit="return false;">
       <input type="email" placeholder="Get updates as new spending is filed" aria-label="Email address" />
