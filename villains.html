@@ -20,7 +20,7 @@
       --border-y: rgba(245,197,24,0.2);
       --text: #f0f0f0;
       --text-muted: #999999;
-      --text-dim: #555555;
+      --text-dim: #cacaca;
       --font: 'Space Grotesk', sans-serif;
       --diag: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.06) 6px,rgba(245,197,24,0.06) 7px);
     }
@@ -43,7 +43,7 @@
     .nav-logo-slot { display: flex; align-items: center; flex-shrink: 0; }
     .nav-logo-slot img { height: 48px; width: auto; display: block; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--yellow); }
     .nav-cta { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 18px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; }
     .nav-cta:hover { background: #fdd835; }
@@ -60,10 +60,10 @@
       background-color: var(--bg);
       border-bottom: 1px solid var(--border);
     }
-    .label-y { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem; }
+    .label-y { font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem; }
     .page-header h1 { font-size: clamp(26px,4vw,42px); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 0.75rem; }
     .page-header h1 em { color: var(--yellow); font-style: normal; }
-    .page-header p { font-size: 14px; color: #aaa; line-height: 1.8; max-width: 560px; }
+    .page-header p { font-size: 16px; color: #aaa; line-height: 1.8; max-width: 560px; }
 
     /* ─── VILLAIN FULL CARDS ─── */
     .villain-full { border-bottom: 1px solid var(--border); }
@@ -99,14 +99,14 @@
     }
     .villain-subject {
       position: absolute; top: 12px; right: 12px; z-index: 2;
-      font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
       color: rgba(245,197,24,0.75); border: 1px solid rgba(245,197,24,0.3);
       background: rgba(0,0,0,0.7); padding: 4px 8px;
     }
     .villain-risk {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-      background: rgba(245,197,24,0.18); border-top: 1px solid rgba(245,197,24,0.35);
-      padding: 6px 12px; font-size: 9px; font-weight: 700;
+      background: rgba(0,0,0, 0.75); border-top: 1px solid rgba(245,197,24,0.35);
+      padding: 6px 12px; font-size: 11px; font-weight: 700;
       letter-spacing: 0.13em; text-transform: uppercase;
       color: var(--yellow); text-align: center;
     }
@@ -118,35 +118,35 @@
       border-top: 3px solid var(--yellow);
       display: flex; flex-direction: column; justify-content: space-between;
     }
-    .villain-name { font-size: clamp(20px,2.5vw,28px); font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .villain-title { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.25rem; }
+    .villain-name { font-size: clamp(22px,2.5vw,30px); font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .villain-title { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.25rem; }
 
     .villain-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-bottom: 1.25rem; }
     .vstat { background: var(--bg-card); padding: 0.875rem 1rem; background-image: var(--diag); background-color: var(--bg-card); }
     .vstat-num { font-size: 20px; font-weight: 700; color: var(--yellow); }
-    .vstat-label { font-size: 10px; color: var(--text-dim); margin-top: 2px; line-height: 1.4; }
+    .vstat-label { font-size: 12px; color: var(--text); margin-top: 2px; line-height: 1.4; }
 
     .villain-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--border); color: var(--text-muted); }
     .tag-red { border-color: rgba(220,50,50,0.4); color: rgba(220,50,50,0.8); }
-    .tag-yellow { border-color: var(--border-y); color: rgba(245,197,24,0.7); }
+    .tag-yellow { border-color: var(--border-y); color: rgba(245,197,24,0.95); }
 
     /* ─── VILLAIN BODY ─── */
     .villain-body { padding: 2rem 2.5rem; background: var(--bg); border-top: 1px solid var(--border); }
 
     .villain-body-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
 
-    .vb-section h3 { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.75rem; opacity: 0.8; }
-    .vb-section p { font-size: 13px; color: #cccccc; line-height: 1.8; }
+    .vb-section h3 { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.75rem; opacity: 0.8; }
+    .vb-section p { font-size: 15px; color: #cccccc; line-height: 1.8; }
 
     .charge-list { list-style: none; }
-    .charge-list li { font-size: 13px; color: #cccccc; line-height: 1.75; padding-left: 1em; text-indent: -1em; }
+    .charge-list li { font-size: 15px; color: #cccccc; line-height: 1.75; padding-left: 1em; text-indent: -1em; }
     .charge-list li::before { content: '— '; color: var(--yellow); opacity: 0.6; }
 
     .network-list { list-style: none; }
-    .network-list li { font-size: 12px; color: #bbbbbb; padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .network-list li { font-size: 14px; color: #bbbbbb; padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
     .network-list li:last-child { border-bottom: none; }
-    .network-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 7px; border: 1px solid var(--border); color: var(--text-dim); }
+    .network-badge { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 7px; border: 1px solid var(--border); color: var(--text-dim); }
 
     .villain-quote-block {
       background: #0d0d0d;
@@ -154,16 +154,16 @@
       padding: 1.25rem 1.5rem;
       margin-bottom: 1rem;
     }
-    .villain-quote-block blockquote { font-size: 15px; color: #e8e8e8; font-style: italic; line-height: 1.7; margin-bottom: 0.5rem; }
+    .villain-quote-block blockquote { font-size: 17px; color: #e8e8e8; font-style: italic; line-height: 1.7; margin-bottom: 0.5rem; }
     .villain-quote-block cite { font-size: 11px; color: #666; font-style: normal; letter-spacing: 0.05em; }
 
     /* ─── FOOTER ─── */
     footer { padding: 1.5rem 2.5rem; background: #0d0d0d; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
     .footer-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #444; }
     .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-size: 11px; font-weight: 500; color: #444; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; }
+    .footer-links a { font-size: 13px; font-weight: 500; color: #444; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; }
     .footer-links a:hover { color: var(--yellow); }
-    .footer-legal { font-size: 10px; color: #333; }
+    .footer-legal { font-size: 12px; color: #333; }
 
     /* ─── MOBILE ─── */
     @media (max-width: 640px) {
@@ -189,10 +189,10 @@
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="about.html">ABOUT</a></li>
-      <li><a href="index.html#threat">THE THREAT</a></li>
-      <li><a href="villains.html" class="active">WHO'S BEHIND IT</a></li>
-      <li><a href="map.html">FOLLOW THE MONEY</a></li>
+      <li><a href="index.html#threat">The threat</a></li>
+      <li><a href="villains.html" class="active">Who's behind it</a></li>
+      <li><a href="map.html">Follow the money</a></li>
+      <li><a href="about.html">About</a></li>
     </ul>
     <a href="index.html#join" class="nav-cta">Get involved</a>
   </nav>
@@ -288,8 +288,6 @@
     </div>
   </div>
 
-  <div class="divider-double"></div>
-
   <!-- ═══════════════════════════════════════════
        VILLAIN 2 — JOE LONSDALE
   ════════════════════════════════════════════ -->
@@ -364,8 +362,6 @@
       </div>
     </div>
   </div>
-
-  <div class="divider-double"></div>
 
   <!-- ═══════════════════════════════════════════
        VILLAIN 3 — GREG BROCKMAN
