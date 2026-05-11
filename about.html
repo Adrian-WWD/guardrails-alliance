@@ -20,7 +20,7 @@
       --border-y: rgba(245,197,24,0.2);
       --text: #f0f0f0;
       --text-muted: #999999;
-      --text-dim: #555555;
+      --text-dim: #Cacaca;
       --font: 'Space Grotesk', sans-serif;
       --diag: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.06) 6px,rgba(245,197,24,0.06) 7px);
     }
@@ -84,7 +84,7 @@
     .pillars { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1px; background: var(--border); margin-top: 2rem; }
     .pillar { background: var(--bg-card); padding: 1.5rem; background-image: var(--diag); background-color: var(--bg-card); border-top: 2px solid var(--border-y); }
     .pillar-num { font-size: 28px; font-weight: 700; color: var(--yellow); margin-bottom: 0.5rem; line-height: 1; }
-    .pillar-title { font-size: 15px; font-weight: 700; color: #f0f0f0; margin-bottom: 8px; }
+    .pillar-title { font-size: 16px; font-weight: 700; color: #f0f0f0; margin-bottom: 8px; }
     .pillar-text { font-size: 14px; color: #aaaaaa; line-height: 1.7; }
 
     /* ─── BELIEFS ─── */
@@ -92,14 +92,14 @@
     .belief { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
     .belief:last-child { border-bottom: none; }
     .belief-marker { width: 3px; background: var(--yellow); flex-shrink: 0; opacity: 0.6; }
-    .belief-text { font-size: 15px; color: #cccccc; line-height: 1.8; }
+    .belief-text { font-size: 16px; color: #cccccc; line-height: 1.8; }
     .belief-text strong { color: #fff; }
 
     /* ─── STAT STRIP ─── */
     .stat-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
     .stat-item { background: var(--bg-card2); padding: 1.5rem 2rem; background-image: var(--diag); background-color: var(--bg-card2); }
     .stat-item .num { font-size: clamp(22px,3vw,32px); font-weight: 700; color: var(--yellow); }
-    .stat-item .lbl { font-size: 11px; color: var(--text-dim); margin-top: 4px; line-height: 1.5; }
+    .stat-item .lbl { font-size: 14px; color: var(--text-dim); margin-top: 4px; line-height: 1.5; }
 
     /* ─── PULL QUOTE ─── */
     .pull-quote {
@@ -108,14 +108,14 @@
       background: #0d0d0d;
       border-left: 3px solid var(--yellow);
     }
-    .pull-quote blockquote { font-size: 17px; font-style: italic; color: #e8e8e8; line-height: 1.7; margin-bottom: 0.5rem; }
+    .pull-quote blockquote { font-size: 16px; font-style: italic; color: #e8e8e8; line-height: 1.7; margin-bottom: 0.5rem; }
     .pull-quote blockquote em { color: var(--yellow); font-style: normal; }
-    .pull-quote cite { font-size: 11px; color: #555; font-style: normal; letter-spacing: 0.05em; }
+    .pull-quote cite { font-size: 12px; color: #fdd835; font-style: normal; letter-spacing: 0.05em; }
 
     /* ─── DISCLAIMER ─── */
     .disclaimer { padding: 1.5rem 2.5rem; background: var(--bg-card); border-top: 1px solid var(--border); }
-    .disclaimer p { font-size: 12px; color: #555; line-height: 1.7; max-width: 640px; }
-    .disclaimer strong { color: #888; }
+    .disclaimer p { font-size: 12px; color: #cacaca; line-height: 1.7; max-width: 640px; }
+    .disclaimer strong { color: #a5a5a5; }
 
     /* ─── CTA ─── */
     .cta-section { text-align: center; padding: 4rem 2.5rem; background-image: var(--diag); background-color: var(--bg-card); }
@@ -187,7 +187,7 @@
       </div>
       <p class="label-y">About us</p>
       <h1>We didn't start this fight.<br><em>But we're going to finish it.</em></h1>
-      <p class="lead">The AI Guardrails Alliance is a political action committee built to counter the flood of Silicon Valley money trying to buy a deregulated future — and the politicians who will hand it to them.</p>
+      <p class="lead">The Guardrails Alliance is a political action committee built to counter the flood of Silicon Valley money trying to buy a deregulated future <br/>— and the politicians who will hand it to them.</p>
     </div>
   </div>
 
@@ -202,7 +202,7 @@
     <p class="body-text">We were formed in direct response to <strong>Leading the Future</strong> — a $125 million super PAC bankrolled almost entirely by five Silicon Valley figures — and the broader campaign to elect politicians who will gut AI oversight before it can take root.</p>
 
     <div class="pull-quote">
-      <blockquote>The question isn't whether AI will change the world. It's whether the people affected by that change will have any say in <em>how.</em></blockquote>
+      <blockquote>The question isn't whether AI will change the world. It's whether the people affected by that change will have any say in <b>how</b>.</blockquote>
       <cite>— AI Guardrails Alliance</cite>
     </div>
   </section>
@@ -212,7 +212,7 @@
   <!-- ─── MISSION ─── -->
   <section>
     <p class="label-y">Our mission</p>
-    <h2>Put guardrails on AI before<br>it's <em>too late to matter</em></h2>
+    <h2>Put guardrails on AI <em>before it's too late to matter</em></h2>
     <p class="body-text">We exist to do three things: expose the money behind the deregulation push, elect candidates who will stand up for AI accountability, and build a broad public coalition that can outlast any single election cycle.</p>
 
     <div class="pillars">
@@ -239,7 +239,7 @@
   <!-- ─── WHAT WE BELIEVE ─── -->
   <section>
     <p class="label-y">What we believe</p>
-    <h2>The principles behind<br>everything we do</h2>
+    <h2>The principles behind everything we do:</h2>
     <div class="belief-list">
       <div class="belief">
         <div class="belief-marker"></div>
@@ -290,10 +290,8 @@
 
   <!-- ─── LEGAL ─── -->
   <div class="disclaimer">
-    <p><strong>AI Guardrails Alliance</strong> is a federally registered political action committee (PAC). We are required to disclose all contributions and expenditures to the Federal Election Commission. Our filings are publicly available at <strong>FEC.gov</strong>. We do not coordinate with any candidate or candidate's committee. Contributions to the AI Guardrails Alliance PAC are not tax-deductible.</p>
+    <p><strong>Guardrails Alliance</strong> is a federally registered political action committee (PAC). We are required to disclose all contributions and expenditures to the Federal Election Commission. Our filings are publicly available at <strong>FEC.gov</strong>. We do not coordinate with any candidate or candidate's committee. Contributions to the AI Guardrails Alliance PAC are not tax-deductible.</p>
   </div>
-
-  <div class="divider-dash"></div>
 
   <!-- ─── CTA ─── -->
   <section id="join" class="cta-section">
