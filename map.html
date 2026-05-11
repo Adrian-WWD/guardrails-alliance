@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Follow the Money — Guardrails Alliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #f5c518;
+      --bg: #0d0d0d;
+      --bg-card: #141414;
+      --border: #242424;
+      --border-y: rgba(245,197,24,0.2);
+      --text: #f0f0f0;
+      --text-muted: #999;
+      --text-dim: #555;
+      --font: 'Space Grotesk', sans-serif;
+      --diag: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.06) 6px,rgba(245,197,24,0.06) 7px);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: #080808; color: var(--text); line-height: 1.6; }
+    .page-wrap { max-width: 900px; margin: 0 auto; background: var(--bg); border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.875rem 2.5rem;
+      background: rgba(13,13,13,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      gap: 1.5rem;
+    }
+    .nav-logo-slot { display: flex; align-items: center; flex-shrink: 0; }
+    #logo-anim { width: 180px; height: 40px; cursor: pointer; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--yellow); }
+    .nav-cta { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 18px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; }
+    .nav-cta:hover { background: #fdd835; }
+
+    /* DIVIDERS */
+    .divider-double { height: 20px; background: transparent; border-top: 4px solid rgba(245,197,24,0.5); border-bottom: 4px solid rgba(245,197,24,0.5); }
+    .divider-hazard { height: 24px; background: repeating-linear-gradient(-45deg,#f5c518,#f5c518 10px,#111 10px,#111 20px); opacity: 0.8; }
+    .divider-dash { height: 3px; background: repeating-linear-gradient(90deg,var(--yellow) 0px,var(--yellow) 30px,transparent 30px,transparent 50px); opacity: 0.6; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 3rem 2.5rem 2rem;
+      background-image: var(--diag);
+      background-color: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .label-y { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem; }
+    .page-header h1 { font-size: clamp(24px,3.5vw,38px); font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.1; }
+    .page-header h1 em { color: var(--yellow); font-style: normal; }
+    .page-header p { font-size: 14px; color: #aaa; line-height: 1.75; max-width: 560px; }
+
+    /* STAT STRIP */
+    .stat-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+    .stat-item { background: var(--bg-card); padding: 1.25rem 2.5rem; background-image: var(--diag); background-color: var(--bg-card); }
+    .stat-item .num { font-size: clamp(20px,3vw,30px); font-weight: 700; color: var(--yellow); }
+    .stat-item .lbl { font-size: 11px; color: var(--text-dim); margin-top: 3px; line-height: 1.4; }
+
+    /* SANKEY SECTION */
+    .sankey-section { padding: 2.5rem 2.5rem; }
+    .sankey-section h2 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .sankey-section .sub { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
+    #sankey-container {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+    #sankey-svg { width: 100%; display: block; }
+
+    /* TOOLTIP */
+    .tooltip {
+      position: fixed;
+      background: #1a1a1a;
+      border: 1px solid var(--yellow);
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--text);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 999;
+      max-width: 220px;
+      line-height: 1.5;
+    }
+    .tooltip .t-name { font-weight: 700; color: var(--yellow); margin-bottom: 4px; }
+    .tooltip .t-amt { font-size: 14px; font-weight: 700; color: #fff; }
+
+    /* LEGEND */
+    .legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-muted); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+    /* DOWNSTREAM NOTE */
+    .downstream-section { padding: 2rem 2.5rem; border-top: 1px solid var(--border); }
+    .downstream-section h2 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .downstream-section p { font-size: 13px; color: #888; line-height: 1.75; max-width: 580px; margin-bottom: 1.25rem; }
+    .pac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pac-card { background: var(--bg-card); border: 1px solid var(--border); border-top: 2px solid var(--yellow); padding: 1.25rem; }
+    .pac-card .pac-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .pac-card .pac-id { font-size: 10px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .pac-card .pac-received { font-size: 22px; font-weight: 700; color: var(--yellow); margin-bottom: 4px; }
+    .pac-card .pac-spent { font-size: 12px; color: #888; }
+    .pac-spending { margin-top: 0.75rem; border-top: 1px solid var(--border); padding-top: 0.75rem; }
+    .pac-row { display: flex; justify-content: space-between; font-size: 11px; color: #777; padding: 3px 0; }
+    .pac-row .pac-row-amt { color: #aaa; font-weight: 500; }
+
+    /* UPDATE NOTE */
+    .update-note { padding: 1.5rem 2.5rem; background: var(--bg-card); border-top: 1px solid var(--border); }
+    .update-note p { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+    .update-note strong { color: var(--yellow); }
+
+    /* FOOTER */
+    footer { padding: 1.5rem 2.5rem; background: #0d0d0d; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #444; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 11px; font-weight: 500; color: #444; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; }
+    .footer-links a:hover { color: var(--yellow); }
+    .footer-legal { font-size: 10px; color: #333; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0.875rem 1.25rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 2rem 1.25rem 1.5rem; }
+      .sankey-section, .downstream-section, .update-note { padding: 1.5rem 1.25rem; }
+      .stat-item { padding: 1rem 1.25rem; }
+      .pac-grid { grid-template-columns: 1fr; }
+      footer { padding: 1.25rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <nav>
+    <div class="nav-logo-slot">
+      <div id="logo-anim"></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">The threat</a></li>
+      <li><a href="index.html#villains">Who's behind it</a></li>
+      <li><a href="map.html" class="active">Follow the money</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">Get involved</button>
+  </nav>
+
+  <div class="page-header">
+    <p class="label-y">Follow the money</p>
+    <h1>$125 million.<br><em>Five donors.</em> One agenda.</h1>
+    <p>Leading the Future raised over $125 million — almost entirely from a handful of Silicon Valley billionaires. Here's where it came from, and where it's going.</p>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="num">$125.5M</div>
+      <div class="lbl">Total raised by Leading the Future</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">5</div>
+      <div class="lbl">Donors making up 99% of funding</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">$20M</div>
+      <div class="lbl">Deployed to downstream PACs so far</div>
+    </div>
+  </div>
+
+  <div class="divider-hazard"></div>
+
+  <div class="sankey-section">
+    <h2>The money flow</h2>
+    <p class="sub">Donors → Leading the Future → Downstream PACs · Hover any flow for details</p>
+    <div id="sankey-container">
+      <svg id="sankey-svg"></svg>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#f5c518"></div> Donors to LTF</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#c8a010"></div> LTF core</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#8a7000"></div> Downstream PACs</div>
+    </div>
+  </div>
+
+  <div class="divider-double"></div>
+
+  <div class="downstream-section">
+    <h2>Where the money landed</h2>
+    <p>Leading the Future sent $10M each to two downstream PACs — American Mission and Think Big — both of which are spending on polling, texting infrastructure, and media in advance of targeted races. District-level spending will appear here as filings are updated.</p>
+    <div class="pac-grid">
+      <div class="pac-card">
+        <div class="pac-name">American Mission</div>
+        <div class="pac-id">FEC ID: C00916692 · Henderson, NV</div>
+        <div class="pac-received">$10,000,000</div>
+        <div class="pac-spent">received from LTF · $197,994 spent to date</div>
+        <div class="pac-spending">
+          <div class="pac-row"><span>Survey research</span><span class="pac-row-amt">$91,900</span></div>
+          <div class="pac-row"><span>Insurance</span><span class="pac-row-amt">$58,674</span></div>
+          <div class="pac-row"><span>Compliance consulting</span><span class="pac-row-amt">$28,819</span></div>
+          <div class="pac-row"><span>Media / website</span><span class="pac-row-amt">$15,804</span></div>
+          <div class="pac-row"><span>Other</span><span class="pac-row-amt">$2,798</span></div>
+        </div>
+      </div>
+      <div class="pac-card">
+        <div class="pac-name">Think Big</div>
+        <div class="pac-id">FEC ID: C00923417 · Reno, NV</div>
+        <div class="pac-received">$10,000,000</div>
+        <div class="pac-spent">received from LTF · $1,481,726 spent to date</div>
+        <div class="pac-spending">
+          <div class="pac-row"><span>Texting services</span><span class="pac-row-amt">$600,025</span></div>
+          <div class="pac-row"><span>Polling</span><span class="pac-row-amt">$478,550</span></div>
+          <div class="pac-row"><span>Insurance</span><span class="pac-row-amt">$87,460</span></div>
+          <div class="pac-row"><span>Social media / website</span><span class="pac-row-amt">$78,529</span></div>
+          <div class="pac-row"><span>Strategy / research</span><span class="pac-row-amt">$95,075</span></div>
+          <div class="pac-row"><span>Other</span><span class="pac-row-amt">$142,087</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-dash"></div>
+
+  <div class="update-note">
+    <p><strong>This page updates as FEC filings are released.</strong> Independent expenditure reports showing which candidates and districts are targeted will appear here as they are filed. Data sourced from FEC.gov Schedule A and Schedule B filings for committees C00916114, C00916692, and C00923417.</p>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Guardrails Alliance</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#villains">Villains</a>
+      <a href="map.html">Money map</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-legal">Paid for by AI Guardrails Alliance PAC · Not authorized by any candidate or candidate's committee</div>
+  </footer>
+
+</div>
+
+<div class="tooltip" id="tooltip">
+  <div class="t-name" id="tt-name"></div>
+  <div class="t-amt" id="tt-amt"></div>
+  <div id="tt-desc" style="font-size:11px;color:#888;margin-top:3px;"></div>
+</div>
+
+<script>
+// ── LOTTIE LOGO ──────────────────────────────────────────────
+const anim = lottie.loadAnimation({
+  container: document.getElementById('logo-anim'),
+  renderer: 'svg', loop: false, autoplay: false,
+  path: 'https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-logo%20morph.json'
+});
+const logoEl = document.getElementById('logo-anim');
+logoEl.addEventListener('mouseenter', () => { anim.setDirection(1); anim.play(); });
+logoEl.addEventListener('mouseleave', () => { anim.setDirection(-1); anim.play(); });
+
+// ── SANKEY DATA ───────────────────────────────────────────────
+const nodes = [
+  // Donors (col 0)
+  { id: 0, name: "a16z Capital Mgmt",     col: 0, amt: 50000000 },
+  { id: 1, name: "Marc Andreessen",        col: 0, amt: 25000000 },
+  { id: 2, name: "Benjamin Horowitz",      col: 0, amt: 25000000 },
+  { id: 3, name: "Anna Brockman",          col: 0, amt: 12500000 },
+  { id: 4, name: "Greg Brockman",          col: 0, amt: 12500000 },
+  { id: 5, name: "Perplexity AI",          col: 0, amt: 100000   },
+  { id: 6, name: "Chain Bridge Bank",      col: 0, amt: 435802   },
+  // LTF (col 1)
+  { id: 7, name: "Leading the Future",     col: 1, amt: 125535802 },
+  // PACs (col 2)
+  { id: 8, name: "American Mission",       col: 2, amt: 10000000 },
+  { id: 9, name: "Think Big",              col: 2, amt: 10000000 },
+  { id: 10, name: "Operations / undeployed", col: 2, amt: 105535802 },
+];
+
+const links = [
+  // Donors → LTF
+  { source: 0, target: 7, value: 50000000,  label: "a16z → Leading the Future" },
+  { source: 1, target: 7, value: 25000000,  label: "Andreessen → Leading the Future" },
+  { source: 2, target: 7, value: 25000000,  label: "Horowitz → Leading the Future" },
+  { source: 3, target: 7, value: 12500000,  label: "Anna Brockman → Leading the Future" },
+  { source: 4, target: 7, value: 12500000,  label: "Greg Brockman → Leading the Future" },
+  { source: 5, target: 7, value: 100000,    label: "Perplexity AI → Leading the Future" },
+  { source: 6, target: 7, value: 435802,    label: "Chain Bridge Bank → Leading the Future" },
+  // LTF → PACs
+  { source: 7, target: 8,  value: 10000000,   label: "LTF → American Mission" },
+  { source: 7, target: 9,  value: 10000000,   label: "LTF → Think Big" },
+  { source: 7, target: 10, value: 105535802,  label: "LTF → Cash on hand / operations" },
+];
+
+// ── DRAW SANKEY ───────────────────────────────────────────────
+function fmt(n) {
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
+  return '$' + n.toFixed(0);
+}
+
+function drawSankey() {
+  const container = document.getElementById('sankey-container');
+  const W = container.clientWidth;
+  const H = Math.max(420, W * 0.52);
+  const svg = d3.select('#sankey-svg')
+    .attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('height', H);
+
+  svg.selectAll('*').remove();
+
+  const pad = { top: 24, bottom: 24, left: 16, right: 16 };
+  const nodeW = Math.max(14, W * 0.018);
+  const cols = [
+    pad.left,
+    W * 0.38,
+    W * 0.72
+  ];
+  const labelPad = nodeW + 8;
+
+  // Assign y positions per column
+  const colNodes = [0,1,2].map(c => nodes.filter(n => n.col === c));
+  const innerH = H - pad.top - pad.bottom;
+  const gap = 10;
+
+  colNodes.forEach(group => {
+    const totalVal = group.reduce((s,n) => s + n.amt, 0);
+    const totalGap = gap * (group.length - 1);
+    const availH = innerH - totalGap;
+    let y = pad.top;
+    group.forEach(n => {
+      n.h = Math.max(4, (n.amt / totalVal) * availH);
+      n.y = y;
+      n.x = cols[n.col];
+      y += n.h + gap;
+    });
+  });
+
+  // Track flow offsets
+  nodes.forEach(n => { n._srcOff = 0; n._tgtOff = 0; });
+
+  // Draw flows
+  links.forEach(lk => {
+    const s = nodes[lk.source];
+    const t = nodes[lk.target];
+    const totalSrc = links.filter(l => l.source === lk.source).reduce((a,l) => a+l.value, 0);
+    const totalTgt = links.filter(l => l.target === lk.target).reduce((a,l) => a+l.value, 0);
+    const sw = (lk.value / totalSrc) * s.h;
+    const tw = (lk.value / totalTgt) * t.h;
+    const sy0 = s.y + s._srcOff;
+    const sy1 = sy0 + sw;
+    const ty0 = t.y + t._tgtOff;
+    const ty1 = ty0 + tw;
+    s._srcOff += sw;
+    t._tgtOff += tw;
+
+    const x0 = s.x + nodeW;
+    const x1 = t.x;
+    const cx = (x0 + x1) / 2;
+
+    // Determine opacity by node column
+    const isOps = lk.target === 10;
+    const baseOpacity = isOps ? 0.12 : 0.35;
+
+    const path = svg.append('path')
+      .attr('d', `M${x0},${sy0} C${cx},${sy0} ${cx},${ty0} ${x1},${ty0}
+                  L${x1},${ty1} C${cx},${ty1} ${cx},${sy1} ${x0},${sy1} Z`)
+      .attr('fill', isOps ? '#333' : '#f5c518')
+      .attr('opacity', baseOpacity)
+      .attr('stroke', 'none')
+      .style('cursor', 'pointer')
+      .on('mouseover', function(event) {
+        d3.select(this).attr('opacity', isOps ? 0.22 : 0.65);
+        const tt = document.getElementById('tooltip');
+        document.getElementById('tt-name').textContent = lk.label;
+        document.getElementById('tt-amt').textContent = fmt(lk.value);
+        document.getElementById('tt-desc').textContent = isOps ? 'Cash on hand / operational reserves' : 'Political contribution';
+        tt.style.opacity = 1;
+        tt.style.left = (event.clientX + 14) + 'px';
+        tt.style.top  = (event.clientY - 10) + 'px';
+      })
+      .on('mousemove', function(event) {
+        const tt = document.getElementById('tooltip');
+        tt.style.left = (event.clientX + 14) + 'px';
+        tt.style.top  = (event.clientY - 10) + 'px';
+      })
+      .on('mouseout', function() {
+        d3.select(this).attr('opacity', baseOpacity);
+        document.getElementById('tooltip').style.opacity = 0;
+      });
+  });
+
+  // Draw nodes
+  nodes.forEach(n => {
+    const isLTF  = n.col === 1;
+    const isPAC  = n.col === 2;
+    const isOps  = n.id  === 10;
+    const col    = isOps ? '#333' : isLTF ? '#c8a010' : isPAC ? '#8a7000' : '#f5c518';
+
+    svg.append('rect')
+      .attr('x', n.x).attr('y', n.y)
+      .attr('width', nodeW).attr('height', n.h)
+      .attr('fill', col)
+      .attr('rx', 2);
+
+    // Label
+    const labelX = n.col === 2 ? n.x + nodeW + 8 : n.col === 1 ? n.x + nodeW + 8 : n.x - 8;
+    const anchor  = n.col === 0 ? 'end' : 'start';
+    const labelY  = n.y + n.h / 2;
+    const name    = n.col === 1 ? n.name : n.name;
+    const dimColor = isOps ? '#444' : n.col === 0 ? '#ccc' : '#f0f0f0';
+
+    svg.append('text')
+      .attr('x', labelX).attr('y', labelY - 1)
+      .attr('text-anchor', anchor)
+      .attr('dominant-baseline', 'middle')
+      .attr('font-family', 'Space Grotesk, sans-serif')
+      .attr('font-size', Math.min(13, Math.max(9, n.h * 0.38)))
+      .attr('font-weight', isLTF ? 700 : 500)
+      .attr('fill', dimColor)
+      .text(name);
+
+    if (n.h > 22) {
+      svg.append('text')
+        .attr('x', labelX).attr('y', labelY + 13)
+        .attr('text-anchor', anchor)
+        .attr('font-family', 'Space Grotesk, sans-serif')
+        .attr('font-size', Math.min(11, Math.max(8, n.h * 0.28)))
+        .attr('fill', isOps ? '#333' : '#f5c518')
+        .text(fmt(n.amt));
+    }
+  });
+}
+
+drawSankey();
+window.addEventListener('resize', drawSankey);
+</script>
+</body>
+</html>
