@@ -4,21 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Follow the Money — Guardrails Alliance</title>
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
-  <meta name="theme-color" content="#0d0d0d" />
-
-  <!-- Open Graph / Link Preview -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://adrian-wwd.github.io/guardrails-alliance/" />
-  <meta property="og:title"       content="Guardrails Alliance" />
-  <meta property="og:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back." />
-  <meta property="og:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Guardrails Alliance" />
-  <meta name="twitter:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back." />
-  <meta name="twitter:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-wordmark-blk.png" />
-  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -288,7 +273,7 @@
     </div>
   </div>
 
-  <div class="divider-hazard"></div>
+  <div class="divider-double"></div>
 
   <!-- ─── MAP ─── -->
   <div class="section">
@@ -551,7 +536,7 @@
     </p>
   </div>
 
-  <div class="divider-hazard"></div>
+  <div class="divider-double"></div>
 
   <!-- ─── SANKEY ─── -->
   <div class="section">
@@ -603,7 +588,7 @@
     </div>
   </div>
 
-  <div class="divider-dash"></div>
+  <div class="divider-double"></div>
 
   <div class="update-note">
     <p><strong>This page updates as FEC filings are released.</strong> Independent expenditure reports showing targeted candidates and districts are added as filed. Data sourced from FEC.gov Schedule A and B filings for committees C00916114, C00916692, and C00923417, and independent expenditure reports via Transformer.</p>
@@ -680,7 +665,7 @@ async function drawMap() {
   const colorScale = d3.scaleSequential()
     .domain([0, maxVal])
     .interpolator(t => {
-      // dark → yellow gradient
+      // dark yellow → blue gradient
       const r = Math.round(t * 245);
       const g = Math.round(t * 197);
       const b = Math.round(t * 24);
@@ -714,9 +699,9 @@ async function drawMap() {
         const data = stateSpending[code];
         if (!data) return '#1a1a1a';
         const t = Math.pow(data.total / maxVal, 0.5); // sqrt scale so small values still show
-        const r = Math.round(26 + t * 219);
-        const g = Math.round(26 + t * 171);
-        const b = Math.round(26 + t * (-2));
+        const r = Math.round(26 + t * 67);
+        const g = Math.round(26 + t * 198);
+        const b = Math.round(26 + t * 214);
         return `rgb(${r},${g},${b})`;
       })
       .attr('stroke', '#2a2a2a')
@@ -816,7 +801,7 @@ function drawSankey() {
 
   const pad = { top:24, bottom:24, left:16, right:16 };
   const nodeW = Math.max(14, W * 0.018);
-  const cols = [ pad.left, W * 0.38, W * 0.72 ];
+  const cols = [ W * 0.22, W * 0.50, W * 0.78 ];
   const colNodes = [0,1,2].map(c => sankeyNodes.filter(n => n.col === c));
   const innerH = H - pad.top - pad.bottom;
   const gap = 10;
@@ -849,10 +834,10 @@ function drawSankey() {
 
     svg.append('path')
       .attr('d', `M${x0},${sy0} C${cx},${sy0} ${cx},${ty0} ${x1},${ty0} L${x1},${ty1} C${cx},${ty1} ${cx},${sy1} ${x0},${sy1} Z`)
-      .attr('fill', isOps ? '#333' : '#f5c518')
+      .attr('fill', isOps ? '#333' : '#5de0f0')
       .attr('opacity', base).attr('stroke', 'none').style('cursor','pointer')
       .on('mouseover', function(event) {
-        d3.select(this).attr('opacity', isOps ? 0.22 : 0.65);
+        d3.select(this).attr('opacity', isOps ? 0.22 : 0.75);
         const tt = document.getElementById('sankey-tooltip');
         document.getElementById('st-name').textContent = lk.label;
         document.getElementById('st-amt').textContent = fmtS(lk.value);
@@ -885,7 +870,7 @@ function drawSankey() {
       .attr('font-family','Space Grotesk, sans-serif')
       .attr('font-size', Math.min(13, Math.max(9, n.h * 0.38)))
       .attr('font-weight', isLTF ? 700 : 500)
-      .attr('fill', isOps ? '#444' : n.col===0 ? '#ccc' : '#f0f0f0')
+      .attr('fill', isOps ? '#444' : n.col===0 ? '#f0f0f0' : '#f0f0f0')
       .text(n.name);
     if (n.h > 22) {
       svg.append('text')
