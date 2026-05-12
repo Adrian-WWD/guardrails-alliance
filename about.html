@@ -19,15 +19,22 @@
       --border: #242424;
       --border-y: rgba(245,197,24,0.2);
       --text: #f0f0f0;
+      --text-sub: #bbbbbb;
       --text-muted: #999999;
-      --text-dim: #Cacaca;
+      --text-dim: #cacaca;
       --font: 'Space Grotesk', sans-serif;
       --diag: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.06) 6px,rgba(245,197,24,0.06) 7px);
     }
 
     html { scroll-behavior: smooth; }
     body { font-family: var(--font); background: var(--bg-page); color: var(--text); line-height: 1.6; }
-    .page-wrap { max-width: 900px; margin: 0 auto; background: var(--bg); border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+
+    .page-wrap {
+      max-width: 900px; margin: 0 auto;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
 
     /* ─── NAV ─── */
     nav {
@@ -42,9 +49,9 @@
     .nav-logo-slot { display: flex; align-items: center; flex-shrink: 0; }
     .nav-logo-slot img { height: 48px; width: auto; display: block; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--yellow); }
-    .nav-cta { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 18px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-cta { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; }
     .nav-cta:hover { background: #fdd835; }
 
     /* ─── DIVIDERS ─── */
@@ -61,7 +68,7 @@
     .page-header-bg { position: absolute; inset: 0; background: #080808; }
     .page-header-diag { position: absolute; inset: 0; background: var(--diag); opacity: 0.7; }
     .page-header-dashes {
-      position: absolute; bottom: 0; right: 15%; width: 3px; height: 100%;
+      position: absolute; bottom: 0; right: 15%; width: 6px; height: 100%;
       background: repeating-linear-gradient(to top,var(--yellow) 0,var(--yellow) 20px,transparent 20px,transparent 48px);
       opacity: 0.2;
     }
@@ -159,7 +166,7 @@
   <nav>
     <div class="nav-logo-slot">
       <a href="index.html">
-        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo.png" alt="Guardrails Alliance" />
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo.png" alt="Guardrails Alliance" />
       </a>
     </div>
     <ul class="nav-links">
@@ -167,7 +174,7 @@
       <li><a href="villains.html">WHO'S BEHIND IT</a></li>
       <li><a href="map.html">FOLLOW THE MONEY</a></li>
     </ul>
-    <a href="#join" class="nav-cta">Get involved</a>
+    <a href="index.html#join" class="nav-cta">TAKE ACTION</a>
   </nav>
 
   <!-- ─── HEADER ─── -->
@@ -177,9 +184,9 @@
     <div class="page-header-dashes"></div>
     <div class="page-header-vignette"></div>
     <div class="page-header-content">
-      <div style="text-align:center; margin-bottom: -3rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border);">
+      <div style="text-align: center; margin-bottom: -3rem; padding-bottom: 1rem;">
         <img
-          src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-wordmark.png"
+          src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-wordmark.png"
           alt="Guardrails Alliance"
           style="max-width: 480px; width: 100%; height: auto; display: block; margin: 0 auto;"
         />
