@@ -14,6 +14,7 @@
 
     :root {
       --yellow: #f5c518;
+      --teal: #5de0f0;
       --bg-page: #080808;
       --bg: #0d0d0d;
       --bg-card: #141414;
@@ -53,8 +54,8 @@
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--yellow); }
-    .nav-cta { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; }
-    .nav-cta:hover { background: #fdd835; }
+    .nav-cta { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; transition: background 0.3s ease}
+    .nav-cta:hover { background: var(--teal); }
 
     /* ─── DIVIDERS ─── */
     .divider-double { height: 20px; background: transparent; border-top: 4px solid rgba(245,197,24,0.5); border-bottom: 4px solid rgba(245,197,24,0.5); }
@@ -71,8 +72,8 @@
     .header-signup input { flex: 1; padding: 11px 14px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-right: none; color: #fff; font-family: var(--font); font-size: 13px; outline: none; }
     .header-signup input::placeholder { color: rgba(255,255,255,0.3); }
     .header-signup input:focus { border-color: var(--yellow); }
-    .header-signup button { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 11px 18px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; white-space: nowrap; }
-    .header-signup button:hover { background: #fdd835; }
+    .header-signup button { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 11px 18px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; white-space: nowrap; transition: background 0.3s ease}
+    .header-signup button:hover { background: var(--teal); }
 
     /* ─── STAT STRIP ─── */
     .stat-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
@@ -116,7 +117,7 @@
     }
     .view-btn:first-child { border-right: none; }
     .view-btn.active { background: var(--yellow); color: #0d0d0d; border-color: var(--yellow); }
-    .view-btn:hover:not(.active) { color: var(--yellow); border-color: var(--border-y); }
+    .view-btn:hover:not(.active) { color: var(--teal); border-color: var(--border-y); }
 
     /* ─── LEDGER VIEW ─── */
     .race-ledger { width: 100%; border-collapse: collapse; }
@@ -244,7 +245,7 @@
       <li><a href="villains.html">WHO'S BEHIND IT</a></li>
       <li><a href="map.html" class="active">FOLLOW THE MONEY</a></li>
     </ul>
-    <a href="index.html#join" class="nav-cta">TAKE ACTION</a>
+    <a href="index.html#join" class="nav-cta">DONATE</a>
   </nav>
 
   <!-- ─── HEADER ─── -->
