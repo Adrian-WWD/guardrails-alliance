@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guardrails Alliance</title>
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
-  <meta name="theme-color" content="#0d0d0d" />
+  <title>AI Guardrails Alliance</title>
 
   <!-- Open Graph / Link Preview -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://adrian-wwd.github.io/guardrails-alliance/" />
   <meta property="og:title"       content="Guardrails Alliance" />
   <meta property="og:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back." />
-  <meta property="og:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
+  <meta property="og:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-wordmark-blk.png" />
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Guardrails Alliance" />
   <meta name="twitter:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back." />
-  <meta name="twitter:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-wordmark-blk.png" />
+  <meta name="twitter:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --yellow: #f5c518;
+      --teal: #5de0f0;
       --bg-page: #080808;
       --bg: #0d0d0d;
       --bg-card: #141414;
@@ -66,8 +65,9 @@
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--yellow); }
-    .nav-cta { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; }
-    .nav-cta:hover { background: #fdd835; }
+    .nav-cta { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; transition: background 0.3s ease}
+    .nav-cta:hover { background: var(--teal); }
+
 
     /* ─── HERO ─── */
     .hero {
@@ -100,21 +100,21 @@
       color: #fff; font-family: var(--font); font-size: 14px; outline: none;
     }
     .hero-signup input::placeholder { color: rgba(255,255,255,0.4); }
-    .hero-signup input:focus { border-color: var(--yellow); }
+    .hero-signup input:focus { border-color: var(--yellow); transition: background 0.3s ease}
     .hero-signup button {
       font-family: var(--font); font-size: 13px; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
       padding: 12px 20px; background: var(--yellow); color: #0d0d0d;
       border: none; cursor: pointer; white-space: nowrap;
     }
-    .hero-signup button:hover { background: #fdd835; }
+    .hero-signup button:hover { background: var(--teal); }
 
     .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 13px 26px; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
-    .btn-primary { background: var(--yellow); color: #0d0d0d; }
-    .btn-primary:hover { background: #fdd835; }
-    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+    .btn-primary { background: var(--yellow); color: #0d0d0d; transition: background 0.3s ease}
+    .btn-primary:hover { background: var(--teal); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); transition: background 0.3s ease}
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal);}
 
     /* ─── DIVIDERS ─── */
     .divider-double { height: 20px; background: transparent; border-top: 4px solid rgba(245,197,24,0.5); border-bottom: 4px solid rgba(245,197,24,0.5); }
@@ -144,7 +144,7 @@
     .vcard-subject { position: absolute; top: 10px; right: 10px; z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow); border: 1px solid rgba(245,197,24,0.4); background: rgba(0,0,0,0.85); padding: 4px 9px; }
     .vcard-warning { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; background: rgba(0,0,0,0.78); border-top: 1px solid rgba(245,197,24,0.5); padding: 7px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--yellow); text-align: center; }
     .vcard-body { padding: 1.25rem; }
-    .vcard-name { font-size: 18px; font-weight: 700; color: #f0f0f0; margin-bottom: 3px; }
+    .vcard-name { font-size: 18px; font-weight: 700; color: #f5c518; margin-bottom: 3px; }
     .vcard-title { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
     .vcard-charges { border-top: 1px solid var(--border); padding-top: 0.875rem; margin-bottom: 0.875rem; }
     .vcard-charge-label { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); margin-bottom: 8px; }
@@ -156,12 +156,12 @@
     .map-placeholder { margin-top: 2rem; background: var(--bg-card); border: 1px solid var(--border); background-image: var(--diag); background-color: var(--bg-card); min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 2rem; }
     .map-bars { display: flex; align-items: flex-end; gap: 8px; height: 110px; }
     .map-bar { background: var(--yellow); opacity: 0.6; border-radius: 1px 1px 0 0; width: 18px; }
-    .map-caption { font-size: 14px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
+    .map-caption { font-size: 14px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); align-items: center;}
 
     /* ─── CONCERNS ─── */
     .concerns-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 16px; margin-top: 2rem; }
     .concern { background: var(--bg-card2); border: 1px solid var(--border); border-top: 2px solid var(--border-y); padding: 1.5rem; }
-    .concern-icon { color: var(--yellow); margin-bottom: 0.75rem; }
+    .concern-icon { color: var(--yellow); margin-bottom: 0.75rem; font-size: 28px; }
     .concern-icon svg { display: block; }
     .concern-title { font-size: 16px; font-weight: 700; color: #f0f0f0; margin-bottom: 8px; }
     .concern-text { font-size: 14px; color: #aaaaaa; line-height: 1.75; }
@@ -216,7 +216,7 @@
       <li><a href="map.html">FOLLOW THE MONEY</a></li>
     </ul>
     </ul>
-    <a href="index.html#join" class="nav-cta">TAKE ACTION</a>
+    <a href="index.html#join" class="nav-cta">DONATE</a>
   </nav>
 
   <!-- ─── HERO ─── -->
@@ -231,33 +231,32 @@
     <div class="hero-vignette"></div>
     <div class="hero-content">
       <h1>AI billionaires are <br>buying our elections.<br><em>We're fighting back.</em></h1>
-      <p class="hero-sub">A small group of tech oligarchs is spending hundreds of millions to block AI regulation — and elect politicians who'll let them do whatever they want. We're on the road ahead, fighting for guardrails that protect everyone.</p>
+      <p class="hero-sub">A small group of tech oligarchs is spending hundreds of millions to block AI regulation and elect politicians who'll let them do whatever they want. We're on the road ahead, fighting for guardrails that protect everyone.</p>
       <form class="hero-signup" onsubmit="return false;">
         <input type="email" placeholder="Sign up for updates" aria-label="Email address" />
         <button type="submit">Sign up</button>
       </form>
-      <div class="btn-group">
-        <a href="about.html" class="btn btn-primary">Learn more</a>
-        <a href="villains.html" class="btn btn-ghost">Meet the villains</a>
-      </div>
     </div>
   </div>
 
-  <div class="divider-hazard"></div>
+  <div class="divider-double"></div>
 
   <!-- ─── THREAT ─── -->
   <section id="threat">
     <p class="label-y">The problem</p>
     <h2>The road ahead is being blocked</h2>
-    <p class="section-sub">Leading the Future and their allies are pouring dark money into elections — backing candidates who will gut oversight, block safety rules, and hand the keys to AI development to a handful of unaccountable billionaires.</p>
+    <p class="section-sub">Leading the Future and their allies are pouring dark money into elections, backing candidates who will gut oversight, block safety rules, and hand the keys to AI development to a handful of unaccountable billionaires.</p>
     <div class="stats-grid">
       <div class="stat"><div class="stat-num">$250M+</div><div class="stat-label">Spent on AI-friendly candidates in 2024</div></div>
       <div class="stat"><div class="stat-num">47</div><div class="stat-label">Congressional races targeted by LTF</div></div>
       <div class="stat"><div class="stat-num">0</div><div class="stat-label">Federal AI safety laws passed</div></div>
     </div>
+    <div class="villains-link">
+      <a href="about.html" class="btn btn-primary">Learn more →</a>
+    </div>
   </section>
 
-  <div class="divider-hazard"></div>
+  <div class="divider-double"></div>
 
   <!-- ─── VILLAINS ─── -->
   <section id="villains">
@@ -272,7 +271,7 @@
             <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/villains/MA-villain-headshot.PNG" alt="Marc Andreessen" crossorigin="anonymous" />
           </a>
           <div class="vcard-subject">Subject #001</div>
-          <div class="vcard-warning">⚠ High risk · $22M donated</div>
+          <!-- <div class="vcard-warning">⚠ High risk · $22M donated</div> -->
         </div>
         <div class="vcard-body">
           <a href="villains.html#andreessen" style="text-decoration:none;">
@@ -280,7 +279,7 @@
           </a>
           <div class="vcard-title">a16z · $35B AUM</div>
           <div class="vcard-charges">
-            <div class="vcard-charge-label">Charges</div>
+            <!-- <div class="vcard-charge-label">Charges</div> -->
             <p class="vcard-charge">$22M donated to GOP in 2024</p>
             <p class="vcard-charge">Opposes all AI safety legislation</p>
             <p class="vcard-charge">Direct financial stake in deregulation</p>
@@ -295,7 +294,7 @@
             <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/villains/JL-villain-headshot.PNG" alt="Joe Lonsdale" crossorigin="anonymous" />
           </a>
           <div class="vcard-subject">Subject #002</div>
-          <div class="vcard-warning">⚠ High risk · 30+ candidates</div>
+          <!-- <div class="vcard-warning">⚠ High risk · 30+ candidates</div> -->
         </div>
         <div class="vcard-body">
           <a href="villains.html#lonsdale" style="text-decoration:none;">
@@ -303,7 +302,7 @@
           </a>
           <div class="vcard-title">8VC · Palantir co-founder</div>
           <div class="vcard-charges">
-            <div class="vcard-charge-label">Charges</div>
+            <!-- <div class="vcard-charge-label">Charges</div> -->
             <p class="vcard-charge">Backed 30+ anti-regulation candidates</p>
             <p class="vcard-charge">Funds "AI freedom" think tanks</p>
             <p class="vcard-charge">Ties to Project 2025</p>
@@ -318,7 +317,7 @@
             <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/villains/JB-villain-headshot.PNG" alt="Greg Brockman" crossorigin="anonymous" />
           </a>
           <div class="vcard-subject">Subject #003</div>
-          <div class="vcard-warning">⚠ High risk · SB 1047 defeat</div>
+          <!-- <div class="vcard-warning">⚠ High risk · SB 1047 defeat</div> -->
         </div>
         <div class="vcard-body">
           <a href="villains.html#brockman" style="text-decoration:none;">
@@ -326,7 +325,7 @@
           </a>
           <div class="vcard-title">OpenAI co-founder</div>
           <div class="vcard-charges">
-            <div class="vcard-charge-label">Charges</div>
+            <!-- <div class="vcard-charge-label">Charges</div> -->
             <p class="vcard-charge">Lobbied against EU AI Act</p>
             <p class="vcard-charge">Opposed SB 1047 in California</p>
             <p class="vcard-charge">Frames safety rules as "innovation killers"</p>
@@ -337,17 +336,17 @@
 
     </div>
     <div class="villains-link">
-      <a href="villains.html" class="btn btn-ghost">See full dossiers →</a>
+      <a href="villains.html" class="btn btn-primary">See more →</a>
     </div>
   </section>
 
-  <div class="divider-hazard"></div>
+  <div class="divider-double"></div>
 
   <!-- ─── MAP ─── -->
   <section id="map">
     <p class="label-y">Follow the money</p>
     <h2>LTF spending by district</h2>
-    <p class="section-sub">Leading the Future has targeted key swing districts — here's where the money is flowing. Full interactive map on the <a href="map.html">money map page</a>.</p>
+    <p class="section-sub">Leading the Future has targeted key swing districts. Here's where the money is flowing. Full interactive map on the <a href="map.html">money map page</a>.</p>
     <div class="map-placeholder">
       <div class="map-bars">
         <div class="map-bar" style="height:35%"></div>
@@ -363,8 +362,12 @@
         <div class="map-bar" style="height:90%"></div>
         <div class="map-bar" style="height:50%"></div>
       </div>
-      <div class="map-caption">Interactive district spending map — <a href="map.html" style="color:var(--yellow);text-decoration:none;">view full map</a></div>
+      <div class="map-caption">Interactive district spending map <br><a href="map.html" style="color:var(--yellow);text-decoration:none;">view full map</a></div>
     </div>
+  <div class="villains-link">
+    <a href="map.html" class="btn btn-primary">Follow the money →</a>
+   </div>
+  
   </section>
 
   <div class="divider-double"></div>
@@ -374,37 +377,37 @@
     <p class="label-y">Why it matters</p>
     <h2>What's at stake</h2>
     <p class="section-sub">Unregulated AI isn't just an abstract concern. Real people are already feeling the consequences.</p>
-    <div class="concerns-grid">
-      <div class="concern">
-        <div class="concern-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <div class="concerns-grid">
+        <div class="concern">
+          <div class="concern-icon">
+            <i class="ti ti-bolt" aria-hidden="true"></i>
+          </div>
+          <div class="concern-title">Data centers</div>
+          <p class="concern-text">Massive energy and water usage in communities that never consented, with no environmental review required.</p>
         </div>
-        <div class="concern-title">Data centers</div>
-        <p class="concern-text">Massive energy and water usage in communities that never consented — with no environmental review required.</p>
-      </div>
-      <div class="concern">
-        <div class="concern-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+        <div class="concern">
+          <div class="concern-icon">
+            <i class="ti ti-shield-off" aria-hidden="true"></i>
+          </div>
+          <div class="concern-title">Child safety</div>
+          <p class="concern-text">AI-generated abuse material, manipulative algorithms targeting kids, and no legal framework to stop it.</p>
         </div>
-        <div class="concern-title">Child safety</div>
-        <p class="concern-text">AI-generated abuse material, manipulative algorithms targeting kids — and no legal framework to stop it.</p>
-      </div>
-      <div class="concern">
-        <div class="concern-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        <div class="concern">
+          <div class="concern-icon">
+            <i class="ti ti-briefcase belief-icon" aria-hidden="true"></i>
+          </div>
+          <div class="concern-title">Jobs</div>
+          <p class="concern-text">Mass automation without worker protections or transition support, displacing millions with no safety net.</p>
         </div>
-        <div class="concern-title">Jobs</div>
-        <p class="concern-text">Mass automation without worker protections or transition support — displacing millions with no safety net.</p>
       </div>
-    </div>
   </section>
 
-  <div class="divider-dash"></div>
+  <div class="divider-double"></div>
 
   <!-- ─── CTA ─── -->
   <section id="join" class="cta-section">
     <p class="label-y" style="text-align:center;">Join the fight</p>
-    <h1>We're fighting for a path forward<br>that benefits <em>everyone.</em></h1>
+    <h1>We're fighting for a path forward that benefits <em>everyone.</em></h1>
     <p class="section-sub">Sign up for updates, volunteer, and help us put guardrails on AI before it's too late.</p>
     <form class="email-form" onsubmit="return false;">
       <input type="email" placeholder="your@email.com" aria-label="Email address" />
