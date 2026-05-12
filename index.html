@@ -8,13 +8,13 @@
   <!-- Open Graph / Link Preview -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://adrian-wwd.github.io/guardrails-alliance/" />
-  <meta property="og:title"       content="AI Guardrails Alliance" />
-  <meta property="og:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back. Follow the money, meet the villains, join the fight." />
-  <meta property="og:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo.png" />
+  <meta property="og:title"       content="Guardrails Alliance" />
+  <meta property="og:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back." />
+  <meta property="og:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-wordmark-blk.png" />
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="AI Guardrails Alliance" />
+  <meta name="twitter:title"       content="Guardrails Alliance" />
   <meta name="twitter:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back." />
-  <meta name="twitter:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo.png" />
+  <meta name="twitter:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,7 +33,7 @@
       --text: #f0f0f0;
       --text-sub: #bbbbbb;
       --text-muted: #999999;
-      --text-dim: #555555;
+      --text-dim: #cacaca;
       --font: 'Space Grotesk', sans-serif;
       --diag: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.06) 6px,rgba(245,197,24,0.06) 7px);
     }
@@ -63,7 +63,7 @@
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--yellow); }
-    .nav-cta { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; }
+    .nav-cta { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; }
     .nav-cta:hover { background: #fdd835; }
 
     /* ─── HERO ─── */
@@ -204,7 +204,7 @@
   <nav>
     <div class="nav-logo-slot">
       <a href="index.html">
-        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-wordmark.png" alt="Guardrails Alliance" />
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-wordmark.png" alt="Guardrails Alliance" />
       </a>
     </div>
     <ul class="nav-links">
@@ -212,9 +212,8 @@
       <li><a href="villains.html">WHO'S BEHIND IT</a></li>
       <li><a href="map.html">FOLLOW THE MONEY</a></li>
     </ul>
-    <button class="nav-cta" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">
-      TAKE ACTION
-    </button>
+    </ul>
+    <a href="index.html#join" class="nav-cta">TAKE ACTION</a>
   </nav>
 
   <!-- ─── HERO ─── -->
@@ -235,8 +234,8 @@
         <button type="submit">Sign up</button>
       </form>
       <div class="btn-group">
-        <a href="#threat" class="btn btn-primary">Learn more</a>
-        <a href="#villains" class="btn btn-ghost">Meet the villains</a>
+        <a href="about.html" class="btn btn-primary">Learn more</a>
+        <a href="villains.html" class="btn btn-ghost">Meet the villains</a>
       </div>
     </div>
   </div>
@@ -267,7 +266,7 @@
       <div class="vcard">
         <div class="vcard-photo">
           <a href="villains.html#andreessen">
-            <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/MA-villain-headshot.PNG" alt="Marc Andreessen" crossorigin="anonymous" />
+            <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/villains/MA-villain-headshot.PNG" alt="Marc Andreessen" crossorigin="anonymous" />
           </a>
           <div class="vcard-subject">Subject #001</div>
           <div class="vcard-warning">⚠ High risk · $22M donated</div>
@@ -290,7 +289,7 @@
       <div class="vcard">
         <div class="vcard-photo">
           <a href="villains.html#lonsdale">
-            <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JL-villain-headshot.PNG" alt="Joe Lonsdale" crossorigin="anonymous" />
+            <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/villains/JL-villain-headshot.PNG" alt="Joe Lonsdale" crossorigin="anonymous" />
           </a>
           <div class="vcard-subject">Subject #002</div>
           <div class="vcard-warning">⚠ High risk · 30+ candidates</div>
@@ -313,7 +312,7 @@
       <div class="vcard">
         <div class="vcard-photo">
           <a href="villains.html#brockman">
-            <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JB-villain-headshot.PNG" alt="Greg Brockman" crossorigin="anonymous" />
+            <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/villains/JB-villain-headshot.PNG" alt="Greg Brockman" crossorigin="anonymous" />
           </a>
           <div class="vcard-subject">Subject #003</div>
           <div class="vcard-warning">⚠ High risk · SB 1047 defeat</div>
@@ -412,9 +411,14 @@
 
   <footer>
     <div class="footer-logo">Guardrails Alliance</div>
+    <div class="nav-logo-slot">
+      <a href="index.html">
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-wordmark.png" alt="Guardrails Alliance" />
+      </a>
+    </div>
     <div class="footer-links">
       <a href="index.html">Home</a>
-      <a href="villains.html">Villains</a>
+      <a href="villains.html">Who's Behind It</a>
       <a href="map.html">Money map</a>
       <a href="about.html">About</a>
     </div>
