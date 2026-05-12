@@ -76,7 +76,7 @@
     .hero-diag { position: absolute; inset: 0; background: var(--diag); opacity: 0.7; }
     .hero-dashes {
       position: absolute; bottom: 0; left: 65%; transform: translateX(-50%);
-      width: 4px; height: 70%;
+      width: 6px; height: 100%;
       background: repeating-linear-gradient(to top,var(--yellow) 0,var(--yellow) 22px,transparent 22px,transparent 52px);
       opacity: 0.3;
     }
@@ -204,17 +204,16 @@
   <nav>
     <div class="nav-logo-slot">
       <a href="index.html">
-        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo.png" alt="Guardrails Alliance" />
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-wordmark.png" alt="Guardrails Alliance" />
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="#threat">The threat</a></li>
-      <li><a href="#villains">Who's behind it</a></li>
-      <li><a href="map.html">Follow the money</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+      <li><a href="villains.html">WHO'S BEHIND IT</a></li>
+      <li><a href="map.html">FOLLOW THE MONEY</a></li>
     </ul>
     <button class="nav-cta" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">
-      Get involved
+      TAKE ACTION
     </button>
   </nav>
 
@@ -242,7 +241,7 @@
     </div>
   </div>
 
-  <div class="divider-double"></div>
+  <div class="divider-hazard"></div>
 
   <!-- ─── THREAT ─── -->
   <section id="threat">
@@ -267,12 +266,16 @@
 
       <div class="vcard">
         <div class="vcard-photo">
-          <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/MA-villain-headshot.PNG" alt="Marc Andreessen" crossorigin="anonymous" />
+          <a href="villains.html#andreessen">
+            <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/MA-villain-headshot.PNG" alt="Marc Andreessen" crossorigin="anonymous" />
+          </a>
           <div class="vcard-subject">Subject #001</div>
           <div class="vcard-warning">⚠ High risk · $22M donated</div>
         </div>
         <div class="vcard-body">
-          <div class="vcard-name">Marc Andreessen</div>
+          <a href="villains.html#andreessen" style="text-decoration:none;">
+            <div class="vcard-name">Marc Andreessen</div>
+          </a>
           <div class="vcard-title">a16z · $35B AUM</div>
           <div class="vcard-charges">
             <div class="vcard-charge-label">Charges</div>
@@ -286,12 +289,16 @@
 
       <div class="vcard">
         <div class="vcard-photo">
-          <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JL-villain-headshot.PNG" alt="Joe Lonsdale" crossorigin="anonymous" />
+          <a href="villains.html#lonsdale">
+            <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JL-villain-headshot.PNG" alt="Joe Lonsdale" crossorigin="anonymous" />
+          </a>
           <div class="vcard-subject">Subject #002</div>
           <div class="vcard-warning">⚠ High risk · 30+ candidates</div>
         </div>
         <div class="vcard-body">
-          <div class="vcard-name">Joe Lonsdale</div>
+          <a href="villains.html#lonsdale" style="text-decoration:none;">
+            <div class="vcard-name">Joe Lonsdale</div>
+          </a>
           <div class="vcard-title">8VC · Palantir co-founder</div>
           <div class="vcard-charges">
             <div class="vcard-charge-label">Charges</div>
@@ -305,12 +312,16 @@
 
       <div class="vcard">
         <div class="vcard-photo">
-          <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JB-villain-headshot.PNG" alt="Greg Brockman" crossorigin="anonymous" />
+          <a href="villains.html#brockman">
+            <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/JB-villain-headshot.PNG" alt="Greg Brockman" crossorigin="anonymous" />
+          </a>
           <div class="vcard-subject">Subject #003</div>
           <div class="vcard-warning">⚠ High risk · SB 1047 defeat</div>
         </div>
         <div class="vcard-body">
-          <div class="vcard-name">Greg Brockman</div>
+          <a href="villains.html#brockman" style="text-decoration:none;">
+            <div class="vcard-name">Greg Brockman</div>
+          </a>
           <div class="vcard-title">OpenAI co-founder</div>
           <div class="vcard-charges">
             <div class="vcard-charge-label">Charges</div>
