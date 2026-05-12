@@ -4,29 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Guardrails Alliance</title>
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
-  <meta name="theme-color" content="#0d0d0d" />
-
-  <!-- Open Graph / Link Preview -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://adrian-wwd.github.io/guardrails-alliance/" />
-  <meta property="og:title"       content="Guardrails Alliance" />
-  <meta property="og:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back." />
-  <meta property="og:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-blk.png" />
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Guardrails Alliance" />
-  <meta name="twitter:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back." />
-  <meta name="twitter:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-wordmark-blk.png" />
-  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --yellow: #f5c518;
+      --teal: #5de0f0;
       --bg-page: #080808;
       --bg: #0d0d0d;
       --bg-card: #141414;
@@ -66,8 +53,8 @@
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--yellow); }
-    .nav-cta { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; }
-    .nav-cta:hover { background: #fdd835; }
+    .nav-cta { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; transition: background 0.3s ease}
+    .nav-cta:hover { background: var(--teal); }
 
     /* ─── DIVIDERS ─── */
     .divider-double { height: 20px; background: transparent; border-top: 4px solid rgba(245,197,24,0.5); border-bottom: 4px solid rgba(245,197,24,0.5); }
@@ -110,9 +97,11 @@
     .pillar-text { font-size: 14px; color: #aaaaaa; line-height: 1.7; }
 
     /* ─── BELIEFS ─── */
-    .belief-list { margin-top: 1.5rem; }
-    .belief { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    .belief-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-top: 2rem; }
+    .belief { background: var(--bg-card2); padding: 2rem 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; }
     .belief:last-child { border-bottom: none; }
+    .belief-icon { font-size: 36px; color: rgba(93,224,240,0.7); }
+    .belief-label { font-size: 18px; font-weight: 700; color: #f0f0f0; line-height: 1.3; }
     .belief-marker { width: 3px; background: var(--yellow); flex-shrink: 0; opacity: 0.6; }
     .belief-text { font-size: 16px; color: #cccccc; line-height: 1.8; }
     .belief-text strong { color: #fff; }
@@ -149,8 +138,8 @@
     .email-form input::placeholder { color: #444; }
     .email-form input:focus { border-color: var(--yellow); }
     .btn { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 24px; border: none; cursor: pointer; text-decoration: none; display: inline-block; }
-    .btn-primary { background: var(--yellow); color: #0d0d0d; }
-    .btn-primary:hover { background: #fdd835; }
+    .btn-primary { background: var(--yellow); color: #0d0d0d; transition: background 0.3s ease}
+    .btn-primary:hover { background: var(--teal); }
 
     /* ─── FOOTER ─── */
     footer { padding: 1.5rem 2.5rem; background: #0d0d0d; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
@@ -189,7 +178,7 @@
       <li><a href="villains.html">WHO'S BEHIND IT</a></li>
       <li><a href="map.html">FOLLOW THE MONEY</a></li>
     </ul>
-    <a href="index.html#join" class="nav-cta">TAKE ACTION</a>
+    <a href="index.html#join" class="nav-cta">DONATE</a>
   </nav>
 
   <!-- ─── HEADER ─── -->
@@ -199,7 +188,7 @@
     <div class="page-header-dashes"></div>
     <div class="page-header-vignette"></div>
     <div class="page-header-content">
-      <div style="text-align: center; margin-bottom: -3rem; padding-bottom: 1rem;">
+      <div style="text-align: center; margin-bottom: -1rem; padding-bottom: 1rem;">
         <img
           src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-wordmark.png"
           alt="Guardrails Alliance"
@@ -207,7 +196,7 @@
         />
       </div>
       <h1>We didn't start this fight.<br><em>But we're going to finish it.</em></h1>
-      <p class="lead">The Guardrails Alliance is a political action committee built to counter the flood of Silicon Valley money trying to buy a deregulated future <br/>— and the politicians who will hand it to them.</p>
+      <p class="lead">The Guardrails Alliance is a political action committee built to counter the flood of Silicon Valley money trying to buy a deregulated future <br/><strong>— and the politicians who will hand it to them.</strong></p>
     </div>
   </div>
 
@@ -217,8 +206,8 @@
   <section>
     <p class="label-y">Who we are</p>
     <h2>A coalition that <em>refuses to look the other way</em></h2>
-    <p class="body-text">The AI Guardrails Alliance is made up of workers, organizers, policy experts, and everyday people who believe that the most powerful technology ever built shouldn't be controlled by a handful of unaccountable billionaires — and that our democracy shouldn't be for sale to the highest bidder.</p>
-    <p class="body-text">We are <strong>not anti-technology.</strong> We believe AI can be transformative, beneficial, and genuinely good for people. But that future doesn't happen by accident — it requires rules, accountability, and a government that actually represents the public, not just its donors.</p>
+    <p class="body-text">The AI Guardrails Alliance is made up of workers, organizers, policy experts, and everyday people who believe that the most powerful technology ever built shouldn't be controlled by a handful of unaccountable billionaires. Our democracy shouldn't be for sale to the highest bidder.</p>
+    <p class="body-text">We are <strong>not anti-technology.</strong> We believe AI can be transformative, beneficial, and genuinely good for people. But that future requires rules, accountability, and a government that actually represents the public, not just its donors.</p>
     <p class="body-text">We were formed in direct response to <strong>Leading the Future</strong> — a $125 million super PAC bankrolled almost entirely by five Silicon Valley figures — and the broader campaign to elect politicians who will gut AI oversight before it can take root.</p>
 
     <div class="pull-quote">
@@ -249,7 +238,7 @@
       <div class="pillar">
         <div class="pillar-num">03</div>
         <div class="pillar-title">Organize</div>
-        <div class="pillar-text">Build the grassroots coalition — workers, parents, advocates — whose voices carry further than any billionaire's checkbook.</div>
+        <div class="pillar-text">Build the grassroots coalition of workers, parents, and advocates, whose voices carry further than any billionaire's checkbook.</div>
       </div>
     </div>
   </section>
@@ -260,32 +249,32 @@
   <section>
     <p class="label-y">What we believe</p>
     <h2>The principles behind everything we do:</h2>
-    <div class="belief-list">
-      <div class="belief">
-        <div class="belief-marker"></div>
-        <div class="belief-text"><strong>AI must be accountable.</strong> Systems that affect jobs, healthcare, housing, and civil rights need oversight, transparency, and legal accountability — not blanket immunity.</div>
+      <div class="belief-list">
+        <div class="belief">
+          <i class="ti ti-shield belief-icon" aria-hidden="true"></i>
+          <strong class="belief-label">AI must be accountable.</strong>
+        </div>
+        <div class="belief">
+          <i class="ti ti-currency-dollar belief-icon" aria-hidden="true"></i>
+          <strong class="belief-label">Democracy isn't for sale.</strong>
+        </div>
+        <div class="belief">
+          <i class="ti ti-briefcase belief-icon" aria-hidden="true"></i>
+          <strong class="belief-label">Workers come first.</strong>
+        </div>
+        <div class="belief">
+          <i class="ti ti-alert-circle belief-icon" aria-hidden="true"></i>
+          <strong class="belief-label">Children must be protected.</strong>
+        </div>
+        <div class="belief">
+          <i class="ti ti-bolt belief-icon" aria-hidden="true"></i>
+          <strong class="belief-label">Communities have rights.</strong>
+        </div>
+        <div class="belief">
+          <i class="ti ti-road belief-icon" aria-hidden="true"></i>
+          <strong class="belief-label">The road forward must benefit everyone.</strong>
+        </div>
       </div>
-      <div class="belief">
-        <div class="belief-marker"></div>
-        <div class="belief-text"><strong>Democracy isn't for sale.</strong> No individual or company — however rich — should be able to purchase a regulatory environment that protects their profits at the expense of the public.</div>
-      </div>
-      <div class="belief">
-        <div class="belief-marker"></div>
-        <div class="belief-text"><strong>Workers come first.</strong> The people whose jobs are being displaced by AI deserve a seat at the table — and a safety net that actually catches them.</div>
-      </div>
-      <div class="belief">
-        <div class="belief-marker"></div>
-        <div class="belief-text"><strong>Children must be protected.</strong> AI-generated abuse, manipulative algorithms, and addictive systems designed to exploit kids are not acceptable byproducts of innovation — they are failures of governance.</div>
-      </div>
-      <div class="belief">
-        <div class="belief-marker"></div>
-        <div class="belief-text"><strong>Communities have rights.</strong> Massive data centers that consume local water and power without consent are not progress — they are extraction. Affected communities deserve a voice.</div>
-      </div>
-      <div class="belief">
-        <div class="belief-marker"></div>
-        <div class="belief-text"><strong>The road forward benefits everyone.</strong> We don't have to choose between technological progress and human dignity. The guardrails we're fighting for make AI better — not just safer.</div>
-      </div>
-    </div>
   </section>
 
   <div class="divider-hazard"></div>
@@ -306,7 +295,7 @@
     </div>
   </div>
 
-  <div class="divider-double"></div>
+  <div class="divider-hazard"></div>
 
   <!-- ─── LEGAL ─── -->
   <div class="disclaimer">
