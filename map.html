@@ -799,13 +799,13 @@ const sankeyLinks = [
   { source:7, target:9,  value:10000000,   label:"LTF → Think Big" },
   { source:7, target:10, value:105535802,  label:"LTF → Cash on hand / operations" },
 ];
-
+ 
 function fmtS(n) {
   if (n >= 1e6) return '$' + (n/1e6).toFixed(1) + 'M';
   if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
   return '$' + n.toFixed(0);
 }
-
+ 
 function drawSankey() {
   const container = document.getElementById('sankey-container');
   const W = container.clientWidth;
@@ -814,14 +814,14 @@ function drawSankey() {
     .attr('viewBox', `0 0 ${W} ${H}`)
     .attr('height', H);
   svg.selectAll('*').remove();
-
+ 
   const pad = { top:24, bottom:24, left:16, right:16 };
   const nodeW = Math.max(14, W * 0.018);
   const cols = [ W * 0.22, W * 0.50, W * 0.78 ];
   const colNodes = [0,1,2].map(c => sankeyNodes.filter(n => n.col === c));
   const innerH = H - pad.top - pad.bottom;
   const gap = 10;
-
+ 
   colNodes.forEach(group => {
     const totalVal = group.reduce((s,n) => s + n.amt, 0);
     const availH = innerH - gap * (group.length - 1);
@@ -832,9 +832,9 @@ function drawSankey() {
       y += n.h + gap;
     });
   });
-
+ 
   sankeyNodes.forEach(n => { n._srcOff = 0; n._tgtOff = 0; });
-
+ 
   sankeyLinks.forEach(lk => {
     const s = sankeyNodes[lk.source], t = sankeyNodes[lk.target];
     const totalSrc = sankeyLinks.filter(l => l.source === lk.source).reduce((a,l) => a+l.value, 0);
@@ -847,13 +847,13 @@ function drawSankey() {
     const x0 = s.x + nodeW, x1 = t.x, cx = (x0 + x1) / 2;
     const isOps = lk.target === 10;
     const base = isOps ? 0.12 : 0.35;
-
+ 
     svg.append('path')
       .attr('d', `M${x0},${sy0} C${cx},${sy0} ${cx},${ty0} ${x1},${ty0} L${x1},${ty1} C${cx},${ty1} ${cx},${sy1} ${x0},${sy1} Z`)
-      .attr('fill', isOps ? '#333' : '#5de0f0')
+      .attr('fill', isOps ? '#333' : '#f5c518')
       .attr('opacity', base).attr('stroke', 'none').style('cursor','pointer')
       .on('mouseover', function(event) {
-        d3.select(this).attr('opacity', isOps ? 0.22 : 0.75);
+        d3.select(this).attr('opacity', isOps ? 0.22 : 0.75).attr('fill', isOps ? '#333' : '#5de0f0');
         const tt = document.getElementById('sankey-tooltip');
         document.getElementById('st-name').textContent = lk.label;
         document.getElementById('st-amt').textContent = fmtS(lk.value);
@@ -868,11 +868,11 @@ function drawSankey() {
         tt.style.top = (event.clientY - 10) + 'px';
       })
       .on('mouseout', function() {
-        d3.select(this).attr('opacity', base);
+        d3.select(this).attr('opacity', base).attr('fill', isOps ? '#333' : '#f5c518');
         document.getElementById('sankey-tooltip').style.opacity = 0;
       });
   });
-
+ 
   sankeyNodes.forEach(n => {
     const isLTF = n.col===1, isOps = n.id===10;
     const col = isOps ? '#333' : isLTF ? '#c8a010' : n.col===2 ? '#8a7000' : '#f5c518';
@@ -899,14 +899,14 @@ function drawSankey() {
     }
   });
 }
-
+ 
 function setView(v) {
   document.getElementById('view-ledger').style.display = v === 'ledger' ? 'block' : 'none';
   document.getElementById('view-cards').style.display  = v === 'cards'  ? 'block' : 'none';
   document.getElementById('btn-ledger').classList.toggle('active', v === 'ledger');
   document.getElementById('btn-cards').classList.toggle('active',  v === 'cards');
 }
-
+ 
 drawSankey();
 window.addEventListener('resize', drawSankey);
 </script>
