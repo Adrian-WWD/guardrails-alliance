@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guardrails Action</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #f5c518;
+      --yellow-dark: #c49a00;
+      --black: #0d0d0d;
+      --gray-900: #111111;
+      --gray-800: #1f1f1f;
+      --gray-200: #e8e8e8;
+      --gray-100: #f4f4f4;
+      --gray-50: #fafafa;
+      --border: #dddddd;
+      --text: #111111;
+      --text-muted: #555555;
+      --text-dim: #999999;
+      --font: 'Space Grotesk', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: #fff; color: var(--text); line-height: 1.6; }
+
+    .page-wrap { max-width: 860px; margin: 0 auto; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2.5rem;
+      background: var(--black);
+      border-bottom: 1px solid #222;
+    }
+    .nav-wordmark { font-size: 16px; font-weight: 700; letter-spacing: 0.04em; color: #fff; text-decoration: none; }
+    .nav-wordmark span { color: var(--yellow); }
+    .nav-link-main { font-size: 13px; font-weight: 500; color: #888; text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; margin-right: auto; margin-left: 2rem; }
+    .nav-link-main:hover { color: #fff; }
+    .nav-cta {
+      font-family: var(--font); font-size: 13px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 9px 20px; background: var(--yellow); color: var(--black);
+      border: none; cursor: pointer; text-decoration: none; display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .nav-cta:hover { background: #fdd835; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--black);
+      padding: 5rem 2.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.04) 6px,rgba(245,197,24,0.04) 7px);
+    }
+    .hero-dashes {
+      position: absolute; top: 0; bottom: 0; right: 15%;
+      width: 3px;
+      background: repeating-linear-gradient(to bottom,rgba(245,197,24,0.2) 0,rgba(245,197,24,0.2) 20px,transparent 20px,transparent 48px);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 600px; }
+    .hero-label { font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 1rem; }
+    .hero h1 { font-size: clamp(30px,4.5vw,52px); font-weight: 700; color: #fff; line-height: 1.08; margin-bottom: 1.25rem; }
+    .hero h1 em { color: var(--yellow); font-style: normal; }
+    .hero-sub { font-size: 17px; color: #bbb; line-height: 1.8; max-width: 500px; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-hero-primary {
+      font-family: var(--font); font-size: 14px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 14px 28px; background: var(--yellow); color: var(--black);
+      border: none; cursor: pointer; text-decoration: none; display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .btn-hero-primary:hover { background: #fdd835; }
+    .btn-hero-ghost {
+      font-family: var(--font); font-size: 14px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 14px 28px; background: transparent; color: #fff;
+      border: 1px solid rgba(255,255,255,0.25); cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    .btn-hero-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ─── DIVIDERS ─── */
+    .divider-yellow { height: 4px; background: var(--yellow); }
+    .divider-light { height: 1px; background: var(--border); }
+
+    /* ─── ABOUT STRIP ─── */
+    .about-strip {
+      padding: 3rem 2.5rem;
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-strip p { font-size: 17px; color: var(--text); line-height: 1.85; max-width: 640px; }
+    .about-strip p strong { color: var(--black); font-weight: 700; }
+    .about-strip p + p { margin-top: 1rem; }
+
+    /* ─── STAT STRIP ─── */
+    .stat-strip { display: grid; grid-template-columns: repeat(3,1fr); border-bottom: 1px solid var(--border); }
+    .stat-item { padding: 1.75rem 2rem; border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: clamp(22px,3vw,32px); font-weight: 700; color: var(--black); margin-bottom: 4px; }
+    .stat-num span { color: var(--black); }
+    .stat-lbl { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+    /* ─── SECTION ─── */
+    .section { padding: 3.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #555; margin-bottom: 0.5rem; }
+    .section h2 { font-size: clamp(22px,2.8vw,30px); font-weight: 700; color: var(--black); margin-bottom: 0.875rem; line-height: 1.2; }
+    .section h2 em { color: var(--black); font-style: normal; }
+    .section p { font-size: 16px; color: var(--text-muted); line-height: 1.85; max-width: 600px; }
+
+    /* ─── CALL TOOL ─── */
+    .call-tool {
+      background: var(--gray-100);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--yellow);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    .call-tool h3 { font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 0.5rem; }
+    .call-tool p { font-size: 14px; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.7; }
+    .zip-form { display: flex; gap: 0; max-width: 400px; }
+    .zip-form input {
+      flex: 1; padding: 12px 16px; font-family: var(--font); font-size: 15px;
+      border: 1px solid var(--border); border-right: none; outline: none;
+      background: #fff; color: var(--text); letter-spacing: 0.05em;
+    }
+    .zip-form input::placeholder { color: #bbb; }
+    .zip-form input:focus { border-color: var(--yellow-dark); }
+    .zip-form button {
+      font-family: var(--font); font-size: 13px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 12px 20px; background: var(--black); color: #fff;
+      border: none; cursor: pointer; transition: background 0.3s ease;
+      white-space: nowrap;
+    }
+    .zip-form button:hover { background: #333; }
+
+    /* Call result */
+    #call-result { margin-top: 1.5rem; display: none; }
+    .rep-card {
+      background: #fff; border: 1px solid var(--border);
+      border-left: 3px solid var(--yellow);
+      padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+    }
+    .rep-name { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 3px; }
+    .rep-meta { font-size: 12px; color: var(--text-dim); margin-bottom: 1rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .rep-phone { font-size: 20px; font-weight: 700; color: var(--black); margin-bottom: 0.875rem; text-decoration: none; display: block; }
+    .rep-phone:hover { text-decoration: underline; color: #333; }
+    .call-script {
+      background: var(--gray-50); border: 1px solid var(--border);
+      padding: 1rem 1.25rem; font-size: 14px; color: var(--text-muted);
+      line-height: 1.75; margin-top: 0.75rem;
+      border-left: 2px solid var(--border);
+    }
+    .call-script strong { color: var(--black); }
+    .script-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .call-error { font-size: 14px; color: #c0392b; padding: 1rem; background: #fff5f5; border: 1px solid #f5c6cb; }
+
+    /* ─── SIGNUP ─── */
+    .signup-section {
+      background: var(--black);
+      padding: 4rem 2.5rem;
+      text-align: center;
+    }
+    .signup-section .section-label { color: var(--yellow); }
+    .signup-section h2 { font-size: clamp(22px,3vw,32px); font-weight: 700; color: #fff; margin-bottom: 0.875rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.2; }
+    .signup-section h2 em { color: var(--yellow); font-style: normal; }
+    .signup-section p { font-size: 15px; color: #aaa; margin-bottom: 2rem; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .signup-form { display: flex; max-width: 420px; margin: 0 auto; }
+    .signup-form input {
+      flex: 1; padding: 13px 16px; font-family: var(--font); font-size: 14px;
+      border: 1px solid #333; border-right: none; background: #1a1a1a;
+      color: #fff; outline: none;
+    }
+    .signup-form input::placeholder { color: #555; }
+    .signup-form input:focus { border-color: var(--yellow); }
+    .signup-form button {
+      font-family: var(--font); font-size: 13px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 13px 22px; background: var(--yellow); color: var(--black);
+      border: none; cursor: pointer; transition: background 0.3s ease;
+    }
+    .signup-form button:hover { background: #fdd835; }
+
+    /* ─── DONATE ─── */
+    .donate-section {
+      padding: 3.5rem 2.5rem;
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--border);
+      display: flex; gap: 3rem; align-items: center; flex-wrap: wrap;
+    }
+    .donate-text { flex: 1; min-width: 260px; }
+    .donate-text h2 { font-size: clamp(20px,2.5vw,28px); font-weight: 700; color: var(--black); margin-bottom: 0.75rem; line-height: 1.2; }
+    .donate-text p { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
+    .donate-cta { flex-shrink: 0; }
+    .btn-donate {
+      font-family: var(--font); font-size: 15px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 16px 36px; background: var(--yellow); color: var(--black);
+      border: none; cursor: pointer; text-decoration: none; display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .btn-donate:hover { background: #fdd835; }
+    .donate-note { font-size: 12px; color: var(--text-dim); margin-top: 8px; text-align: center; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 1.5rem 2.5rem;
+      background: var(--black);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-wordmark { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #444; }
+    .footer-legal { font-size: 11px; color: #333; line-height: 1.6; max-width: 500px; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .hero { padding: 3.5rem 1.25rem 3rem; }
+      .about-strip, .section, .donate-section { padding: 2.5rem 1.25rem; }
+      .signup-section { padding: 3rem 1.25rem; }
+      .stat-strip { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+      .hero-actions, .zip-form, .signup-form { flex-direction: column; }
+      .zip-form input { border-right: 1px solid var(--border); border-bottom: none; }
+      .signup-form input { border-right: 1px solid #333; border-bottom: none; }
+      .donate-section { flex-direction: column; gap: 1.5rem; }
+      footer { padding: 1.25rem; flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ─── CALL TOOL STEPS ─── */
+    .step-label { font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#999;margin-bottom:0.875rem; }
+    .rep-result-card { background:#fff;border:1px solid var(--border);padding:1.25rem 1.5rem;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap; }
+    .rep-result-card .rep-name { font-size:17px;font-weight:700;color:var(--black);margin-bottom:3px; }
+    .rep-result-card .rep-meta { font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.04em; }
+    .rep-phone-num { font-size:18px;font-weight:700;color:var(--black); }
+    .btn-select-rep { font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:9px 18px;background:var(--yellow);color:var(--black);border:none;cursor:pointer;white-space:nowrap; }
+    .btn-back { font-family:var(--font);font-size:13px;font-weight:500;padding:10px 18px;background:transparent;color:var(--text-muted);border:1px solid var(--border);cursor:pointer;margin-top:1rem;display:block; }
+    .script-box { background:#fff;border:1px solid var(--border);border-left:4px solid var(--yellow);padding:1.5rem;margin-bottom:1.5rem; }
+    .script-header { display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem; }
+    .script-icon { font-size:28px;flex-shrink:0; }
+    .script-title { font-size:16px;font-weight:700;color:var(--black);margin-bottom:2px; }
+    .script-sub { font-size:12px;color:var(--text-dim); }
+    .script-body { font-size:15px;color:var(--text);line-height:1.85;border-top:1px solid var(--border);padding-top:1.25rem; }
+    .script-note { margin-top:1rem;font-size:11px;color:#c0392b;font-weight:700;padding:6px 10px;background:#fff5f5;border:1px solid #f5c6cb;display:inline-block; }
+    .call-complete-prompt { border-top:1px solid var(--border);padding-top:1.5rem;margin-top:1.5rem; }
+    .btn-called { font-family:var(--font);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:12px 24px;background:#1a7a3c;color:#fff;border:none;cursor:pointer; }
+    .thanks-box { text-align:center;padding:2rem 1rem; }
+    .btn-share { font-family:var(--font);font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px 22px;background:var(--black);color:#fff;text-decoration:none;display:inline-block; }
+
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <nav>
+    <a class="nav-wordmark" href="#">Guardrails <span>Action</span></a>
+    <a class="nav-link-main" href="https://adrian-wwd.github.io/guardrails-alliance/" target="_blank" rel="noopener">← Guardrails Alliance</a>
+    <a href="#donate" class="nav-cta">Donate</a>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <div class="hero">
+    <div class="hero-dashes"></div>
+    <div class="hero-content">
+      <p class="hero-label">Guardrails Action · 501(c)(4)</p>
+      <h1>AI shouldn't be<br>above the law.<br><em>We're making sure it isn't.</em></h1>
+      <p class="hero-sub">Guardrails Action is a nonpartisan advocacy organization fighting for common-sense AI accountability — protecting workers, families, and democracy from unchecked AI power.</p>
+      <div class="hero-actions">
+        <a href="#call" class="btn-hero-primary">Call your rep</a>
+        <a href="#signup" class="btn-hero-ghost">Add your name</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-yellow"></div>
+
+  <!-- ─── ABOUT ─── */ -->
+  <div class="about-strip">
+    <p>A small group of Silicon Valley billionaires is spending <strong>over $125 million</strong> to elect politicians who will block AI safety laws — and hand control of the most powerful technology ever built to a handful of unaccountable companies.</p>
+    <p>Guardrails Action organizes workers, parents, and citizens to fight back. We believe AI can be transformative and good — but only if it's built with accountability, transparency, and democratic oversight.</p>
+  </div>
+
+  <!-- ─── STATS ─── -->
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="stat-num"><span>$125M+</span></div>
+      <div class="stat-lbl">Spent by AI billionaires to block regulation</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>0</span></div>
+      <div class="stat-lbl">Federal AI safety laws passed to date</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>Millions</span></div>
+      <div class="stat-lbl">Of workers at risk from unregulated automation</div>
+    </div>
+  </div>
+
+  <!-- ─── CALL TOOL ─── -->
+  <div class="section" id="call">
+    <p class="section-label">Take action now</p>
+    <h2>Call your member of Congress.</h2>
+    <p>It takes two minutes. Silicon Valley billionaires are spending $125 million to buy politicians who will block AI safety laws. Your rep needs to hear from you — today.</p>
+ 
+    <div class="call-tool">
+ 
+      <!-- Step 1: Zip -->
+      <div id="step-zip">
+        <div class="step-label">Step 1 of 3 — Find your representative</div>
+        <h3>Enter your zip code</h3>
+        <p>We'll find your member of Congress and give you everything you need to make the call.</p>
+        <form class="zip-form" onsubmit="lookupRep(event)">
+          <input type="text" id="zip-input" placeholder="5-digit zip code" maxlength="5" pattern="[0-9]{5}" inputmode="numeric" aria-label="Zip code" required />
+          <button type="submit" id="zip-btn">Find my rep →</button>
+        </form>
+        <p id="zip-error" style="display:none;margin-top:0.75rem;font-size:13px;color:#c0392b;"></p>
+      </div>
+ 
+      <!-- Step 2: Rep info -->
+      <div id="step-rep" style="display:none;">
+        <div class="step-label">Step 2 of 3 — Your representative</div>
+        <div id="rep-cards"></div>
+        <button class="btn-back" onclick="goBack()">← Try a different zip</button>
+      </div>
+ 
+      <!-- Step 3: Script -->
+      <div id="step-script" style="display:none;">
+        <div class="step-label">Step 3 of 3 — Make the call</div>
+        <div class="script-box">
+          <div class="script-header">
+            <div class="script-icon">📞</div>
+            <div>
+              <div class="script-title">Your call script</div>
+              <div class="script-sub">Read this when someone picks up — or leave it as a voicemail</div>
+            </div>
+          </div>
+          <div class="script-body">
+            <!-- ⚠️ PLACEHOLDER SCRIPT — replace with approved copy from comms team -->
+            <p>"Hi, my name is <strong>[YOUR NAME]</strong> and I'm a constituent calling from <strong>[YOUR CITY/TOWN]</strong>.</p>
+            <p style="margin-top:0.75rem;">I'm calling to urge <strong id="script-rep-name">[REP NAME]</strong> to stand up against the influence of Leading the Future PAC — a $125 million dark money operation funded by Silicon Valley billionaires trying to block AI safety laws.</p>
+            <p style="margin-top:0.75rem;">My community deserves a representative who works for people — not one who's been purchased by tech billionaires who want to avoid accountability. I'm asking <strong id="script-rep-name-2">[REP NAME]</strong> to publicly oppose Leading the Future's agenda and support meaningful AI oversight legislation.</p>
+            <p style="margin-top:0.75rem;">Thank you for your time."</p>
+          </div>
+          <div class="script-note">⚠️ Placeholder script — final copy pending from comms team</div>
+        </div>
+ 
+        <div class="call-complete-prompt">
+          <p style="font-size:15px;font-weight:700;color:var(--black);margin-bottom:0.5rem;">Did you make the call?</p>
+          <p style="font-size:14px;color:var(--text-muted);margin-bottom:1rem;">Every call gets logged. It makes a difference.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <button class="btn-called" onclick="markCalled()">✓ Yes, I called</button>
+            <button class="btn-back" onclick="goBack()">← Back to rep info</button>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Step 4: Thank you -->
+      <div id="step-thanks" style="display:none;">
+        <div class="thanks-box">
+          <div style="font-size:40px;margin-bottom:1rem;">✅</div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--black);margin-bottom:0.5rem;">Thank you for calling.</h3>
+          <p style="font-size:15px;color:var(--text-muted);margin-bottom:1.5rem;max-width:420px;">Every call matters. Share this with someone else who should be calling too.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="https://twitter.com/intent/tweet?text=I+just+called+my+rep+to+oppose+AI+dark+money.+You+should+too.+guardrailsaction.org" target="_blank" rel="noopener" class="btn-share">Share on X</a>
+            <button class="btn-back" onclick="resetTool()">Make another call</button>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <div class="divider-light"></div>
+
+  <!-- ─── DONATE ─── -->
+  <div class="donate-section" id="donate">
+    <div class="donate-text">
+      <p class="section-label" style="margin-bottom:0.5rem;">Support the fight</p>
+      <h2>Fund the work of holding AI accountable.</h2>
+      <p>Your contribution powers our advocacy, organizing, and campaigns to elect representatives who put people before profits.</p>
+    </div>
+    <div class="donate-cta">
+      <a href="https://actblue.com" target="_blank" rel="noopener" class="btn-donate">Donate now</a>
+      <p class="donate-note">Contributions are not tax-deductible.</p>
+    </div>
+  </div>
+
+  <!-- ─── SIGNUP ─── -->
+  <div class="signup-section" id="signup">
+    <p class="section-label">Add your name</p>
+    <h2>Join thousands demanding <em>AI accountability.</em></h2>
+    <p>Sign up for updates, action alerts, and ways to get involved in your community.</p>
+    <form class="signup-form" onsubmit="return false;">
+      <input type="email" placeholder="your@email.com" aria-label="Email address" />
+      <button type="submit">Sign up</button>
+    </form>
+  </div>
+
+  <footer>
+    <div class="footer-wordmark">Guardrails Action</div>
+    <div class="footer-legal">Guardrails Action is a 501(c)(4) social welfare organization. Contributions are not tax-deductible as charitable donations. Not affiliated with any candidate or candidate's committee.</div>
+  </footer>
+
+</div>
+
+<script>
+let selectedRep = null;
+
+function show(id) {
+  ['step-zip','step-rep','step-script','step-thanks'].forEach(s => {
+    document.getElementById(s).style.display = s === id ? 'block' : 'none';
+  });
+}
+
+function goBack() { show('step-rep'); }
+function resetTool() { show('step-zip'); document.getElementById('zip-input').value = ''; }
+
+function selectRep(name, phone) {
+  selectedRep = { name, phone };
+  document.querySelectorAll('#script-rep-name, #script-rep-name-2').forEach(el => el.textContent = name);
+  show('step-script');
+}
+
+function markCalled() { show('step-thanks'); }
+
+async function lookupRep(e) {
+  e.preventDefault();
+  const zip = document.getElementById('zip-input').value.trim();
+  const btn = document.getElementById('zip-btn');
+  const errEl = document.getElementById('zip-error');
+  errEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Looking up...';
+
+  try {
+    const res = await fetch(`https://api.5calls.org/v1/representatives?location=${encodeURIComponent(zip)}`, {
+      headers: { 'X-5Calls-Token': '18a94bafc305280a11df67dc' }
+    });
+    if (!res.ok) throw new Error('api_error');
+    const data = await res.json();
+    if (data.error) throw new Error('no_results');
+    const reps = data.representatives || [];
+    if (reps.length === 0) throw new Error('no_results');
+
+    let html = '<p style="font-size:13px;color:#555;margin-bottom:1rem;">Select your representative to get the call script:</p>';
+    reps.forEach(rep => {
+      const name = rep.name || 'Unknown';
+      const office = rep.area || 'U.S. Congress';
+      const area = rep.state || '';
+      const party = rep.party ? ` · ${rep.party}` : '';
+      const phone = rep.phone || null;
+      const safeName = name.replace(/'/g, "\\'");
+      const safePhone = (phone || '').replace(/'/g, "\\'");
+      html += `
+        <div class="rep-result-card">
+          <div class="rep-info">
+            <div class="rep-name">${name}</div>
+            <div class="rep-meta">${office}${area ? ' · ' + area : ''}${party}</div>
+          </div>
+          ${phone ? `<div class="rep-phone-num">${phone}</div>` : '<div class="rep-phone-num" style="font-size:13px;color:#aaa;">No phone on file</div>'}
+          <button class="btn-select-rep" onclick="selectRep('${safeName}','${safePhone}')">Get script →</button>
+        </div>`;
+    });
+    document.getElementById('rep-cards').innerHTML = html;
+    show('step-rep');
+
+  } catch(err) {
+    // CORS fallback — show script immediately with congress.gov link
+    document.getElementById('rep-cards').innerHTML = `
+      <div class="rep-result-card" style="flex-direction:column;align-items:flex-start;">
+        <p style="font-size:14px;color:#555;margin-bottom:1rem;line-height:1.7;">
+          Find your rep's phone number at <strong>congress.gov</strong>, then come back here for your call script.
+        </p>
+        <a href="https://www.congress.gov/members/find-your-member?zip=${zip}"
+           target="_blank" rel="noopener"
+           style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:10px 20px;background:#0d0d0d;color:#fff;text-decoration:none;display:inline-block;margin-bottom:1.25rem;">
+          Find my rep at congress.gov ↗
+        </a>
+        <button class="btn-select-rep" onclick="selectRep('your representative','')">I have the number — get my script →</button>
+      </div>`;
+    show('step-rep');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Find my rep →';
+  }
+}
+</script>
+
+</body>
+</html>
