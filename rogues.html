@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Guardrails Alliance</title>
+
+  <!-- Open Graph / Link Preview -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://adrian-wwd.github.io/guardrails-alliance/" />
+  <meta property="og:title"       content="AI Guardrails Alliance" />
+  <meta property="og:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back. Follow the money, meet the villains, join the fight." />
+  <meta property="og:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-cap.png" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="AI Guardrails Alliance" />
+  <meta name="twitter:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back." />
+  <meta name="twitter:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-cap.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #f5c518;
+      --teal: #5de0f0;
+      --bg-page: #080808;
+      --bg: #0d0d0d;
+      --bg-card: #141414;
+      --bg-card2: #111111;
+      --border: #242424;
+      --border-y: rgba(245,197,24,0.2);
+      --text: #f0f0f0;
+      --text-sub: #bbbbbb;
+      --text-muted: #999999;
+      --text-dim: #cacaca;
+      --font: 'Space Grotesk', sans-serif;
+      --diag: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.06) 6px,rgba(245,197,24,0.06) 7px);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg-page); color: var(--text); line-height: 1.6; }
+
+    .page-wrap {
+      max-width: 900px; margin: 0 auto;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.875rem 2.5rem;
+      background: rgba(13,13,13,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      gap: 1.5rem;
+    }
+    .nav-logo-slot { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-logo-slot img { height: 48px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-cta { font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; flex-shrink: 0; text-decoration: none; display: inline-block; transition: background 0.3s ease}
+    .nav-cta:hover { background: var(--teal); }
+
+    /* ─── DIVIDERS ─── */
+    .divider-double { height: 20px; background: transparent; border-top: 4px solid rgba(245,197,24,0.5); border-bottom: 4px solid rgba(245,197,24,0.5); }
+    .divider-hazard { height: 24px; background: repeating-linear-gradient(-45deg,#f5c518,#f5c518 10px,#111 10px,#111 20px); opacity: 0.8; }
+    .divider-dash { height: 3px; background: repeating-linear-gradient(90deg,var(--yellow) 0px,var(--yellow) 30px,transparent 30px,transparent 50px); opacity: 0.6; }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      padding: 3rem 2.5rem 2.5rem;
+      background-image: var(--diag);
+      background-color: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: 'ENDORSED';
+      position: absolute; top: 50%; right: -20px; transform: translateY(-50%) rotate(90deg);
+      font-size: 120px; font-weight: 700; letter-spacing: 0.1em;
+      color: rgba(245,197,24,0.03); line-height: 1; pointer-events: none;
+      white-space: nowrap;
+    }
+    .label-y { font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem; }
+    .page-header h1 { font-size: clamp(28px,4vw,46px); font-weight: 700; color: #fff; line-height: 1.08; margin-bottom: 0.875rem; }
+    .page-header h1 em { color: var(--yellow); font-style: normal; }
+    .page-header p { font-size: 16px; color: #aaa; line-height: 1.8; max-width: 580px; }
+    .page-header p strong { color: #f0f0f0; }
+
+    /* ─── STAT STRIP ─── */
+    .stat-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+    .stat-item { background: var(--bg-card); padding: 1.25rem 2rem; background-image: var(--diag); background-color: var(--bg-card); }
+    .stat-item .num { font-size: clamp(20px,3vw,30px); font-weight: 700; color: var(--yellow); }
+    .stat-item .lbl { font-size: 13px; color: var(--text-dim); margin-top: 3px; line-height: 1.4; }
+
+    /* ─── EXPLAINER ─── */
+    .explainer { padding: 1.5rem 2.5rem; background: var(--bg-card2); border-bottom: 1px solid var(--border); display: flex; gap: 1rem; align-items: flex-start; }
+    .explainer-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .explainer p { font-size: 14px; color: #aaa; line-height: 1.75; }
+    .explainer p strong { color: var(--yellow); }
+
+    .video-wrap {
+      max-width: 540px;
+      margin: 1.5rem auto;
+      position: relative;
+      cursor: pointer;
+    }
+    .video-wrap img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--border);
+    }
+    .video-play-btn {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.7);
+      color: var(--yellow);
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 12px;
+    }
+
+
+    /* ─── ROGUE GRID ─── */
+    .rogues-section { padding: 2.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+    .rogues-section h2 { font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 1.5rem; }
+    .rogue-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1px; background: var(--border); }
+
+    .rogue-card {
+      background: var(--bg-card2);
+      padding: 1.5rem;
+      position: relative;
+      border-top: 2px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .rogue-card:hover { background: #131313; border-top-color: rgba(245,197,24,0.3); }
+
+    /* Puppet string decoration */
+    .rogue-card::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 12px;
+      background: repeating-linear-gradient(to bottom, rgba(245,197,24,0.3) 0px, rgba(245,197,24,0.3) 3px, transparent 3px, transparent 5px);
+    }
+
+    .rogue-photo {
+    width: 160px; height: 160px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      margin: 0 auto 1rem;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+    .rogue-photo::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: 50%;
+      background: repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(245,197,24,0.03) 3px,rgba(245,197,24,0.03) 4px);
+    }
+
+    .rogue-name { font-size: 17px; font-weight: 700; color: #f0f0f0; text-align: center; margin-bottom: 3px; }
+    .rogue-location { font-size: 12px; color: var(--text-dim); text-align: center; margin-bottom: 1rem; letter-spacing: 0.04em; }
+
+    .rogue-divider { height: 1px; background: var(--border); margin-bottom: 0.875rem; }
+
+    .rogue-party { color: rgba(93,224,240,0.7); font-weight: 700; }
+    .rogue-district { color: var(--yellow); }
+
+    /* More coming card */
+    .rogue-card--coming { display: flex; align-items: center; justify-content: center; min-height: 280px; border-top: 2px dashed var(--border); background: var(--bg-card); }
+    .rogue-coming-inner { text-align: center; padding: 1.5rem; }
+    .rogue-coming-icon { font-size: 48px; font-weight: 700; color: var(--text-dim); margin-bottom: 0.75rem; }
+    .rogue-coming-title { font-size: 18px; font-weight: 700; color: #f0f0f0; margin-bottom: 0.5rem; }
+    .rogue-coming-text { font-size: 13px; color: #666; line-height: 1.7; max-width: 200px; margin: 0 auto 1rem; }
+    .rogue-coming-btn { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; background: var(--yellow); color: #0d0d0d; text-decoration: none; transition: background 0.3s ease; }
+    .rogue-coming-btn:hover { background: #fdd835; }
+
+    .rogue-ltf { font-size: 11px; color: #888; line-height: 1.6; }
+    .rogue-ltf strong { color: var(--yellow); font-weight: 700; }
+
+    .rogue-quip {
+      margin-top: 0.75rem;
+      font-size: 12px; font-style: italic; color: #666;
+      border-left: 2px solid rgba(245,197,24,0.2);
+      padding-left: 10px; line-height: 1.6;
+    }
+
+    /* ─── FOOTNOTE ─── */
+    .footnote { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+    .footnote p { font-size: 12px; color: var(--text-dim); line-height: 1.7; }
+    .footnote a { color: var(--yellow); text-decoration: none; }
+    .footnote a:hover { text-decoration: underline; }
+
+    /* ─── CTA ─── */
+    .cta-section { text-align: center; padding: 3rem 2.5rem; background-image: var(--diag); background-color: var(--bg-card); border-top: 1px solid var(--border); }
+    .cta-section h2 { font-size: clamp(20px,2.5vw,28px); font-weight: 700; color: #fff; max-width: 480px; margin: 0 auto 0.75rem; line-height: 1.2; }
+    .cta-section h2 em { color: var(--yellow); font-style: normal; }
+    .cta-section p { font-size: 14px; color: #888; max-width: 400px; margin: 0 auto 1.5rem; line-height: 1.75; }
+    .cta-form { display: flex; max-width: 380px; margin: 0 auto; }
+    .cta-form input { flex: 1; padding: 12px 14px; background: #0d0d0d; border: 1px solid var(--border); border-right: none; color: var(--text); font-family: var(--font); font-size: 13px; outline: none; }
+    .cta-form input::placeholder { color: #444; }
+    .cta-form input:focus { border-color: var(--yellow); }
+    .cta-form button { font-family: var(--font); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 18px; background: var(--yellow); color: #0d0d0d; border: none; cursor: pointer; transition: background 0.3s ease; }
+    .cta-form button:hover { background: #fdd835; }
+
+    /* ─── FOOTER ─── */
+    footer { padding: 1.75rem 2.5rem; background: #0d0d0d; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #444; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 13px; font-weight: 500; color: #555; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; }
+    .footer-links a:hover { color: var(--yellow); }
+    .footer-legal { font-size: 12px; color: #444; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 640px) {
+      nav { padding: 0.875rem 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 2rem 1.25rem; min-height: 460px; }
+      section { padding: 2.5rem 1.25rem; }
+      .cta-section { padding: 3rem 1.25rem; }
+      footer { padding: 1.25rem; flex-direction: column; align-items: flex-start; }
+      .hero-signup { max-width: 100%; }
+      .email-form { flex-direction: column; }
+      .email-form input { border-right: 1px solid var(--border); border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <nav>
+    <div class="nav-logo-slot">
+      <a href="index.html">
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-cap.png" alt="Guardrails Alliance" />
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="about.html">ABOUT</a></li>
+      <li><a href="villains.html" class="active">WHO'S BEHIND IT</a></li>
+      <li><a href="map.html">FOLLOW THE MONEY</a></li>
+    </ul>
+    <a href="donate.html" class="nav-cta">DONATE</a>
+  </nav>
+  <!-- ─── HEADER ─── -->
+  <div class="page-header">
+    <p class="label-y">Gallery of rogues</p>
+    <h1>Meet the politicians<br><em>money can buy.</em></h1>
+    <p>Leading the Future didn't just write checks to billionaires' pet causes. They went shopping for politicians. Here are the candidates they picked up off the shelf — <strong>conveniently pre-assembled, batteries of ambition included.</strong></p>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="num">$18.7M</div>
+      <div class="lbl">Spent on endorsed candidates so far</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">8</div>
+      <div class="lbl">Politicians in LTF's shopping cart</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">$125M</div>
+      <div class="lbl">War chest still available for more</div>
+    </div>
+  </div>
+
+  <div class="explainer">
+    <div class="explainer-icon">🪆</div>
+    <p>Leading the Future endorses candidates who have pledged — explicitly or implicitly — to oppose AI oversight legislation. In exchange, they receive millions in independent expenditures. <strong>This is what a purchased political opinion looks like.</strong> None of these candidates are scary. They're just for sale.</p>
+  </div>
+
+    <div class="video-wrap">
+    <p class="label-y">Former Secretary of the Treasury Robert Reich explains:</p>
+    <a href="https://youtu.be/1yd2L_a9Hqc?si=85QWMZKK4TEEIYie&t=93" target="_blank" rel="noopener">
+      <img src="https://img.youtube.com/vi/1yd2L_a9Hqc/maxresdefault.jpg" alt="Watch on YouTube" />
+      <div class="video-play-btn">▶ Watch on YouTube</div>
+    </a>
+  </div>
+
+  <div class="divider-hazard"></div>
+
+  <!-- ─── ROGUES GRID ─── -->
+  <div class="rogues-section">
+    <h2>The endorsed · Class of 2026</h2>
+    <div class="rogue-grid">
+
+      <div class="rogue-card">
+        <div class="rogue-photo"><img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/rogues/SamLiccardo.PNG" alt="Sam Liccardo" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.15) brightness(0.9);" /></div>
+        <div class="rogue-name">Sam Liccardo</div>
+        <div class="rogue-location"><span class="rogue-party">(D)</span> <span class="rogue-district">CA-16</span> <br> San Jose, CA</div>
+        <div class="rogue-divider"></div>
+        <div class="rogue-ltf">Backed by <strong>Leading the Future</strong> for his reliably hands-off approach to the tech industry that made him mayor.</div>
+        <div class="rogue-quip">"San Jose's favorite son, now available in a PAC-funded congressional edition."</div>
+      </div>
+
+      <div class="rogue-card">
+        <div class="rogue-photo"><img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/rogues/JoshGottheimer.PNG" alt="Josh Gottheimer" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.15) brightness(0.9);" /></div>
+        <div class="rogue-name">Josh Gottheimer</div>
+        <div class="rogue-location"><span class="rogue-party">(D)</span> <span class="rogue-district">NJ-5</span> <br> Bergen County, NJ</div>
+        <div class="rogue-divider"></div>
+        <div class="rogue-ltf">A reliable <strong>opponent of AI safety legislation</strong> who has never met a tech industry ask he couldn't enthusiastically accommodate.</div>
+        <div class="rogue-quip">"Bipartisan in the streets, Silicon Valley's errand boy in the sheets."</div>
+      </div>
+
+      <div class="rogue-card">
+        <div class="rogue-photo"><img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/rogues/JimmyGomez.PNG" alt="Jimmy Gomez" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.15) brightness(0.9);" /></div>
+        <div class="rogue-name">Jimmy Gomez</div>
+        <div class="rogue-location"><span class="rogue-party">(D)</span> <span class="rogue-district">CA-34</span> <br> Los Angeles, CA</div>
+        <div class="rogue-divider"></div>
+        <div class="rogue-ltf">Endorsed despite representing a district where <strong>AI-driven displacement of workers</strong> is already a pressing concern.</div>
+        <div class="rogue-quip">"Los Angeles deserves better than a congressman sponsored by the people automating its jobs."</div>
+      </div>
+
+      <div class="rogue-card">
+        <div class="rogue-photo"><img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/rogues/SuhasSubramanyam.png" alt="Suhas Subramanyam" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.15) brightness(0.9);" /></div>
+        <div class="rogue-name">Suhas Subramanyam</div>
+        <div class="rogue-location"><span class="rogue-party">(D)</span> <span class="rogue-district">VA-10</span> <br> Northern Virginia, VA</div>
+        <div class="rogue-divider"></div>
+        <div class="rogue-ltf">Positioned as a <strong>"tech-friendly" Democrat</strong> — which in LTF's vocabulary means: will not ask inconvenient questions about AI safety.</div>
+        <div class="rogue-quip">"NoVa's contribution to the deregulation industrial complex."</div>
+      </div>
+
+      <div class="rogue-card">
+        <div class="rogue-photo"><img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/rogues/YvetteClarke.PNG" alt="Yvette Clarke" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.15) brightness(0.9);" /></div>
+        <div class="rogue-name">Yvette Clarke</div>
+        <div class="rogue-location"><span class="rogue-party">(D)</span> <span class="rogue-district">NY-9</span> <br> Central Brooklyn, NY</div>
+        <div class="rogue-divider"></div>
+        <div class="rogue-ltf">A surprising endorsee given her district's working-class base — but LTF's <strong>$2.86M opposing Alex Bores</strong> in NY-12 makes the calculus clear.</div>
+        <div class="rogue-quip">"Brooklyn didn't ask for a Silicon Valley-approved representative. They got one anyway."</div>
+      </div>
+
+      <div class="rogue-card">
+        <div class="rogue-photo"><img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/rogues/RobMenendezJr.PNG" alt="Rob Menendez Jr." crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.15) brightness(0.9);" /></div>
+        <div class="rogue-name">Rob Menendez Jr.</div>
+        <div class="rogue-location"><span class="rogue-party">(D)</span> <span class="rogue-district">NJ-8</span> <br> Hudson County, NJ</div>
+        <div class="rogue-divider"></div>
+        <div class="rogue-ltf">Endorsed for his willingness to <strong>carry water for the tech industry</strong> in a district where union workers are watching their industries get automated.</div>
+        <div class="rogue-quip">"The Menendez name: now available in a new, tech-sponsored flavor."</div>
+      </div>
+
+      <div class="rogue-card">
+        <div class="rogue-photo"><img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/rogues/ValHoyle.PNG" alt="Val Hoyle" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.15) brightness(0.9);" /></div>
+        <div class="rogue-name">Val Hoyle</div>
+        <div class="rogue-location"><span class="rogue-party">(D)</span> <span class="rogue-district">OR-04</span> <br> Eugene, OR</div>
+        <div class="rogue-divider"></div>
+        <div class="rogue-ltf">Think Big PAC spent <strong>$276K supporting</strong> Hoyle in OR-04 — one of the clearest examples of LTF's downstream money reaching congressional races.</div>
+        <div class="rogue-quip">"Eugene's representative, courtesy of a Reno-based PAC bankrolled by San Francisco billionaires."</div>
+      </div>
+
+      <div class="rogue-card">
+        <div class="rogue-photo"><img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/rogues/RitchieTorres.PNG" alt="Ritchie Torres" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.15) brightness(0.9);" /></div>
+        <div class="rogue-name">Ritchie Torres</div>
+        <div class="rogue-location"><span class="rogue-party">(D)</span> <span class="rogue-district">NY-15</span> <br> The Bronx, NY</div>
+        <div class="rogue-divider"></div>
+        <div class="rogue-ltf">An outspoken <strong>opponent of AI safety legislation</strong> who has argued that regulation hurts innovation — a talking point that could have been written by a16z's PR team. It may have been.</div>
+        <div class="rogue-quip">"The Bronx has historically punched up. Torres prefers to punch down, on behalf of billionaires."</div>
+      </div>
+
+      <div class="rogue-card rogue-card--coming">
+        <div class="rogue-coming-inner">
+          <div class="rogue-coming-icon">?</div>
+          <div class="rogue-coming-title">More coming soon</div>
+          <div class="rogue-coming-text">With $125M still in the war chest, LTF isn't done shopping. Sign up to be notified when new endorsements drop.</div>
+          <a href="#join" class="rogue-coming-btn">Notify me</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider-double"></div>
+
+  <div class="footnote">
+    <p>Endorsement data sourced from <a href="https://thehill.com/homenews/campaign/5845435-ai-leading-the-future-legislative-races-endorsements/" target="_blank" rel="noopener">The Hill</a> and FEC independent expenditure filings. Spending figures from FEC.gov filings for committees C00916692 (American Mission) and C00923417 (Think Big). Quips are editorial. Everything else is on the record.</p>
+  </div>
+
+  <!-- ─── CTA ─── -->
+  <div id="join" class="cta-section">
+    <p class="label-y" style="text-align:center;">Fight back</p>
+    <h2>These aren't scary people.<br>They're just <em>for sale.</em></h2>
+    <p>Sign up for updates as more endorsements drop and FEC filings are released.</p>
+    <form class="cta-form" onsubmit="return false;">
+      <input type="email" placeholder="your@email.com" aria-label="Email address" />
+      <button type="submit">Notify me</button>
+    </form>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Guardrails Alliance</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="villains.html">Villains</a>
+      <a href="rogues.html">Rogues</a>
+      <a href="map.html">Money map</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-legal">Paid for by AI Guardrails Alliance PAC · Not authorized by any candidate or candidate's committee</div>
+  </footer>
+
+</div>
+</body>
+</html>
