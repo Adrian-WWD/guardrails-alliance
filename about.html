@@ -96,6 +96,31 @@
     .page-header h1 em { color: var(--yellow); font-style: normal; }
     .page-header .lead { font-size: 16px; color: #ccc; line-height: 1.8; max-width: 580px; }
 
+    /* ─── VIDEOS ─── */
+    .video-wrap {
+      max-width: 540px;
+      margin: 1.5rem auto;
+      position: relative;
+      cursor: pointer;
+    }
+    .video-wrap img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--border);
+    }
+    .video-play-btn {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.7);
+      color: var(--yellow);
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 12px;
+    }
+
     /* ─── SECTIONS ─── */
     section { padding: 3rem 2.5rem; border-bottom: 1px solid var(--border); }
     section h2 { font-size: clamp(20px,2.8vw,28px); font-weight: 700; color: #fff; margin-bottom: 1rem; }
@@ -107,8 +132,10 @@
     /* ─── MISSION PILLARS ─── */
     .pillars { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1px; background: var(--border); margin-top: 2rem; }
     .pillar { background: var(--bg-card); padding: 1.5rem; background-image: var(--diag); background-color: var(--bg-card); border-top: 2px solid var(--border-y); }
-    .pillar-num { font-size: 28px; font-weight: 700; color: var(--yellow); margin-bottom: 0.5rem; line-height: 1; }
-    .pillar-title { font-size: 16px; font-weight: 700; color: #f0f0f0; margin-bottom: 8px; }
+    .pillar-num { font-size: 24px; font-weight: 700; color: var(--yellow); margin-bottom: 0.5rem; line-height: 1; }
+    .pillar-title { font-size: 26px; font-weight: 700; color: #f0f0f0; margin-bottom: 8px; }
+    .pillar-title a { color: inherit; text-decoration: none; border-bottom: 2px solid var(--yellow); transition: color 0.2s; }
+    .pillar-title a:hover { color: var(--yellow); }
     .pillar-text { font-size: 14px; color: #aaaaaa; line-height: 1.7; }
 
     /* ─── BELIEFS ─── */
@@ -185,15 +212,15 @@
   <nav>
     <div class="nav-logo-slot">
       <a href="index.html">
-        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo.png" alt="Guardrails Alliance" />
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-cap.png" alt="Guardrails Alliance" />
       </a>
     </div>
     <ul class="nav-links">
       <li><a href="about.html" class="active">ABOUT</a></li>
-      <!-- <li><a href="villains.html">WHO'S BEHIND IT</a></li> -->
+      <li><a href="villains.html">WHO'S BEHIND IT</a></li>
       <li><a href="map.html">FOLLOW THE MONEY</a></li>
     </ul>
-    <a href="index.html#join" class="nav-cta">DONATE</a>
+    <a href="donate.html" class="nav-cta">DONATE</a>
   </nav>
 
   <!-- ─── HEADER ─── -->
@@ -242,23 +269,31 @@
     <div class="pillars">
       <div class="pillar">
         <div class="pillar-num">01</div>
-        <div class="pillar-title">Expose</div>
+        <div class="pillar-title"><a href="map.html">Expose</a></div>
         <div class="pillar-text">Follow the money. Publish the donor networks. Name the politicians and the PACs buying their way to deregulation.</div>
       </div>
       <div class="pillar">
         <div class="pillar-num">02</div>
-        <div class="pillar-title">Elect</div>
+        <div class="pillar-title"><a href="donate.html">Elect</a></div>
         <div class="pillar-text">Support candidates at every level who will pass meaningful AI safety rules and resist the pressure of tech money.</div>
       </div>
       <div class="pillar">
         <div class="pillar-num">03</div>
-        <div class="pillar-title">Organize</div>
+        <div class="pillar-title"><a href="ga-c4site.html">Organize</a></div>
         <div class="pillar-text">Build the grassroots coalition of workers, parents, and advocates, whose voices carry further than any billionaire's checkbook.</div>
       </div>
     </div>
   </section>
 
   <div class="divider-double"></div>
+
+      <div class="video-wrap">
+    <p class="label-y">NY Assemblyman Alex Bores LAYS IT ALL OUT: </p>
+    <a href="https://www.youtube.com/watch?v=_MPldcq-x_U" target="_blank" rel="noopener">
+      <img src="https://img.youtube.com/vi/_MPldcq-x_U/maxresdefault.jpg" alt="Watch on YouTube" />
+      <div class="video-play-btn">▶ Watch on YouTube</div>
+    </a>
+  </div>
 
   <!-- ─── WHAT WE BELIEVE ─── -->
   <section>
