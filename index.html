@@ -406,28 +406,17 @@
   </script>
 
   <!-- ─── MAP ─── -->
-<section id="map">
-  <a href="map.html" class="label-y" style="text-decoration:none; display:inline-block;">Follow the money</a>
-  <h2>LTF spending by district</h2>
-  <p class="section-sub">Leading the Future has targeted key swing districts — here's where the money is flowing. Full interactive map on the <a href="map.html">money map page</a>.</p>
-  <br>
-  <a href="map.html">
-    <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/static-map.PNG" alt="LTF spending by district" style="width:100%; max-width:680px; display:block; margin:0 auto; border:1px solid var(--yellow);" />
-  </a>
-</section>
-
-  <!-- ─── MAP ─── -->
   <section id="map" style="text-align:center;">
     <a href="map.html" class="label-y" style="text-decoration:none; display:inline-block;">Follow the money</a>
     <h2>LTF spending by district</h2>
     <p class="section-sub">Leading the Future has targeted key swing districts — here's where the money is flowing. Full interactive map on the <a href="map.html">money map page</a>.</p>
     <br>
     <a href="map.html" style="display:inline-block; max-width:680px; width:100%; text-decoration:none;">
-      <div style="position:relative; display:inline-block; width:100%;">
-        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/static-map.PNG" alt="LTF spending by district" style="width:100%; display:block; border:1px solid var(--yellow); transition:transform 0.3s ease, border 0.3s ease; cursor:pointer;"
-          onmouseenter="this.style.transform='scale(1.03)'; this.style.border='3px solid var(--yellow)'; this.nextElementSibling.style.opacity='1';"
-          onmouseleave="this.style.transform='scale(1)'; this.style.border='1px solid var(--yellow)'; this.nextElementSibling.style.opacity='0';" />
-        <span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); opacity:0; transition:opacity 0.3s ease; font-family:var(--font); font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:12px 24px; background:var(--yellow); color:#0d0d0d; white-space:nowrap;">See the map →</span>
+      <div style="position:relative; display:inline-block; width:100%;"
+        onmouseenter="this.querySelector('img').style.transform='scale(1.05)'; this.querySelector('img').style.border='3px solid var(--yellow)'; this.querySelector('span').style.opacity='1';"
+        onmouseleave="this.querySelector('img').style.transform='scale(1)'; this.querySelector('img').style.border='1px solid var(--yellow)'; this.querySelector('span').style.opacity='0';">
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/static-map.PNG" alt="LTF spending by district" style="width:100%; display:block; border:1px solid var(--yellow); transition:transform 0.3s ease, border 0.3s ease; cursor:pointer;" />
+        <span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); opacity:0; transition:opacity 0.3s ease; font-family:var(--font); font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:12px 24px; background:var(--yellow); color:#0d0d0d; white-space:nowrap; pointer-events:none;">See the map →</span>
       </div>
     </a>
   </section>
@@ -485,7 +474,7 @@
       <a href="map.html">Money map</a>
       <a href="about.html">About</a>
     </div>
-    <div class="footer-legal">Paid for by AI Guardrails Alliance PAC · Not authorized by any candidate or candidate's committee</div>
+    <div class="footer-legal">Paid for by Guardrails Alliance · Not authorized by any candidate or candidate's committee</div>
   </footer>
 
 </div>
