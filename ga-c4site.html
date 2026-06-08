@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guardrails Action</title>
+  <title>Guardrails Alliance</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -11,8 +11,9 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --yellow: #f5c518;
-      --yellow-dark: #c49a00;
+      --teal: #f5c518;
+      --teal: #5de0f0;
+      --teal-dark: #c49a00;
       --black: #0d0d0d;
       --gray-900: #111111;
       --gray-800: #1f1f1f;
@@ -23,13 +24,13 @@
       --text: #111111;
       --text-muted: #555555;
       --text-dim: #999999;
-      --font: 'Space Grotesk', sans-serif;
+      --font: 'Calibri', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
     body { font-family: var(--font); background: #fff; color: var(--text); line-height: 1.6; }
 
-    .page-wrap { max-width: 860px; margin: 0 auto; }
+    .page-wrap { max-width: 80%; margin: 0 auto; }
 
     /* ─── NAV ─── */
     nav {
@@ -40,13 +41,13 @@
       border-bottom: 1px solid #222;
     }
     .nav-wordmark { font-size: 16px; font-weight: 700; letter-spacing: 0.04em; color: #fff; text-decoration: none; }
-    .nav-wordmark span { color: var(--yellow); }
+    .nav-wordmark span { color: var(--teal); }
     .nav-link-main { font-size: 13px; font-weight: 500; color: #888; text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; margin-right: auto; margin-left: 2rem; }
     .nav-link-main:hover { color: #fff; }
     .nav-cta {
       font-family: var(--font); font-size: 13px; font-weight: 700;
       letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 9px 20px; background: var(--yellow); color: var(--black);
+      padding: 9px 20px; background: var(--teal); color: var(--black);
       border: none; cursor: pointer; text-decoration: none; display: inline-block;
       transition: background 0.3s ease;
     }
@@ -55,7 +56,7 @@
     /* ─── HERO ─── */
     .hero {
       background: var(--black);
-      padding: 5rem 2.5rem 4rem;
+      padding: 5rem 2.5rem 2rem;
       position: relative; overflow: hidden;
     }
     .hero::before {
@@ -63,21 +64,17 @@
       position: absolute; inset: 0;
       background: repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(245,197,24,0.04) 6px,rgba(245,197,24,0.04) 7px);
     }
-    .hero-dashes {
-      position: absolute; top: 0; bottom: 0; right: 15%;
-      width: 3px;
-      background: repeating-linear-gradient(to bottom,rgba(245,197,24,0.2) 0,rgba(245,197,24,0.2) 20px,transparent 20px,transparent 48px);
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 600px; }
-    .hero-label { font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 1rem; }
-    .hero h1 { font-size: clamp(30px,4.5vw,52px); font-weight: 700; color: #fff; line-height: 1.08; margin-bottom: 1.25rem; }
-    .hero h1 em { color: var(--yellow); font-style: normal; }
-    .hero-sub { font-size: 17px; color: #bbb; line-height: 1.8; max-width: 500px; margin-bottom: 2.5rem; }
+    
+    .hero-content { position: relative; z-index: 2; max-width: auto; }
+    .hero-label { font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero h1 { font-size: clamp(32px,4.5vw,52px); font-weight: 700; color: #fff; line-height: 1.08; margin-bottom: 1.25rem; }
+    .hero h1 em { color: var(--teal); font-style: normal; }
+    .hero-sub { font-size: 18px; color: var(--gray-100); line-height: 1.8; max-width: 500px; margin-bottom: 2.5rem; }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn-hero-primary {
       font-family: var(--font); font-size: 14px; font-weight: 700;
       letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 14px 28px; background: var(--yellow); color: var(--black);
+      padding: 14px 28px; background: var(--teal); color: var(--black);
       border: none; cursor: pointer; text-decoration: none; display: inline-block;
       transition: background 0.3s ease;
     }
@@ -90,10 +87,10 @@
       text-decoration: none; display: inline-block;
       transition: border-color 0.3s ease, color 0.3s ease;
     }
-    .btn-hero-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+    .btn-hero-ghost:hover { border-color: var(--teal); color: var(--teal); }
 
     /* ─── DIVIDERS ─── */
-    .divider-yellow { height: 4px; background: var(--yellow); }
+    .divider-yellow { height: 4px; background: var(--teal); }
     .divider-light { height: 1px; background: var(--border); }
 
     /* ─── ABOUT STRIP ─── */
@@ -125,7 +122,7 @@
     .call-tool {
       background: var(--gray-100);
       border: 1px solid var(--border);
-      border-top: 3px solid var(--yellow);
+      border-top: 3px solid var(--teal);
       padding: 2rem;
       margin-top: 2rem;
     }
@@ -138,7 +135,7 @@
       background: #fff; color: var(--text); letter-spacing: 0.05em;
     }
     .zip-form input::placeholder { color: #bbb; }
-    .zip-form input:focus { border-color: var(--yellow-dark); }
+    .zip-form input:focus { border-color: var(--teal-dark); }
     .zip-form button {
       font-family: var(--font); font-size: 13px; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
@@ -152,7 +149,7 @@
     #call-result { margin-top: 1.5rem; display: none; }
     .rep-card {
       background: #fff; border: 1px solid var(--border);
-      border-left: 3px solid var(--yellow);
+      border-left: 3px solid var(--teal);
       padding: 1.25rem 1.5rem; margin-bottom: 1rem;
     }
     .rep-name { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 3px; }
@@ -175,9 +172,9 @@
       padding: 4rem 2.5rem;
       text-align: center;
     }
-    .signup-section .section-label { color: var(--yellow); }
+    .signup-section .section-label { color: var(--teal); }
     .signup-section h2 { font-size: clamp(22px,3vw,32px); font-weight: 700; color: #fff; margin-bottom: 0.875rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.2; }
-    .signup-section h2 em { color: var(--yellow); font-style: normal; }
+    .signup-section h2 em { color: var(--teal); font-style: normal; }
     .signup-section p { font-size: 15px; color: #aaa; margin-bottom: 2rem; max-width: 420px; margin-left: auto; margin-right: auto; }
     .signup-form { display: flex; max-width: 420px; margin: 0 auto; }
     .signup-form input {
@@ -186,11 +183,11 @@
       color: #fff; outline: none;
     }
     .signup-form input::placeholder { color: #555; }
-    .signup-form input:focus { border-color: var(--yellow); }
+    .signup-form input:focus { border-color: var(--teal); }
     .signup-form button {
       font-family: var(--font); font-size: 13px; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 13px 22px; background: var(--yellow); color: var(--black);
+      padding: 13px 22px; background: var(--teal); color: var(--black);
       border: none; cursor: pointer; transition: background 0.3s ease;
     }
     .signup-form button:hover { background: #fdd835; }
@@ -209,7 +206,7 @@
     .btn-donate {
       font-family: var(--font); font-size: 15px; font-weight: 700;
       letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 16px 36px; background: var(--yellow); color: var(--black);
+      padding: 16px 36px; background: var(--teal); color: var(--black);
       border: none; cursor: pointer; text-decoration: none; display: inline-block;
       transition: background 0.3s ease;
     }
@@ -248,9 +245,9 @@
     .rep-result-card .rep-name { font-size:17px;font-weight:700;color:var(--black);margin-bottom:3px; }
     .rep-result-card .rep-meta { font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.04em; }
     .rep-phone-num { font-size:18px;font-weight:700;color:var(--black); }
-    .btn-select-rep { font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:9px 18px;background:var(--yellow);color:var(--black);border:none;cursor:pointer;white-space:nowrap; }
+    .btn-select-rep { font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:9px 18px;background:var(--teal);color:var(--black);border:none;cursor:pointer;white-space:nowrap; }
     .btn-back { font-family:var(--font);font-size:13px;font-weight:500;padding:10px 18px;background:transparent;color:var(--text-muted);border:1px solid var(--border);cursor:pointer;margin-top:1rem;display:block; }
-    .script-box { background:#fff;border:1px solid var(--border);border-left:4px solid var(--yellow);padding:1.5rem;margin-bottom:1.5rem; }
+    .script-box { background:#fff;border:1px solid var(--border);border-left:4px solid var(--teal);padding:1.5rem;margin-bottom:1.5rem; }
     .script-header { display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem; }
     .script-icon { font-size:28px;flex-shrink:0; }
     .script-title { font-size:16px;font-weight:700;color:var(--black);margin-bottom:2px; }
@@ -268,18 +265,18 @@
 <div class="page-wrap">
 
   <nav>
-    <a class="nav-wordmark" href="#">Guardrails <span>Action</span></a>
-    <a class="nav-link-main" href="https://adrian-wwd.github.io/guardrails-alliance/" target="_blank" rel="noopener">← Guardrails Alliance</a>
-    <a href="#donate" class="nav-cta">Donate</a>
+    <a class="nav-wordmark" href="#">Guardrails Alliance <span>Action</span></a>
+    <a class="nav-link-main" href="https://adrian-wwd.github.io/guardrails-alliance/" target="_blank" rel="noopener"></a>
+    <a href="#call" class="nav-cta">Call your Rep</a>
   </nav>
 
   <!-- ─── HERO ─── -->
   <div class="hero">
     <div class="hero-dashes"></div>
     <div class="hero-content">
-      <p class="hero-label">Guardrails Action · 501(c)(4)</p>
-      <h1>AI shouldn't be<br>above the law.<br><em>We're making sure it isn't.</em></h1>
-      <p class="hero-sub">Guardrails Action is a nonpartisan advocacy organization fighting for common-sense AI accountability — protecting workers, families, and democracy from unchecked AI power.</p>
+      <p class="hero-label">Guardrails Alliance Action · 501(c)(4)</p>
+      <h1>AI shouldn't be above the law. <em><br>We're making sure it isn't.</em></h1>
+      <p class="hero-sub">Guardrails Alliance Action is a nonpartisan advocacy organization fighting for common-sense AI accountability — protecting workers, families, and democracy from unchecked AI power.</p>
       <div class="hero-actions">
         <a href="#call" class="btn-hero-primary">Call your rep</a>
         <a href="#signup" class="btn-hero-ghost">Add your name</a>
@@ -292,7 +289,7 @@
   <!-- ─── ABOUT ─── */ -->
   <div class="about-strip">
     <p>A small group of Silicon Valley billionaires is spending <strong>over $125 million</strong> to elect politicians who will block AI safety laws — and hand control of the most powerful technology ever built to a handful of unaccountable companies.</p>
-    <p>Guardrails Action organizes workers, parents, and citizens to fight back. We believe AI can be transformative and good — but only if it's built with accountability, transparency, and democratic oversight.</p>
+    <p>Guardrails Alliance Action organizes workers, parents, and citizens to fight back. We believe AI can be transformative and good — but only if it's built with accountability, transparency, and democratic oversight.</p>
   </div>
 
   <!-- ─── STATS ─── -->
@@ -335,7 +332,7 @@
       <div id="step-rep" style="display:none;">
         <div class="step-label">Step 2 of 3 — Your representative</div>
         <div id="rep-cards"></div>
-        <button class="btn-back" onclick="goBack()">← Try a different zip</button>
+        <button class="btn-back" onclick="resetTool()">← Try a different zip</button>
       </div>
  
       <!-- Step 3: Script -->
@@ -387,8 +384,8 @@
  
   <div class="divider-light"></div>
 
-  <!-- ─── DONATE ─── -->
-  <div class="donate-section" id="donate">
+  <!-- ─── DONATE ───
+   <div class="donate-section" id="donate">
     <div class="donate-text">
       <p class="section-label" style="margin-bottom:0.5rem;">Support the fight</p>
       <h2>Fund the work of holding AI accountable.</h2>
@@ -398,7 +395,7 @@
       <a href="https://actblue.com" target="_blank" rel="noopener" class="btn-donate">Donate now</a>
       <p class="donate-note">Contributions are not tax-deductible.</p>
     </div>
-  </div>
+  </div> -->
 
   <!-- ─── SIGNUP ─── -->
   <div class="signup-section" id="signup">
@@ -412,13 +409,545 @@
   </div>
 
   <footer>
-    <div class="footer-wordmark">Guardrails Action</div>
-    <div class="footer-legal">Guardrails Action is a 501(c)(4) social welfare organization. Contributions are not tax-deductible as charitable donations. Not affiliated with any candidate or candidate's committee.</div>
+    <div class="footer-wordmark">Guardrails Alliance Action</div>
+    <div class="footer-legal">Guardrails Alliance Action is a 501(c)(4) social welfare organization. Contributions are not tax-deductible as charitable donations. Not affiliated with any candidate or candidate's committee.</div>
   </footer>
 
 </div>
 
 <script>
+// ── CONGRESS MEMBER DATA ─────────────────────────────────────────────────────
+const CONGRESS = {
+  senate: [
+    {name:"Tommy Tuberville",state:"AL",party:"R",phone:"202-224-4124"},
+    {name:"Katie Britt",state:"AL",party:"R",phone:"202-224-5744"},
+    {name:"Lisa Murkowski",state:"AK",party:"R",phone:"202-224-6665"},
+    {name:"Dan Sullivan",state:"AK",party:"R",phone:"202-224-3004"},
+    {name:"Mark Kelly",state:"AZ",party:"D",phone:"202-224-2235"},
+    {name:"Ruben Gallego",state:"AZ",party:"D",phone:"202-224-2251"},
+    {name:"John Boozman",state:"AR",party:"R",phone:"202-224-4843"},
+    {name:"Tom Cotton",state:"AR",party:"R",phone:"202-224-2353"},
+    {name:"Alex Padilla",state:"CA",party:"D",phone:"202-224-3553"},
+    {name:"Adam Schiff",state:"CA",party:"D",phone:"202-224-3841"},
+    {name:"Michael Bennet",state:"CO",party:"D",phone:"202-224-5852"},
+    {name:"John Hickenlooper",state:"CO",party:"D",phone:"202-224-5941"},
+    {name:"Chris Murphy",state:"CT",party:"D",phone:"202-224-4041"},
+    {name:"Richard Blumenthal",state:"CT",party:"D",phone:"202-224-2823"},
+    {name:"Lisa Blunt Rochester",state:"DE",party:"D",phone:"202-224-5042"},
+    {name:"Chris Coons",state:"DE",party:"D",phone:"202-224-5042"},
+    {name:"Rick Scott",state:"FL",party:"R",phone:"202-224-5274"},
+    {name:"Ashley Moody",state:"FL",party:"R",phone:"202-224-3041"},
+    {name:"Jon Ossoff",state:"GA",party:"D",phone:"202-224-3521"},
+    {name:"Raphael Warnock",state:"GA",party:"D",phone:"202-224-3643"},
+    {name:"Mazie Hirono",state:"HI",party:"D",phone:"202-224-6361"},
+    {name:"Brian Schatz",state:"HI",party:"D",phone:"202-224-3934"},
+    {name:"Mike Crapo",state:"ID",party:"R",phone:"202-224-6142"},
+    {name:"James Risch",state:"ID",party:"R",phone:"202-224-2752"},
+    {name:"Dick Durbin",state:"IL",party:"D",phone:"202-224-2152"},
+    {name:"Tammy Duckworth",state:"IL",party:"D",phone:"202-224-2854"},
+    {name:"Todd Young",state:"IN",party:"R",phone:"202-224-5623"},
+    {name:"Jim Banks",state:"IN",party:"R",phone:"202-224-4814"},
+    {name:"Chuck Grassley",state:"IA",party:"R",phone:"202-224-3744"},
+    {name:"Joni Ernst",state:"IA",party:"R",phone:"202-224-3254"},
+    {name:"Jerry Moran",state:"KS",party:"R",phone:"202-224-6521"},
+    {name:"Roger Marshall",state:"KS",party:"R",phone:"202-224-4774"},
+    {name:"Mitch McConnell",state:"KY",party:"R",phone:"202-224-2541"},
+    {name:"Rand Paul",state:"KY",party:"R",phone:"202-224-4343"},
+    {name:"Bill Cassidy",state:"LA",party:"R",phone:"202-224-5824"},
+    {name:"John Kennedy",state:"LA",party:"R",phone:"202-224-4623"},
+    {name:"Susan Collins",state:"ME",party:"R",phone:"202-224-2523"},
+    {name:"Angus King",state:"ME",party:"I",phone:"202-224-5344"},
+    {name:"Angela Alsobrooks",state:"MD",party:"D",phone:"202-224-4654"},
+    {name:"Chris Van Hollen",state:"MD",party:"D",phone:"202-224-4524"},
+    {name:"Elizabeth Warren",state:"MA",party:"D",phone:"202-224-4543"},
+    {name:"Ed Markey",state:"MA",party:"D",phone:"202-224-2742"},
+    {name:"Gary Peters",state:"MI",party:"D",phone:"202-224-6221"},
+    {name:"Elissa Slotkin",state:"MI",party:"D",phone:"202-224-6221"},
+    {name:"Amy Klobuchar",state:"MN",party:"D",phone:"202-224-3244"},
+    {name:"Tina Smith",state:"MN",party:"D",phone:"202-224-5641"},
+    {name:"Roger Wicker",state:"MS",party:"R",phone:"202-224-6253"},
+    {name:"Cindy Hyde-Smith",state:"MS",party:"R",phone:"202-224-5054"},
+    {name:"Josh Hawley",state:"MO",party:"R",phone:"202-224-6154"},
+    {name:"Eric Schmitt",state:"MO",party:"R",phone:"202-224-5721"},
+    {name:"Steve Daines",state:"MT",party:"R",phone:"202-224-2651"},
+    {name:"Tim Sheehy",state:"MT",party:"R",phone:"202-224-2651"},
+    {name:"Deb Fischer",state:"NE",party:"R",phone:"202-224-6551"},
+    {name:"Pete Ricketts",state:"NE",party:"R",phone:"202-224-4224"},
+    {name:"Catherine Cortez Masto",state:"NV",party:"D",phone:"202-224-3542"},
+    {name:"Jacky Rosen",state:"NV",party:"D",phone:"202-224-6244"},
+    {name:"Jeanne Shaheen",state:"NH",party:"D",phone:"202-224-2841"},
+    {name:"Maggie Hassan",state:"NH",party:"D",phone:"202-224-3324"},
+    {name:"Cory Booker",state:"NJ",party:"D",phone:"202-224-3224"},
+    {name:"Andy Kim",state:"NJ",party:"D",phone:"202-224-4744"},
+    {name:"Martin Heinrich",state:"NM",party:"D",phone:"202-224-5521"},
+    {name:"Ben Ray Lujan",state:"NM",party:"D",phone:"202-224-6621"},
+    {name:"Chuck Schumer",state:"NY",party:"D",phone:"202-224-6542"},
+    {name:"Kirsten Gillibrand",state:"NY",party:"D",phone:"202-224-4451"},
+    {name:"Thom Tillis",state:"NC",party:"R",phone:"202-224-6342"},
+    {name:"Ted Budd",state:"NC",party:"R",phone:"202-224-3154"},
+    {name:"Kevin Cramer",state:"ND",party:"R",phone:"202-224-2043"},
+    {name:"John Hoeven",state:"ND",party:"R",phone:"202-224-2551"},
+    {name:"Bernie Moreno",state:"OH",party:"R",phone:"202-224-3353"},
+    {name:"Jon Husted",state:"OH",party:"R",phone:"202-224-2315"},
+    {name:"James Lankford",state:"OK",party:"R",phone:"202-224-5754"},
+    {name:"Alan Armstrong",state:"OK",party:"R",phone:"202-224-4721"},
+    {name:"Ron Wyden",state:"OR",party:"D",phone:"202-224-5244"},
+    {name:"Jeff Merkley",state:"OR",party:"D",phone:"202-224-3753"},
+    {name:"Dave McCormick",state:"PA",party:"R",phone:"202-224-6324"},
+    {name:"John Fetterman",state:"PA",party:"D",phone:"202-224-4254"},
+    {name:"Jack Reed",state:"RI",party:"D",phone:"202-224-4642"},
+    {name:"Sheldon Whitehouse",state:"RI",party:"D",phone:"202-224-2921"},
+    {name:"Lindsey Graham",state:"SC",party:"R",phone:"202-224-5972"},
+    {name:"Tim Scott",state:"SC",party:"R",phone:"202-224-6121"},
+    {name:"John Thune",state:"SD",party:"R",phone:"202-224-2321"},
+    {name:"Mike Rounds",state:"SD",party:"R",phone:"202-224-5842"},
+    {name:"Marsha Blackburn",state:"TN",party:"R",phone:"202-224-3344"},
+    {name:"Bill Hagerty",state:"TN",party:"R",phone:"202-224-4944"},
+    {name:"John Cornyn",state:"TX",party:"R",phone:"202-224-2934"},
+    {name:"Ted Cruz",state:"TX",party:"R",phone:"202-224-5922"},
+    {name:"Mike Lee",state:"UT",party:"R",phone:"202-224-5444"},
+    {name:"John Curtis",state:"UT",party:"R",phone:"202-224-5251"},
+    {name:"Peter Welch",state:"VT",party:"D",phone:"202-224-4242"},
+    {name:"Bernie Sanders",state:"VT",party:"I",phone:"202-224-5141"},
+    {name:"Mark Warner",state:"VA",party:"D",phone:"202-224-2023"},
+    {name:"Tim Kaine",state:"VA",party:"D",phone:"202-224-4024"},
+    {name:"Patty Murray",state:"WA",party:"D",phone:"202-224-2621"},
+    {name:"Maria Cantwell",state:"WA",party:"D",phone:"202-224-3441"},
+    {name:"Jim Justice",state:"WV",party:"R",phone:"202-224-6472"},
+    {name:"Shelley Moore Capito",state:"WV",party:"R",phone:"202-224-6472"},
+    {name:"Ron Johnson",state:"WI",party:"R",phone:"202-224-5323"},
+    {name:"Tammy Baldwin",state:"WI",party:"D",phone:"202-224-5653"},
+    {name:"Cynthia Lummis",state:"WY",party:"R",phone:"202-224-3424"},
+    {name:"John Barrasso",state:"WY",party:"R",phone:"202-224-6441"}
+  ],
+  house: [
+    {name:"Barry Moore",state:"AL",district:1,party:"R",phone:"202-225-2901"},
+    {name:"Shomari Figures",state:"AL",district:2,party:"D",phone:"202-225-2901"},
+    {name:"Mike Rogers",state:"AL",district:3,party:"R",phone:"202-225-3261"},
+    {name:"Robert Aderholt",state:"AL",district:4,party:"R",phone:"202-225-4876"},
+    {name:"Dale Strong",state:"AL",district:5,party:"R",phone:"202-225-4801"},
+    {name:"Gary Palmer",state:"AL",district:6,party:"R",phone:"202-225-4921"},
+    {name:"Terri Sewell",state:"AL",district:7,party:"D",phone:"202-225-2665"},
+    {name:"Nick Begich",state:"AK",district:1,party:"R",phone:"202-225-5765"},
+    {name:"David Schweikert",state:"AZ",district:1,party:"R",phone:"202-225-2190"},
+    {name:"Yassamin Ansari",state:"AZ",district:3,party:"D",phone:"202-225-9888"},
+    {name:"Greg Stanton",state:"AZ",district:4,party:"D",phone:"202-225-9888"},
+    {name:"Andy Biggs",state:"AZ",district:5,party:"R",phone:"202-225-2635"},
+    {name:"Juan Ciscomani",state:"AZ",district:6,party:"R",phone:"202-225-2542"},
+    {name:"Elijah Crane",state:"AZ",district:8,party:"R",phone:"202-225-2365"},
+    {name:"Paul Gosar",state:"AZ",district:9,party:"R",phone:"202-225-2315"},
+    {name:"Rick Crawford",state:"AR",district:1,party:"R",phone:"202-225-4076"},
+    {name:"French Hill",state:"AR",district:2,party:"R",phone:"202-225-2506"},
+    {name:"Steve Womack",state:"AR",district:3,party:"R",phone:"202-225-4301"},
+    {name:"Bruce Westerman",state:"AR",district:4,party:"R",phone:"202-225-3772"},
+    {name:"Doug LaMalfa",state:"CA",district:1,party:"R",phone:"202-225-3076"},
+    {name:"Jared Huffman",state:"CA",district:2,party:"D",phone:"202-225-5161"},
+    {name:"Kevin Kiley",state:"CA",district:3,party:"R",phone:"202-225-2511"},
+    {name:"Mike Thompson",state:"CA",district:4,party:"D",phone:"202-225-3311"},
+    {name:"Tom McClintock",state:"CA",district:5,party:"R",phone:"202-225-2511"},
+    {name:"Ami Bera",state:"CA",district:6,party:"D",phone:"202-225-5716"},
+    {name:"Doris Matsui",state:"CA",district:7,party:"D",phone:"202-225-7163"},
+    {name:"John Garamendi",state:"CA",district:8,party:"D",phone:"202-225-1880"},
+    {name:"Josh Harder",state:"CA",district:9,party:"D",phone:"202-225-4540"},
+    {name:"Mark DeSaulnier",state:"CA",district:10,party:"D",phone:"202-225-2095"},
+    {name:"Nancy Pelosi",state:"CA",district:11,party:"D",phone:"202-225-4965"},
+    {name:"Lateefah Simon",state:"CA",district:12,party:"D",phone:"202-225-2661"},
+    {name:"John Duarte",state:"CA",district:13,party:"R",phone:"202-225-2523"},
+    {name:"Eric Swalwell",state:"CA",district:14,party:"D",phone:"202-225-5065"},
+    {name:"Kevin Mullin",state:"CA",district:15,party:"D",phone:"202-225-3531"},
+    {name:"Ro Khanna",state:"CA",district:17,party:"D",phone:"202-225-2631"},
+    {name:"Zoe Lofgren",state:"CA",district:18,party:"D",phone:"202-225-3072"},
+    {name:"Jimmy Panetta",state:"CA",district:19,party:"D",phone:"202-225-2861"},
+    {name:"Vince Fong",state:"CA",district:20,party:"R",phone:"202-225-2915"},
+    {name:"Jim Costa",state:"CA",district:21,party:"D",phone:"202-225-3341"},
+    {name:"David Valadao",state:"CA",district:22,party:"R",phone:"202-225-4695"},
+    {name:"Jay Obernolte",state:"CA",district:23,party:"R",phone:"202-225-5861"},
+    {name:"Raul Ruiz",state:"CA",district:25,party:"D",phone:"202-225-5330"},
+    {name:"Julia Brownley",state:"CA",district:26,party:"D",phone:"202-225-5811"},
+    {name:"Judy Chu",state:"CA",district:27,party:"D",phone:"202-225-5464"},
+    {name:"Brad Sherman",state:"CA",district:30,party:"D",phone:"202-225-5911"},
+    {name:"George Whitesides",state:"CA",district:27,party:"D",phone:"202-225-1956"},
+    {name:"Ted Lieu",state:"CA",district:36,party:"D",phone:"202-225-3976"},
+    {name:"Sydney Kamlager-Dove",state:"CA",district:37,party:"D",phone:"202-225-7084"},
+    {name:"Linda Sanchez",state:"CA",district:38,party:"D",phone:"202-225-6676"},
+    {name:"Mark Takano",state:"CA",district:39,party:"D",phone:"202-225-2305"},
+    {name:"Young Kim",state:"CA",district:40,party:"R",phone:"202-225-4111"},
+    {name:"Ken Calvert",state:"CA",district:41,party:"R",phone:"202-225-1986"},
+    {name:"Robert Garcia",state:"CA",district:42,party:"D",phone:"202-225-7924"},
+    {name:"Maxine Waters",state:"CA",district:43,party:"D",phone:"202-225-2201"},
+    {name:"Nanette Barragan",state:"CA",district:44,party:"D",phone:"202-225-8220"},
+    {name:"Mike Levin",state:"CA",district:49,party:"D",phone:"202-225-3906"},
+    {name:"Darrell Issa",state:"CA",district:48,party:"R",phone:"202-225-5672"},
+    {name:"Scott Peters",state:"CA",district:50,party:"D",phone:"202-225-0508"},
+    {name:"Sara Jacobs",state:"CA",district:51,party:"D",phone:"202-225-2040"},
+    {name:"Juan Vargas",state:"CA",district:52,party:"D",phone:"202-225-8045"},
+    {name:"Lou Correa",state:"CA",district:46,party:"D",phone:"202-225-2965"},
+    {name:"Sam Liccardo",state:"CA",district:16,party:"D",phone:"202-225-2631"},
+    {name:"Jimmy Gomez",state:"CA",district:34,party:"D",phone:"202-225-6235"},
+    {name:"Diana DeGette",state:"CO",district:1,party:"D",phone:"202-225-4431"},
+    {name:"Joe Neguse",state:"CO",district:2,party:"D",phone:"202-225-2161"},
+    {name:"Jeff Hurd",state:"CO",district:3,party:"R",phone:"202-225-4761"},
+    {name:"Lauren Boebert",state:"CO",district:4,party:"R",phone:"202-225-4676"},
+    {name:"Jeff Crank",state:"CO",district:5,party:"R",phone:"202-225-4422"},
+    {name:"Jason Crow",state:"CO",district:6,party:"D",phone:"202-225-7882"},
+    {name:"Brittany Pettersen",state:"CO",district:7,party:"D",phone:"202-225-2645"},
+    {name:"Gabe Evans",state:"CO",district:8,party:"R",phone:"202-225-5625"},
+    {name:"John Larson",state:"CT",district:1,party:"D",phone:"202-225-2265"},
+    {name:"Joe Courtney",state:"CT",district:2,party:"D",phone:"202-225-2076"},
+    {name:"Rosa DeLauro",state:"CT",district:3,party:"D",phone:"202-225-3661"},
+    {name:"Jim Himes",state:"CT",district:4,party:"D",phone:"202-225-5541"},
+    {name:"Jahana Hayes",state:"CT",district:5,party:"D",phone:"202-225-4476"},
+    {name:"Sarah McBride",state:"DE",district:1,party:"D",phone:"202-225-4165"},
+    {name:"Neal Dunn",state:"FL",district:2,party:"R",phone:"202-225-5235"},
+    {name:"Kat Cammack",state:"FL",district:3,party:"R",phone:"202-225-5744"},
+    {name:"Aaron Bean",state:"FL",district:4,party:"R",phone:"202-225-0123"},
+    {name:"John Rutherford",state:"FL",district:5,party:"R",phone:"202-225-2501"},
+    {name:"Cory Mills",state:"FL",district:7,party:"R",phone:"202-225-4035"},
+    {name:"Darren Soto",state:"FL",district:9,party:"D",phone:"202-225-9889"},
+    {name:"Maxwell Frost",state:"FL",district:10,party:"D",phone:"202-225-2176"},
+    {name:"Daniel Webster",state:"FL",district:11,party:"R",phone:"202-225-1002"},
+    {name:"Gus Bilirakis",state:"FL",district:12,party:"R",phone:"202-225-5755"},
+    {name:"Kathy Castor",state:"FL",district:14,party:"D",phone:"202-225-3376"},
+    {name:"Laurel Lee",state:"FL",district:15,party:"R",phone:"202-225-5421"},
+    {name:"Vern Buchanan",state:"FL",district:16,party:"R",phone:"202-225-5015"},
+    {name:"Greg Steube",state:"FL",district:17,party:"R",phone:"202-225-5792"},
+    {name:"Scott Franklin",state:"FL",district:18,party:"R",phone:"202-225-1252"},
+    {name:"Brian Mast",state:"FL",district:21,party:"R",phone:"202-225-3026"},
+    {name:"Lois Frankel",state:"FL",district:22,party:"D",phone:"202-225-9890"},
+    {name:"Jared Moskowitz",state:"FL",district:23,party:"D",phone:"202-225-3001"},
+    {name:"Sheila Cherfilus-McCormick",state:"FL",district:20,party:"D",phone:"202-225-1313"},
+    {name:"Mario Diaz-Balart",state:"FL",district:26,party:"R",phone:"202-225-4211"},
+    {name:"Carlos Gimenez",state:"FL",district:28,party:"R",phone:"202-225-2778"},
+    {name:"Maria Salazar",state:"FL",district:27,party:"R",phone:"202-225-3931"},
+    {name:"Debbie Wasserman Schultz",state:"FL",district:25,party:"D",phone:"202-225-7931"},
+    {name:"Randy Fine",state:"FL",district:6,party:"R",phone:"202-225-3021"},
+    {name:"Jimmy Patronis",state:"FL",district:1,party:"R",phone:"202-225-4136"},
+    {name:"Mike Haridopolos",state:"FL",district:8,party:"R",phone:"202-225-3671"},
+    {name:"Buddy Carter",state:"GA",district:1,party:"R",phone:"202-225-5831"},
+    {name:"Sanford Bishop",state:"GA",district:2,party:"D",phone:"202-225-3631"},
+    {name:"Brian Jack",state:"GA",district:3,party:"R",phone:"202-225-5901"},
+    {name:"Hank Johnson",state:"GA",district:4,party:"D",phone:"202-225-1605"},
+    {name:"Nikema Williams",state:"GA",district:5,party:"D",phone:"202-225-3801"},
+    {name:"Lucy McBath",state:"GA",district:7,party:"D",phone:"202-225-4272"},
+    {name:"Austin Scott",state:"GA",district:8,party:"R",phone:"202-225-6531"},
+    {name:"Andrew Clyde",state:"GA",district:9,party:"R",phone:"202-225-9893"},
+    {name:"Mike Collins",state:"GA",district:10,party:"R",phone:"202-225-4101"},
+    {name:"Barry Loudermilk",state:"GA",district:11,party:"R",phone:"202-225-2931"},
+    {name:"Rick Allen",state:"GA",district:12,party:"R",phone:"202-225-2823"},
+    {name:"David Scott",state:"GA",district:13,party:"D",phone:"202-225-2939"},
+    {name:"Marjorie Taylor Greene",state:"GA",district:14,party:"R",phone:"202-225-5211"},
+    {name:"Clay Fuller",state:"GA",district:6,party:"R",phone:"202-225-4501"},
+    {name:"Ed Case",state:"HI",district:1,party:"D",phone:"202-225-2726"},
+    {name:"Jill Tokuda",state:"HI",district:2,party:"D",phone:"202-225-4906"},
+    {name:"Russ Fulcher",state:"ID",district:1,party:"R",phone:"202-225-6611"},
+    {name:"Mike Simpson",state:"ID",district:2,party:"R",phone:"202-225-5531"},
+    {name:"Jonathan Jackson",state:"IL",district:1,party:"D",phone:"202-225-4372"},
+    {name:"Robin Kelly",state:"IL",district:2,party:"D",phone:"202-225-0773"},
+    {name:"Delia Ramirez",state:"IL",district:3,party:"D",phone:"202-225-5701"},
+    {name:"Chuy Garcia",state:"IL",district:4,party:"D",phone:"202-225-8203"},
+    {name:"Mike Quigley",state:"IL",district:5,party:"D",phone:"202-225-4061"},
+    {name:"Sean Casten",state:"IL",district:6,party:"D",phone:"202-225-4561"},
+    {name:"Danny Davis",state:"IL",district:7,party:"D",phone:"202-225-5006"},
+    {name:"Raja Krishnamoorthi",state:"IL",district:8,party:"D",phone:"202-225-3711"},
+    {name:"Jan Schakowsky",state:"IL",district:9,party:"D",phone:"202-225-2111"},
+    {name:"Brad Schneider",state:"IL",district:10,party:"D",phone:"202-225-4835"},
+    {name:"Bill Foster",state:"IL",district:11,party:"D",phone:"202-225-3515"},
+    {name:"Mike Bost",state:"IL",district:12,party:"R",phone:"202-225-5661"},
+    {name:"Lauren Underwood",state:"IL",district:14,party:"D",phone:"202-225-2976"},
+    {name:"Mary Miller",state:"IL",district:15,party:"R",phone:"202-225-5271"},
+    {name:"Darin LaHood",state:"IL",district:16,party:"R",phone:"202-225-6201"},
+    {name:"Eric Sorensen",state:"IL",district:17,party:"D",phone:"202-225-5905"},
+    {name:"Frank Mrvan",state:"IN",district:1,party:"D",phone:"202-225-2461"},
+    {name:"Rudy Yakym",state:"IN",district:2,party:"R",phone:"202-225-3915"},
+    {name:"Marlin Stutzman",state:"IN",district:3,party:"R",phone:"202-225-4436"},
+    {name:"Jim Baird",state:"IN",district:4,party:"R",phone:"202-225-5037"},
+    {name:"Victoria Spartz",state:"IN",district:5,party:"R",phone:"202-225-2276"},
+    {name:"Jefferson Shreve",state:"IN",district:6,party:"R",phone:"202-225-3021"},
+    {name:"Andre Carson",state:"IN",district:7,party:"D",phone:"202-225-4011"},
+    {name:"Erin Houchin",state:"IN",district:9,party:"R",phone:"202-225-5315"},
+    {name:"Mark Messmer",state:"IN",district:8,party:"R",phone:"202-225-4636"},
+    {name:"Randy Feenstra",state:"IA",district:4,party:"R",phone:"202-225-4426"},
+    {name:"Ashley Hinson",state:"IA",district:2,party:"R",phone:"202-225-2911"},
+    {name:"Zachary Nunn",state:"IA",district:3,party:"R",phone:"202-225-5476"},
+    {name:"Tracey Mann",state:"KS",district:1,party:"R",phone:"202-225-2715"},
+    {name:"Derek Schmidt",state:"KS",district:2,party:"R",phone:"202-225-6601"},
+    {name:"Sharice Davids",state:"KS",district:3,party:"D",phone:"202-225-2865"},
+    {name:"Ron Estes",state:"KS",district:4,party:"R",phone:"202-225-6216"},
+    {name:"James Comer",state:"KY",district:1,party:"R",phone:"202-225-3115"},
+    {name:"Brett Guthrie",state:"KY",district:2,party:"R",phone:"202-225-3501"},
+    {name:"Morgan McGarvey",state:"KY",district:3,party:"D",phone:"202-225-5401"},
+    {name:"Thomas Massie",state:"KY",district:4,party:"R",phone:"202-225-3465"},
+    {name:"Harold Rogers",state:"KY",district:5,party:"R",phone:"202-225-4601"},
+    {name:"Andy Barr",state:"KY",district:6,party:"R",phone:"202-225-4706"},
+    {name:"Steve Scalise",state:"LA",district:1,party:"R",phone:"202-225-3015"},
+    {name:"Troy Carter",state:"LA",district:2,party:"D",phone:"202-225-6636"},
+    {name:"Clay Higgins",state:"LA",district:3,party:"R",phone:"202-225-2031"},
+    {name:"Mike Johnson",state:"LA",district:4,party:"R",phone:"202-225-2777"},
+    {name:"Julia Letlow",state:"LA",district:5,party:"R",phone:"202-225-8490"},
+    {name:"Cleo Fields",state:"LA",district:6,party:"D",phone:"202-225-3704"},
+    {name:"Chellie Pingree",state:"ME",district:1,party:"D",phone:"202-225-6116"},
+    {name:"Jared Golden",state:"ME",district:2,party:"D",phone:"202-225-6306"},
+    {name:"Andy Harris",state:"MD",district:1,party:"R",phone:"202-225-5311"},
+    {name:"Dutch Ruppersberger",state:"MD",district:2,party:"D",phone:"202-225-3061"},
+    {name:"John Sarbanes",state:"MD",district:3,party:"D",phone:"202-225-4016"},
+    {name:"Glenn Ivey",state:"MD",district:4,party:"D",phone:"202-225-8699"},
+    {name:"Steny Hoyer",state:"MD",district:5,party:"D",phone:"202-225-4131"},
+    {name:"April McClain Delaney",state:"MD",district:6,party:"D",phone:"202-225-2721"},
+    {name:"Kweisi Mfume",state:"MD",district:7,party:"D",phone:"202-225-4741"},
+    {name:"Jamie Raskin",state:"MD",district:8,party:"D",phone:"202-225-5341"},
+    {name:"Sarah Elfreth",state:"MD",district:3,party:"D",phone:"202-225-4016"},
+    {name:"Johnny Olszewski",state:"MD",district:2,party:"D",phone:"202-225-3061"},
+    {name:"Richard Neal",state:"MA",district:1,party:"D",phone:"202-225-5601"},
+    {name:"Jim McGovern",state:"MA",district:2,party:"D",phone:"202-225-6101"},
+    {name:"Lori Trahan",state:"MA",district:3,party:"D",phone:"202-225-3411"},
+    {name:"Jake Auchincloss",state:"MA",district:4,party:"D",phone:"202-225-5931"},
+    {name:"Katherine Clark",state:"MA",district:5,party:"D",phone:"202-225-2836"},
+    {name:"Seth Moulton",state:"MA",district:6,party:"D",phone:"202-225-8020"},
+    {name:"Ayanna Pressley",state:"MA",district:7,party:"D",phone:"202-225-5111"},
+    {name:"Stephen Lynch",state:"MA",district:8,party:"D",phone:"202-225-8273"},
+    {name:"William Keating",state:"MA",district:9,party:"D",phone:"202-225-3111"},
+    {name:"Jack Bergman",state:"MI",district:1,party:"R",phone:"202-225-4735"},
+    {name:"John Moolenaar",state:"MI",district:2,party:"R",phone:"202-225-3561"},
+    {name:"Hillary Scholten",state:"MI",district:3,party:"D",phone:"202-225-3831"},
+    {name:"Bill Huizenga",state:"MI",district:4,party:"R",phone:"202-225-4401"},
+    {name:"Tim Walberg",state:"MI",district:5,party:"R",phone:"202-225-6276"},
+    {name:"Debbie Dingell",state:"MI",district:6,party:"D",phone:"202-225-4071"},
+    {name:"Tom Barrett",state:"MI",district:7,party:"R",phone:"202-225-4872"},
+    {name:"Kristen McDonald Rivet",state:"MI",district:8,party:"D",phone:"202-225-2106"},
+    {name:"Lisa McClain",state:"MI",district:9,party:"R",phone:"202-225-2106"},
+    {name:"John James",state:"MI",district:10,party:"R",phone:"202-225-4961"},
+    {name:"Haley Stevens",state:"MI",district:11,party:"D",phone:"202-225-8171"},
+    {name:"Shri Thanedar",state:"MI",district:13,party:"D",phone:"202-225-5126"},
+    {name:"Brad Finstad",state:"MN",district:1,party:"R",phone:"202-225-2472"},
+    {name:"Angie Craig",state:"MN",district:2,party:"D",phone:"202-225-2271"},
+    {name:"Kelly Morrison",state:"MN",district:3,party:"D",phone:"202-225-2871"},
+    {name:"Betty McCollum",state:"MN",district:4,party:"D",phone:"202-225-6631"},
+    {name:"Ilhan Omar",state:"MN",district:5,party:"D",phone:"202-225-4755"},
+    {name:"Tom Emmer",state:"MN",district:6,party:"R",phone:"202-225-2331"},
+    {name:"Michelle Fischbach",state:"MN",district:7,party:"R",phone:"202-225-2165"},
+    {name:"Pete Stauber",state:"MN",district:8,party:"R",phone:"202-225-6211"},
+    {name:"Bennie Thompson",state:"MS",district:2,party:"D",phone:"202-225-5876"},
+    {name:"Michael Guest",state:"MS",district:3,party:"R",phone:"202-225-5031"},
+    {name:"Mike Ezell",state:"MS",district:4,party:"R",phone:"202-225-5772"},
+    {name:"Trent Kelly",state:"MS",district:1,party:"R",phone:"202-225-4306"},
+    {name:"Wesley Bell",state:"MO",district:1,party:"D",phone:"202-225-2406"},
+    {name:"Ann Wagner",state:"MO",district:2,party:"R",phone:"202-225-1621"},
+    {name:"Robert Onder",state:"MO",district:3,party:"R",phone:"202-225-2956"},
+    {name:"Emanuel Cleaver",state:"MO",district:5,party:"D",phone:"202-225-4535"},
+    {name:"Sam Graves",state:"MO",district:6,party:"R",phone:"202-225-7041"},
+    {name:"Eric Burlison",state:"MO",district:7,party:"R",phone:"202-225-6536"},
+    {name:"Jason Smith",state:"MO",district:8,party:"R",phone:"202-225-4404"},
+    {name:"Ryan Zinke",state:"MT",district:1,party:"R",phone:"202-225-5628"},
+    {name:"Troy Downing",state:"MT",district:2,party:"R",phone:"202-225-3211"},
+    {name:"Mike Flood",state:"NE",district:1,party:"R",phone:"202-225-4806"},
+    {name:"Don Bacon",state:"NE",district:2,party:"R",phone:"202-225-4155"},
+    {name:"Adrian Smith",state:"NE",district:3,party:"R",phone:"202-225-6435"},
+    {name:"Dina Titus",state:"NV",district:1,party:"D",phone:"202-225-5965"},
+    {name:"Mark Amodei",state:"NV",district:2,party:"R",phone:"202-225-6155"},
+    {name:"Susie Lee",state:"NV",district:3,party:"D",phone:"202-225-3252"},
+    {name:"Steven Horsford",state:"NV",district:4,party:"D",phone:"202-225-9894"},
+    {name:"Chris Pappas",state:"NH",district:1,party:"D",phone:"202-225-5456"},
+    {name:"Maggie Goodlander",state:"NH",district:2,party:"D",phone:"202-225-5206"},
+    {name:"Donald Norcross",state:"NJ",district:1,party:"D",phone:"202-225-6501"},
+    {name:"Jeff Van Drew",state:"NJ",district:2,party:"R",phone:"202-225-6572"},
+    {name:"Herb Conaway",state:"NJ",district:3,party:"D",phone:"202-225-4765"},
+    {name:"Chris Smith",state:"NJ",district:4,party:"R",phone:"202-225-3765"},
+    {name:"Josh Gottheimer",state:"NJ",district:5,party:"D",phone:"202-225-4465"},
+    {name:"Frank Pallone",state:"NJ",district:6,party:"D",phone:"202-225-4671"},
+    {name:"Tom Kean Jr.",state:"NJ",district:7,party:"R",phone:"202-225-5361"},
+    {name:"Rob Menendez",state:"NJ",district:8,party:"D",phone:"202-225-2765"},
+    {name:"Nellie Pou",state:"NJ",district:9,party:"D",phone:"202-225-5751"},
+    {name:"LaMonica McIver",state:"NJ",district:10,party:"D",phone:"202-225-3436"},
+    {name:"Mikie Sherrill",state:"NJ",district:11,party:"D",phone:"202-225-5034"},
+    {name:"Bonnie Watson Coleman",state:"NJ",district:12,party:"D",phone:"202-225-5801"},
+    {name:"Analilia Mejia",state:"NJ",district:8,party:"D",phone:"202-225-2765"},
+    {name:"Teresa Leger Fernandez",state:"NM",district:1,party:"D",phone:"202-225-6316"},
+    {name:"Gabe Vasquez",state:"NM",district:2,party:"D",phone:"202-225-2365"},
+    {name:"Melanie Stansbury",state:"NM",district:3,party:"D",phone:"202-225-6190"},
+    {name:"Nick LaLota",state:"NY",district:1,party:"R",phone:"202-225-3826"},
+    {name:"Andrew Garbarino",state:"NY",district:2,party:"R",phone:"202-225-7896"},
+    {name:"Thomas Suozzi",state:"NY",district:3,party:"D",phone:"202-225-5516"},
+    {name:"Laura Gillen",state:"NY",district:4,party:"D",phone:"202-225-5516"},
+    {name:"Gregory Meeks",state:"NY",district:5,party:"D",phone:"202-225-3461"},
+    {name:"Grace Meng",state:"NY",district:6,party:"D",phone:"202-225-2601"},
+    {name:"Nydia Velazquez",state:"NY",district:7,party:"D",phone:"202-225-2361"},
+    {name:"Hakeem Jeffries",state:"NY",district:8,party:"D",phone:"202-225-5936"},
+    {name:"Yvette Clarke",state:"NY",district:9,party:"D",phone:"202-225-6231"},
+    {name:"Daniel Goldman",state:"NY",district:10,party:"D",phone:"202-225-5635"},
+    {name:"Nicole Malliotakis",state:"NY",district:11,party:"R",phone:"202-225-3371"},
+    {name:"Jerrold Nadler",state:"NY",district:12,party:"D",phone:"202-225-5635"},
+    {name:"Adriano Espaillat",state:"NY",district:13,party:"D",phone:"202-225-4365"},
+    {name:"Alexandria Ocasio-Cortez",state:"NY",district:14,party:"D",phone:"202-225-3965"},
+    {name:"Ritchie Torres",state:"NY",district:15,party:"D",phone:"202-225-4361"},
+    {name:"George Latimer",state:"NY",district:16,party:"D",phone:"202-225-2464"},
+    {name:"Michael Lawler",state:"NY",district:17,party:"R",phone:"202-225-6506"},
+    {name:"Patrick Ryan",state:"NY",district:18,party:"D",phone:"202-225-5441"},
+    {name:"Josh Riley",state:"NY",district:19,party:"D",phone:"202-225-5614"},
+    {name:"Paul Tonko",state:"NY",district:20,party:"D",phone:"202-225-5076"},
+    {name:"Elise Stefanik",state:"NY",district:21,party:"R",phone:"202-225-4611"},
+    {name:"Claudia Tenney",state:"NY",district:24,party:"R",phone:"202-225-3665"},
+    {name:"John Mannion",state:"NY",district:22,party:"D",phone:"202-225-3701"},
+    {name:"Joseph Morelle",state:"NY",district:25,party:"D",phone:"202-225-3615"},
+    {name:"Timothy Kennedy",state:"NY",district:26,party:"D",phone:"202-225-3306"},
+    {name:"Nick Langworthy",state:"NY",district:23,party:"R",phone:"202-225-3161"},
+    {name:"Donald Davis",state:"NC",district:1,party:"D",phone:"202-225-3101"},
+    {name:"Deborah Ross",state:"NC",district:2,party:"D",phone:"202-225-3032"},
+    {name:"Greg Murphy",state:"NC",district:3,party:"R",phone:"202-225-3415"},
+    {name:"Valerie Foushee",state:"NC",district:4,party:"D",phone:"202-225-1784"},
+    {name:"Virginia Foxx",state:"NC",district:5,party:"R",phone:"202-225-2071"},
+    {name:"Tim Moore",state:"NC",district:6,party:"R",phone:"202-225-6401"},
+    {name:"David Rouzer",state:"NC",district:7,party:"R",phone:"202-225-2731"},
+    {name:"Richard Hudson",state:"NC",district:8,party:"R",phone:"202-225-3715"},
+    {name:"Brad Knott",state:"NC",district:9,party:"R",phone:"202-225-1976"},
+    {name:"Pat Harrigan",state:"NC",district:10,party:"R",phone:"202-225-2576"},
+    {name:"Chuck Edwards",state:"NC",district:11,party:"R",phone:"202-225-6401"},
+    {name:"Alma Adams",state:"NC",district:12,party:"D",phone:"202-225-1510"},
+    {name:"Jeff Jackson",state:"NC",district:14,party:"D",phone:"202-225-1976"},
+    {name:"Addison McDowell",state:"NC",district:13,party:"R",phone:"202-225-4531"},
+    {name:"Mark Harris",state:"NC",district:8,party:"R",phone:"202-225-3715"},
+    {name:"Julie Fedorchak",state:"ND",district:1,party:"R",phone:"202-225-2611"},
+    {name:"Troy Balderson",state:"OH",district:12,party:"R",phone:"202-225-5355"},
+    {name:"Greg Landsman",state:"OH",district:1,party:"D",phone:"202-225-2216"},
+    {name:"Brad Wenstrup",state:"OH",district:2,party:"R",phone:"202-225-3164"},
+    {name:"Joyce Beatty",state:"OH",district:3,party:"D",phone:"202-225-4324"},
+    {name:"Jim Jordan",state:"OH",district:4,party:"R",phone:"202-225-2676"},
+    {name:"Bob Latta",state:"OH",district:5,party:"R",phone:"202-225-6405"},
+    {name:"Michael Rulli",state:"OH",district:6,party:"R",phone:"202-225-5261"},
+    {name:"Max Miller",state:"OH",district:7,party:"R",phone:"202-225-5705"},
+    {name:"Warren Davidson",state:"OH",district:8,party:"R",phone:"202-225-6205"},
+    {name:"Marcy Kaptur",state:"OH",district:9,party:"D",phone:"202-225-4146"},
+    {name:"Michael Turner",state:"OH",district:10,party:"R",phone:"202-225-6465"},
+    {name:"Shontel Brown",state:"OH",district:11,party:"D",phone:"202-225-7032"},
+    {name:"David Taylor",state:"OH",district:12,party:"R",phone:"202-225-5355"},
+    {name:"Emilia Sykes",state:"OH",district:13,party:"D",phone:"202-225-3401"},
+    {name:"David Joyce",state:"OH",district:14,party:"R",phone:"202-225-5731"},
+    {name:"Mike Carey",state:"OH",district:15,party:"R",phone:"202-225-2015"},
+    {name:"Kevin Hern",state:"OK",district:1,party:"R",phone:"202-225-2211"},
+    {name:"Josh Brecheen",state:"OK",district:2,party:"R",phone:"202-225-2701"},
+    {name:"Frank Lucas",state:"OK",district:3,party:"R",phone:"202-225-5565"},
+    {name:"Tom Cole",state:"OK",district:4,party:"R",phone:"202-225-6165"},
+    {name:"Suzanne Bonamici",state:"OR",district:1,party:"D",phone:"202-225-0855"},
+    {name:"Cliff Bentz",state:"OR",district:2,party:"R",phone:"202-225-6730"},
+    {name:"Earl Blumenauer",state:"OR",district:3,party:"D",phone:"202-225-4811"},
+    {name:"Val Hoyle",state:"OR",district:4,party:"D",phone:"202-225-6416"},
+    {name:"Janelle Bynum",state:"OR",district:5,party:"D",phone:"202-225-5711"},
+    {name:"Maxine Dexter",state:"OR",district:3,party:"D",phone:"202-225-4811"},
+    {name:"Brian Fitzpatrick",state:"PA",district:1,party:"R",phone:"202-225-4276"},
+    {name:"Brendan Boyle",state:"PA",district:2,party:"D",phone:"202-225-6111"},
+    {name:"Dwight Evans",state:"PA",district:3,party:"D",phone:"202-225-4001"},
+    {name:"Madeleine Dean",state:"PA",district:4,party:"D",phone:"202-225-4731"},
+    {name:"Mary Gay Scanlon",state:"PA",district:5,party:"D",phone:"202-225-2011"},
+    {name:"Chrissy Houlahan",state:"PA",district:6,party:"D",phone:"202-225-4315"},
+    {name:"Ryan Mackenzie",state:"PA",district:7,party:"R",phone:"202-225-6411"},
+    {name:"Robert Bresnahan",state:"PA",district:8,party:"R",phone:"202-225-5546"},
+    {name:"Dan Meuser",state:"PA",district:9,party:"R",phone:"202-225-6511"},
+    {name:"Scott Perry",state:"PA",district:10,party:"R",phone:"202-225-5836"},
+    {name:"Lloyd Smucker",state:"PA",district:11,party:"R",phone:"202-225-2411"},
+    {name:"Summer Lee",state:"PA",district:12,party:"D",phone:"202-225-2135"},
+    {name:"John Joyce",state:"PA",district:13,party:"R",phone:"202-225-2431"},
+    {name:"Guy Reschenthaler",state:"PA",district:14,party:"R",phone:"202-225-2065"},
+    {name:"Glenn Thompson",state:"PA",district:15,party:"R",phone:"202-225-5121"},
+    {name:"Mike Kelly",state:"PA",district:16,party:"R",phone:"202-225-5406"},
+    {name:"Chris Deluzio",state:"PA",district:17,party:"D",phone:"202-225-2301"},
+    {name:"Seth Magaziner",state:"RI",district:2,party:"D",phone:"202-225-2735"},
+    {name:"Gabe Amo",state:"RI",district:1,party:"D",phone:"202-225-4911"},
+    {name:"Nancy Mace",state:"SC",district:1,party:"R",phone:"202-225-3176"},
+    {name:"Joe Wilson",state:"SC",district:2,party:"R",phone:"202-225-2452"},
+    {name:"Jeff Duncan",state:"SC",district:3,party:"R",phone:"202-225-5301"},
+    {name:"William Timmons",state:"SC",district:4,party:"R",phone:"202-225-6030"},
+    {name:"Ralph Norman",state:"SC",district:5,party:"R",phone:"202-225-5501"},
+    {name:"James Clyburn",state:"SC",district:6,party:"D",phone:"202-225-3315"},
+    {name:"Russell Fry",state:"SC",district:7,party:"R",phone:"202-225-9895"},
+    {name:"Sheri Biggs",state:"SC",district:3,party:"R",phone:"202-225-5301"},
+    {name:"Dusty Johnson",state:"SD",district:1,party:"R",phone:"202-225-2801"},
+    {name:"Diana Harshbarger",state:"TN",district:1,party:"R",phone:"202-225-6356"},
+    {name:"Tim Burchett",state:"TN",district:2,party:"R",phone:"202-225-5435"},
+    {name:"Chuck Fleischmann",state:"TN",district:3,party:"R",phone:"202-225-3271"},
+    {name:"Scott DesJarlais",state:"TN",district:4,party:"R",phone:"202-225-6831"},
+    {name:"Andy Ogles",state:"TN",district:5,party:"R",phone:"202-225-4311"},
+    {name:"John Rose",state:"TN",district:6,party:"R",phone:"202-225-4231"},
+    {name:"Mark Green",state:"TN",district:7,party:"R",phone:"202-225-2811"},
+    {name:"David Kustoff",state:"TN",district:8,party:"R",phone:"202-225-4714"},
+    {name:"Steve Cohen",state:"TN",district:9,party:"D",phone:"202-225-3265"},
+    {name:"Nathaniel Moran",state:"TX",district:1,party:"R",phone:"202-225-3035"},
+    {name:"Dan Crenshaw",state:"TX",district:2,party:"R",phone:"202-225-6565"},
+    {name:"Keith Self",state:"TX",district:3,party:"R",phone:"202-225-4201"},
+    {name:"Pat Fallon",state:"TX",district:4,party:"R",phone:"202-225-6673"},
+    {name:"Lance Gooden",state:"TX",district:5,party:"R",phone:"202-225-3484"},
+    {name:"Jake Ellzey",state:"TX",district:6,party:"R",phone:"202-225-2002"},
+    {name:"Lizzie Fletcher",state:"TX",district:7,party:"D",phone:"202-225-2571"},
+    {name:"Morgan Luttrell",state:"TX",district:8,party:"R",phone:"202-225-4901"},
+    {name:"Al Green",state:"TX",district:9,party:"D",phone:"202-225-7508"},
+    {name:"Michael McCaul",state:"TX",district:10,party:"R",phone:"202-225-2401"},
+    {name:"August Pfluger",state:"TX",district:11,party:"R",phone:"202-225-3605"},
+    {name:"Craig Goldman",state:"TX",district:12,party:"R",phone:"202-225-5071"},
+    {name:"Jasmine Crockett",state:"TX",district:30,party:"D",phone:"202-225-8885"},
+    {name:"Randy Weber",state:"TX",district:14,party:"R",phone:"202-225-2831"},
+    {name:"Monica De La Cruz",state:"TX",district:15,party:"R",phone:"202-225-9901"},
+    {name:"Veronica Escobar",state:"TX",district:16,party:"D",phone:"202-225-4831"},
+    {name:"Pete Sessions",state:"TX",district:17,party:"R",phone:"202-225-6105"},
+    {name:"Sylvester Turner",state:"TX",district:18,party:"D",phone:"202-225-3816"},
+    {name:"Jodey Arrington",state:"TX",district:19,party:"R",phone:"202-225-4005"},
+    {name:"Joaquin Castro",state:"TX",district:20,party:"D",phone:"202-225-3236"},
+    {name:"Chip Roy",state:"TX",district:21,party:"R",phone:"202-225-4236"},
+    {name:"Troy Nehls",state:"TX",district:22,party:"R",phone:"202-225-5951"},
+    {name:"Tony Gonzales",state:"TX",district:23,party:"R",phone:"202-225-4511"},
+    {name:"Beth Van Duyne",state:"TX",district:24,party:"R",phone:"202-225-6605"},
+    {name:"Roger Williams",state:"TX",district:25,party:"R",phone:"202-225-9896"},
+    {name:"Michael Burgess",state:"TX",district:26,party:"R",phone:"202-225-7772"},
+    {name:"Brandon Gill",state:"TX",district:26,party:"R",phone:"202-225-7772"},
+    {name:"Vicente Gonzalez",state:"TX",district:34,party:"D",phone:"202-225-2531"},
+    {name:"Lloyd Doggett",state:"TX",district:37,party:"D",phone:"202-225-4865"},
+    {name:"Henry Cuellar",state:"TX",district:28,party:"D",phone:"202-225-1640"},
+    {name:"Sylvia Garcia",state:"TX",district:29,party:"D",phone:"202-225-1688"},
+    {name:"Brian Babin",state:"TX",district:36,party:"R",phone:"202-225-1555"},
+    {name:"Marc Veasey",state:"TX",district:33,party:"D",phone:"202-225-9897"},
+    {name:"Julie Johnson",state:"TX",district:32,party:"D",phone:"202-225-2231"},
+    {name:"Christian Menefee",state:"TX",district:9,party:"D",phone:"202-225-7508"},
+    {name:"Blake Moore",state:"UT",district:1,party:"R",phone:"202-225-0453"},
+    {name:"Celeste Maloy",state:"UT",district:2,party:"R",phone:"202-225-9730"},
+    {name:"Mike Kennedy",state:"UT",district:3,party:"R",phone:"202-225-7751"},
+    {name:"Burgess Owens",state:"UT",district:4,party:"R",phone:"202-225-3011"},
+    {name:"Becca Balint",state:"VT",district:1,party:"D",phone:"202-225-4115"},
+    {name:"Rob Wittman",state:"VA",district:1,party:"R",phone:"202-225-4261"},
+    {name:"Jen Kiggans",state:"VA",district:2,party:"R",phone:"202-225-4215"},
+    {name:"Bobby Scott",state:"VA",district:3,party:"D",phone:"202-225-8351"},
+    {name:"Suhas Subramanyam",state:"VA",district:10,party:"D",phone:"202-225-5136"},
+    {name:"Bob Good",state:"VA",district:5,party:"R",phone:"202-225-4711"},
+    {name:"Ben Cline",state:"VA",district:6,party:"R",phone:"202-225-5431"},
+    {name:"Eugene Vindman",state:"VA",district:7,party:"D",phone:"202-225-2815"},
+    {name:"Don Beyer",state:"VA",district:8,party:"D",phone:"202-225-4376"},
+    {name:"Morgan Griffith",state:"VA",district:9,party:"R",phone:"202-225-3861"},
+    {name:"Gerry Connolly",state:"VA",district:11,party:"D",phone:"202-225-1492"},
+    {name:"John McGuire",state:"VA",district:5,party:"R",phone:"202-225-4711"},
+    {name:"James Walkinshaw",state:"VA",district:11,party:"D",phone:"202-225-1492"},
+    {name:"Suzan DelBene",state:"WA",district:1,party:"D",phone:"202-225-6311"},
+    {name:"Rick Larsen",state:"WA",district:2,party:"D",phone:"202-225-2605"},
+    {name:"Marie Gluesenkamp Perez",state:"WA",district:3,party:"D",phone:"202-225-3536"},
+    {name:"Dan Newhouse",state:"WA",district:4,party:"R",phone:"202-225-5816"},
+    {name:"Michael Baumgartner",state:"WA",district:5,party:"R",phone:"202-225-2006"},
+    {name:"Emily Randall",state:"WA",district:6,party:"D",phone:"202-225-5916"},
+    {name:"Pramila Jayapal",state:"WA",district:7,party:"D",phone:"202-225-3106"},
+    {name:"Kim Schrier",state:"WA",district:8,party:"D",phone:"202-225-7761"},
+    {name:"Adam Smith",state:"WA",district:9,party:"D",phone:"202-225-8901"},
+    {name:"Marilyn Strickland",state:"WA",district:10,party:"D",phone:"202-225-9740"},
+    {name:"Carol Miller",state:"WV",district:1,party:"R",phone:"202-225-3452"},
+    {name:"Riley Moore",state:"WV",district:2,party:"R",phone:"202-225-2711"},
+    {name:"Bryan Steil",state:"WI",district:1,party:"R",phone:"202-225-3031"},
+    {name:"Mark Pocan",state:"WI",district:2,party:"D",phone:"202-225-2906"},
+    {name:"Derrick Van Orden",state:"WI",district:3,party:"R",phone:"202-225-5506"},
+    {name:"Gwen Moore",state:"WI",district:4,party:"D",phone:"202-225-4572"},
+    {name:"Scott Fitzgerald",state:"WI",district:5,party:"R",phone:"202-225-5101"},
+    {name:"Glenn Grothman",state:"WI",district:6,party:"R",phone:"202-225-2476"},
+    {name:"Tom Tiffany",state:"WI",district:7,party:"R",phone:"202-225-3365"},
+    {name:"Tony Wied",state:"WI",district:8,party:"R",phone:"202-225-5665"},
+    {name:"Harriet Hageman",state:"WY",district:1,party:"R",phone:"202-225-2311"}
+  ]
+};
+
+// ── ZIP → STATE + DISTRICT lookup via OpenStreetMap ──────────────────────────
+// (district matching is approximate — senators always shown, House rep shown if district matches)
+
 let selectedRep = null;
 
 function show(id) {
@@ -438,6 +967,20 @@ function selectRep(name, phone) {
 
 function markCalled() { show('step-thanks'); }
 
+const STATE_MAP = {
+  'Alabama':'AL','Alaska':'AK','Arizona':'AZ','Arkansas':'AR','California':'CA',
+  'Colorado':'CO','Connecticut':'CT','Delaware':'DE','Florida':'FL','Georgia':'GA',
+  'Hawaii':'HI','Idaho':'ID','Illinois':'IL','Indiana':'IN','Iowa':'IA',
+  'Kansas':'KS','Kentucky':'KY','Louisiana':'LA','Maine':'ME','Maryland':'MD',
+  'Massachusetts':'MA','Michigan':'MI','Minnesota':'MN','Mississippi':'MS',
+  'Missouri':'MO','Montana':'MT','Nebraska':'NE','Nevada':'NV','New Hampshire':'NH',
+  'New Jersey':'NJ','New Mexico':'NM','New York':'NY','North Carolina':'NC',
+  'North Dakota':'ND','Ohio':'OH','Oklahoma':'OK','Oregon':'OR','Pennsylvania':'PA',
+  'Rhode Island':'RI','South Carolina':'SC','South Dakota':'SD','Tennessee':'TN',
+  'Texas':'TX','Utah':'UT','Vermont':'VT','Virginia':'VA','Washington':'WA',
+  'West Virginia':'WV','Wisconsin':'WI','Wyoming':'WY','District of Columbia':'DC'
+};
+
 async function lookupRep(e) {
   e.preventDefault();
   const zip = document.getElementById('zip-input').value.trim();
@@ -448,52 +991,59 @@ async function lookupRep(e) {
   btn.textContent = 'Looking up...';
 
   try {
-    const res = await fetch(`https://api.5calls.org/v1/representatives?location=${encodeURIComponent(zip)}`, {
-      headers: { 'X-5Calls-Token': '18a94bafc305280a11df67dc' }
-    });
-    if (!res.ok) throw new Error('api_error');
-    const data = await res.json();
-    if (data.error) throw new Error('no_results');
-    const reps = data.representatives || [];
-    if (reps.length === 0) throw new Error('no_results');
+    // Geocode zip → state + county via OpenStreetMap
+    const geoRes = await fetch(
+      `https://nominatim.openstreetmap.org/search?postalcode=${encodeURIComponent(zip)}&countrycodes=us&format=json&limit=1&addressdetails=1`,
+      { headers: { 'Accept-Language': 'en', 'User-Agent': 'GuardrailsAlliance/1.0' } }
+    );
+    const geoData = await geoRes.json();
+    if (!geoData || geoData.length === 0) throw new Error('no_results');
 
-    let html = '<p style="font-size:13px;color:#555;margin-bottom:1rem;">Select your representative to get the call script:</p>';
-    reps.forEach(rep => {
-      const name = rep.name || 'Unknown';
-      const office = rep.area || 'U.S. Congress';
-      const area = rep.state || '';
-      const party = rep.party ? ` · ${rep.party}` : '';
-      const phone = rep.phone || null;
-      const safeName = name.replace(/'/g, "\\'");
-      const safePhone = (phone || '').replace(/'/g, "\\'");
+    const addr = geoData[0].address;
+    const stateName = addr.state;
+    const stateAbbr = STATE_MAP[stateName];
+    if (!stateAbbr) throw new Error('no_results');
+
+    // Get senators for this state
+    const senators = CONGRESS.senate.filter(m => m.state === stateAbbr);
+    // Get all house members for this state (show all since we can't reliably get district from zip)
+    const houseMembers = CONGRESS.house.filter(m => m.state === stateAbbr);
+    // Deduplicate house by district, keep first match
+    const seenDistricts = new Set();
+    const uniqueHouse = houseMembers.filter(m => {
+      if (seenDistricts.has(m.district)) return false;
+      seenDistricts.add(m.district);
+      return true;
+    });
+
+    const allReps = [...senators, ...uniqueHouse];
+    if (allReps.length === 0) throw new Error('no_results');
+
+    let html = `<p style="font-size:13px;color:#555;margin-bottom:1rem;">Federal representatives for zip code <strong>${zip}</strong> (${stateName}):</p>`;
+    allReps.forEach(rep => {
+      const chamber = senators.includes(rep) ? 'U.S. Senate' : 'U.S. House';
+      const districtStr = rep.district ? ` · District ${rep.district}` : '';
+      const safeName = rep.name.replace(/'/g, "\'");
+      const safePhone = rep.phone.replace(/'/g, "\'");
       html += `
         <div class="rep-result-card">
           <div class="rep-info">
-            <div class="rep-name">${name}</div>
-            <div class="rep-meta">${office}${area ? ' · ' + area : ''}${party}</div>
+            <div class="rep-name">${rep.name}</div>
+            <div class="rep-meta">${chamber} · ${rep.state}${districtStr} · ${rep.party === 'D' ? 'Democrat' : rep.party === 'R' ? 'Republican' : 'Independent'}</div>
           </div>
-          ${phone ? `<div class="rep-phone-num">${phone}</div>` : '<div class="rep-phone-num" style="font-size:13px;color:#aaa;">No phone on file</div>'}
+          <div class="rep-phone-num">${rep.phone}</div>
           <button class="btn-select-rep" onclick="selectRep('${safeName}','${safePhone}')">Get script →</button>
         </div>`;
     });
+
     document.getElementById('rep-cards').innerHTML = html;
     show('step-rep');
 
   } catch(err) {
-    // CORS fallback — show script immediately with congress.gov link
-    document.getElementById('rep-cards').innerHTML = `
-      <div class="rep-result-card" style="flex-direction:column;align-items:flex-start;">
-        <p style="font-size:14px;color:#555;margin-bottom:1rem;line-height:1.7;">
-          Find your rep's phone number at <strong>congress.gov</strong>, then come back here for your call script.
-        </p>
-        <a href="https://www.congress.gov/members/find-your-member?zip=${zip}"
-           target="_blank" rel="noopener"
-           style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:10px 20px;background:#0d0d0d;color:#fff;text-decoration:none;display:inline-block;margin-bottom:1.25rem;">
-          Find my rep at congress.gov ↗
-        </a>
-        <button class="btn-select-rep" onclick="selectRep('your representative','')">I have the number — get my script →</button>
-      </div>`;
-    show('step-rep');
+    errEl.textContent = err.message === 'no_results'
+      ? 'No representatives found for that zip code. Please double-check and try again.'
+      : 'Something went wrong. Please try again or find your rep at congress.gov.';
+    errEl.style.display = 'block';
   } finally {
     btn.disabled = false;
     btn.textContent = 'Find my rep →';
