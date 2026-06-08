@@ -10,11 +10,11 @@
   <meta property="og:url"         content="https://adrian-wwd.github.io/guardrails-alliance/" />
   <meta property="og:title"       content="AI Guardrails Alliance" />
   <meta property="og:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back. Follow the money, meet the villains, join the fight." />
-  <meta property="og:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo.png" />
+  <meta property="og:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo-cap.png" />
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="AI Guardrails Alliance" />
   <meta name="twitter:description" content="AI billionaires are spending $125 million to buy your government. We're fighting back." />
-  <meta name="twitter:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo.png" />
+  <meta name="twitter:image"       content="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/GA-PAC-sqlogo-cap.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -137,9 +137,12 @@
 
     /* ─── VILLAIN CARDS ─── */
     .villain-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 16px; margin-top: 2rem; }
-    .vcard { background: var(--bg-card2); border: 1px solid var(--border); border-top: 2px solid var(--yellow); overflow: hidden; }
+    .vcard { background: var(--bg-card2); border: 1px solid var(--border); border-top: 2px solid var(--yellow); overflow: hidden; transition: transform 0.3s ease; }
+    .vcard:hover { transform: scale(1.03); }
     .vcard-photo { width: 100%; height: 220px; position: relative; overflow: hidden; background: #1a1a1a; }
     .vcard-photo img { width: 100%; height: 220px; object-fit: cover; object-position: center; display: block; filter: grayscale(100%) contrast(1.15) brightness(0.9); }
+    .vcard-photo img { filter: grayscale(100%) contrast(1.15) brightness(0.9); transition: filter 0.4s ease; }
+    .vcard-photo:hover img { filter: grayscale(0%) contrast(1) brightness(1); }
     .vcard-photo::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg,transparent,transparent 4px,rgba(245,197,24,0.04) 4px,rgba(245,197,24,0.04) 5px); pointer-events: none; }
     .vcard-subject { position: absolute; top: 10px; right: 10px; z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow); border: 1px solid rgba(245,197,24,0.4); background: rgba(0,0,0,0.85); padding: 4px 9px; }
     .vcard-warning { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; background: rgba(0,0,0,0.78); border-top: 1px solid rgba(245,197,24,0.5); padding: 7px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--yellow); text-align: center; }
@@ -216,7 +219,7 @@
   <nav>
     <div class="nav-logo-slot">
       <a href="index.html">
-        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-sqlogo-cap.png" alt="Guardrails Alliance" />
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/GA-PAC-wordmark-cap1.png" alt="Guardrails Alliance" />
       </a>
     </div>
     <ul class="nav-links">
@@ -340,16 +343,67 @@
   <div class="divider-double"></div>
 
   <!-- ─── ROGUES TEASER ─── -->
-  <section id="rogues">
-    <a href="rogues.html" class="label-y" style="text-decoration:none; display:inline-block;">Who they're backing</a>
-    <h2>They didn't spend $125M on themselves.<br><span style="color:var(--yellow);">They bought politicians to do it for them.</span></h2>
-    <p class="section-sub">Andreessen, Horowitz, and the Brockmans are the money. But money needs faces on ballots. Meet the eight candidates Leading the Future has already purchased — with more on the way.</p>
-        <div class="villains-link">
-      <a href="rogues.html" class="btn btn-ghost">See the Rogues Gallery →</a>
+  <section id="rogues" style="display:grid; grid-template-columns:1fr auto; gap:2.5rem; align-items:center;">
+    <div>
+      <a href="rogues.html" class="label-y" style="text-decoration:none; display:inline-block;">Who they're backing</a>
+      <h2>They didn't spend $125M on themselves.<span style="color:var(--yellow);"> They bought politicians to do it for them.</span></h2>
+      <p class="section-sub">Andreessen, Horowitz, and the Brockmans are the money. But money needs faces on ballots. Meet the eight candidates Leading the Future has already purchased — with more on the way.</p>
+      <div class="villains-link">
+        <a href="rogues.html" class="btn btn-ghost">See the Rogues Gallery →</a>
+      </div>
     </div>
+
+    <a href="rogues.html" style="text-decoration:none; flex-shrink:0;" id="rogue-teaser-link">
+      <div class="vcard" style="width:260px; cursor:pointer;">
+        <div class="vcard-photo" style="position:relative;">
+          <img id="rogue-cycle-img" src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/rogues/SamLiccardo.PNG" alt="LTF Endorsed Candidate" crossorigin="anonymous" style="filter:grayscale(100%) contrast(1.15) brightness(0.9); transition:filter 0.4s ease;" />
+          <div class="vcard-subject">LTF Endorsed</div>
+          <div class="vcard-warning" id="rogue-cycle-warning">Sam Liccardo · CA-16</div>
+        </div>
+        <div class="vcard-body" style="text-align:center; min-height:64px; display:flex; flex-direction:column; justify-content:center;">
+          <div class="vcard-name" id="rogue-cycle-name" style="min-height:48px; display:flex; align-items:center; justify-content:center; text-align:center; line-height:1.2;">Hover to browse</div>
+          <div class="vcard-title">8 candidates <em><br>and counting</em> >></div>
+        </div>
+      </div>
+    </a>
   </section>
-  
+
   <div class="divider-double"></div>
+
+  <script>
+    const rogues = [
+      { img: "SamLiccardo.PNG",      name: "Sam Liccardo",       district: "CA-16" },
+      { img: "JoshGottheimer.PNG",   name: "Josh Gottheimer",    district: "NJ-05" },
+      { img: "JimmyGomez.PNG",       name: "Jimmy Gomez",        district: "CA-34" },
+      { img: "SuhasSubramanyam.png", name: "Suhas Subramanyam",  district: "VA-10" },
+      { img: "YvetteClarke.PNG",     name: "Yvette Clarke",      district: "NY-09" },
+      { img: "RobMenendezJr.PNG",    name: "Rob Menendez Jr.",   district: "NJ-08" },
+      { img: "ValHoyle.PNG",         name: "Val Hoyle",          district: "OR-04" },
+      { img: "RitchieTorres.PNG",    name: "Ritchie Torres",     district: "NY-15" },
+    ];
+    const base = "https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/rogues/";
+    let idx = 0;
+    const el = document.getElementById('rogue-teaser-link');
+    const img = document.getElementById('rogue-cycle-img');
+    const name = document.getElementById('rogue-cycle-name');
+    const warning = document.getElementById('rogue-cycle-warning');
+
+    function showRogue(i) {
+      const r = rogues[i];
+      img.src = base + r.img;
+      name.textContent = r.name;
+      warning.textContent = r.name + ' · ' + r.district;
+    }
+
+    el.addEventListener('mouseenter', () => {
+      idx = (idx + 1) % rogues.length;
+      showRogue(idx);
+      img.style.filter = 'grayscale(0%) contrast(1.15) brightness(0.9)';
+    });
+    el.addEventListener('mouseleave', () => {
+      img.style.filter = 'grayscale(100%) contrast(1.15) brightness(0.9)';
+    });
+  </script>
 
   <!-- ─── MAP ─── -->
 <section id="map">
@@ -361,6 +415,22 @@
     <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/static-map.PNG" alt="LTF spending by district" style="width:100%; max-width:680px; display:block; margin:0 auto; border:1px solid var(--yellow);" />
   </a>
 </section>
+
+  <!-- ─── MAP ─── -->
+  <section id="map" style="text-align:center;">
+    <a href="map.html" class="label-y" style="text-decoration:none; display:inline-block;">Follow the money</a>
+    <h2>LTF spending by district</h2>
+    <p class="section-sub">Leading the Future has targeted key swing districts — here's where the money is flowing. Full interactive map on the <a href="map.html">money map page</a>.</p>
+    <br>
+    <a href="map.html" style="display:inline-block; max-width:680px; width:100%; text-decoration:none;">
+      <div style="position:relative; display:inline-block; width:100%;">
+        <img src="https://raw.githubusercontent.com/Adrian-WWD/guardrails-alliance/main/assets/static-map.PNG" alt="LTF spending by district" style="width:100%; display:block; border:1px solid var(--yellow); transition:transform 0.3s ease, border 0.3s ease; cursor:pointer;"
+          onmouseenter="this.style.transform='scale(1.03)'; this.style.border='3px solid var(--yellow)'; this.nextElementSibling.style.opacity='1';"
+          onmouseleave="this.style.transform='scale(1)'; this.style.border='1px solid var(--yellow)'; this.nextElementSibling.style.opacity='0';" />
+        <span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); opacity:0; transition:opacity 0.3s ease; font-family:var(--font); font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:12px 24px; background:var(--yellow); color:#0d0d0d; white-space:nowrap;">See the map →</span>
+      </div>
+    </a>
+  </section>
 
   <div class="divider-double"></div>
 
