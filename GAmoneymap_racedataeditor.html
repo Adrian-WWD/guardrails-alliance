@@ -1,33 +1,46 @@
-
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font-sans); }
-.wrap { padding: 1rem 0; }
-h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.5rem; }
-.sub { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-.race-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 1.5rem; max-height: 360px; overflow-y: auto; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); }
-.race-row { display: grid; grid-template-columns: 90px 80px 1fr 110px 32px; gap: 8px; align-items: center; padding: 8px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); }
-.race-row:last-child { border-bottom: none; }
-.race-row input, .race-row select { font-size: 13px; padding: 4px 8px; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); background: var(--color-background-primary); color: var(--color-text-primary); width: 100%; }
-.header-row { display: grid; grid-template-columns: 90px 80px 1fr 110px 32px; gap: 8px; padding: 8px 12px; background: var(--color-background-secondary); border-radius: var(--border-radius-md) var(--border-radius-md) 0 0; border-bottom: 0.5px solid var(--color-border-secondary); }
-.col-head { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); letter-spacing: 0.05em; text-transform: uppercase; }
-.btn-del { background: none; border: none; cursor: pointer; color: var(--color-text-secondary); font-size: 18px; line-height: 1; padding: 0; }
-.btn-del:hover { color: var(--color-text-danger); }
-.actions { display: flex; gap: 8px; margin-bottom: 1.5rem; }
-button.primary { background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 8px 16px; font-size: 14px; cursor: pointer; color: var(--color-text-primary); }
-button.primary:hover { background: var(--color-background-secondary); }
-.out-label { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px; }
-textarea { width: 100%; height: 180px; font-size: 12px; font-family: var(--font-mono); padding: 10px; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); background: var(--color-background-secondary); color: var(--color-text-primary); resize: vertical; }
-.copy-btn { margin-top: 8px; }
-.tabs { display: flex; gap: 0; margin-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
-.tab { padding: 8px 16px; font-size: 13px; cursor: pointer; border: none; background: none; color: var(--color-text-secondary); border-bottom: 2px solid transparent; margin-bottom: -1px; }
-.tab.active { color: var(--color-text-primary); border-bottom-color: var(--color-text-primary); font-weight: 500; }
-.notice { font-size: 12px; color: var(--color-text-success); margin-top: 6px; height: 16px; }
-</style>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Race Data Editor — Guardrails Alliance</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f4; color: #111; min-height: 100vh; padding: 2rem 0; }
+    .wrap { width: 75%; margin: 0 auto; background: #fff; border-radius: 8px; padding: 2rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    h1 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+    .sub { font-size: 13px; color: #666; margin-bottom: 1.5rem; }
+    .tabs { display: flex; border-bottom: 1px solid #e0e0e0; margin-bottom: 1.25rem; }
+    .tab { padding: 8px 16px; font-size: 13px; cursor: pointer; border: none; background: none; color: #666; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+    .tab.active { color: #111; border-bottom-color: #111; font-weight: 600; }
+    .toolbar { display: flex; gap: 8px; margin-bottom: 1rem; align-items: center; }
+    .toolbar input[type=text] { flex: 1; font-size: 13px; padding: 7px 10px; border: 1px solid #ddd; border-radius: 6px; background: #fff; }
+    .count { font-size: 12px; color: #888; margin-left: auto; white-space: nowrap; }
+    .race-list { border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; margin-bottom: 1rem; }
+    .header-row { display: grid; grid-template-columns: 90px 75px 1fr 120px 28px; gap: 8px; padding: 7px 10px; background: #f8f8f8; border-bottom: 1px solid #e0e0e0; }
+    .col-head { font-size: 11px; font-weight: 600; color: #666; letter-spacing: 0.05em; text-transform: uppercase; }
+    .race-row { display: grid; grid-template-columns: 90px 75px 1fr 120px 28px; gap: 8px; align-items: center; padding: 6px 10px; border-bottom: 1px solid #f0f0f0; }
+    .race-row:last-child { border-bottom: none; }
+    .race-row.hidden { display: none; }
+    .race-row input, .race-row select { font-size: 12px; padding: 4px 7px; border: 1px solid #ddd; border-radius: 5px; background: #fff; width: 100%; color: #111; }
+    .race-row input:focus, .race-row select:focus { outline: none; border-color: #f5c518; }
+    .btn-del { background: none; border: none; cursor: pointer; color: #bbb; font-size: 18px; line-height: 1; padding: 0; }
+    .btn-del:hover { color: #e05555; }
+    .actions { display: flex; gap: 8px; }
+    button.primary { background: #fff; border: 1px solid #ccc; border-radius: 6px; padding: 7px 14px; font-size: 13px; cursor: pointer; color: #111; }
+    button.primary:hover { background: #f5f5f5; }
+    button.primary.yellow { background: #f5c518; border-color: #f5c518; font-weight: 600; }
+    button.primary.yellow:hover { background: #fdd835; }
+    .out-label { font-size: 13px; font-weight: 600; color: #444; margin-bottom: 6px; }
+    textarea { width: 100%; height: 280px; font-size: 12px; font-family: 'SF Mono', 'Fira Code', monospace; padding: 12px; border: 1px solid #ddd; border-radius: 6px; background: #f8f8f8; color: #111; resize: vertical; }
+    .notice { font-size: 12px; color: #2a9d5c; margin-left: 8px; }
+    .footer { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #f0f0f0; font-size: 11px; color: #bbb; }
+  </style>
+</head>
+<body>
 <div class="wrap">
-  <h2>Race data editor</h2>
-  <p class="sub">Edit, add, or remove races — then generate updated HTML to paste into your template.</p>
+  <h1>Race data editor</h1>
+  <p class="sub">Guardrails Alliance · Edit races, generate HTML, paste into template-map.php</p>
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('edit')">Edit races</button>
@@ -35,6 +48,12 @@ textarea { width: 100%; height: 180px; font-size: 12px; font-family: var(--font-
   </div>
 
   <div id="tab-edit">
+    <div class="toolbar">
+      <input type="text" id="search" placeholder="Search district or candidate..." oninput="filterRaces(this.value)" />
+      <span class="count" id="count"></span>
+      <button class="primary" onclick="addRace()">+ Add race</button>
+      <button class="primary yellow" onclick="switchTab('output'); generateHTML()">Generate HTML →</button>
+    </div>
     <div class="race-list">
       <div class="header-row">
         <span class="col-head">District</span>
@@ -45,30 +64,23 @@ textarea { width: 100%; height: 180px; font-size: 12px; font-family: var(--font-
       </div>
       <div id="race-rows"></div>
     </div>
-    <div class="actions">
-      <button class="primary" onclick="addRace()">+ Add race</button>
-      <button class="primary" onclick="switchTab('output'); generateHTML()">Generate HTML ↗</button>
-    </div>
   </div>
 
   <div id="tab-output" style="display:none;">
     <div class="out-label">Ledger + Cards HTML — paste into template-map.php</div>
     <textarea id="html-out" readonly></textarea>
-    <button class="primary copy-btn" onclick="copyHTML()">Copy to clipboard</button>
-    <p class="notice" id="copy-notice"></p>
+    <div style="display:flex;gap:8px;margin-top:8px;align-items:center;">
+      <button class="primary yellow" onclick="copyHTML()">Copy to clipboard</button>
+      <span class="notice" id="copy-notice"></span>
+    </div>
   </div>
+
+  <div class="footer">Guardrails Alliance internal tool · Not for public distribution</div>
 </div>
 
 <script>
 const STATUSES = ['won-gen','won-prim','won','lost','active','runoff'];
-const LABELS = {
-  'won-gen':  'Won General',
-  'won-prim': 'Won Primary',
-  'won':      'Won',
-  'lost':     'Lost',
-  'active':   'Active',
-  'runoff':   'Runoff'
-};
+const LABELS = {'won-gen':'Won General','won-prim':'Won Primary','won':'Won','lost':'Lost','active':'Active','runoff':'Runoff'};
 
 const races = [
   {district:'NY-12', total:'$7.69M', status:'lost',   details:'$7,688,806 opposing Alex Bores (D)'},
@@ -97,35 +109,42 @@ const races = [
   {district:'IA-04', total:'$104K',  status:'won',    details:'$103,970 supporting Chris McGowan (R)'},
 ];
 
+let query = '';
+
 function renderRows() {
   const container = document.getElementById('race-rows');
   container.innerHTML = '';
+  let visible = 0;
   races.forEach((r, i) => {
+    const q = query.toLowerCase();
+    const matches = !q || r.district.toLowerCase().includes(q) || r.details.toLowerCase().includes(q);
+    if (matches) visible++;
     const row = document.createElement('div');
-    row.className = 'race-row';
+    row.className = 'race-row' + (matches ? '' : ' hidden');
     const opts = STATUSES.map(s => `<option value="${s}" ${r.status===s?'selected':''}>${LABELS[s]}</option>`).join('');
     row.innerHTML = `
       <input value="${r.district}" onchange="races[${i}].district=this.value" placeholder="District" />
       <input value="${r.total}" onchange="races[${i}].total=this.value" placeholder="$0K" />
-      <input value="${r.details}" onchange="races[${i}].details=this.value" placeholder="$X opposing/supporting Name (D/R)" />
+      <input value="${r.details}" onchange="races[${i}].details=this.value" placeholder="Details" />
       <select onchange="races[${i}].status=this.value">${opts}</select>
       <button class="btn-del" onclick="deleteRace(${i})" aria-label="Delete">×</button>
     `;
     container.appendChild(row);
   });
+  document.getElementById('count').textContent = query ? `${visible} of ${races.length}` : `${races.length} races`;
 }
+
+function filterRaces(val) { query = val; renderRows(); }
 
 function addRace() {
   races.push({district:'', total:'', status:'active', details:''});
+  query = '';
+  document.getElementById('search').value = '';
   renderRows();
-  const list = document.querySelector('.race-list');
-  list.scrollTop = list.scrollHeight;
+  document.getElementById('race-rows').lastChild.querySelector('input').focus();
 }
 
-function deleteRace(i) {
-  races.splice(i, 1);
-  renderRows();
-}
+function deleteRace(i) { races.splice(i, 1); renderRows(); }
 
 function switchTab(t) {
   document.getElementById('tab-edit').style.display = t==='edit' ? 'block' : 'none';
@@ -145,7 +164,7 @@ function generateHTML() {
     return `      <div class="race-card"><div class="race-card-district">${r.district}</div><div class="race-card-total">${r.total}</div><div class="race-card-badge badge-${r.status}">${LABELS[r.status]}</div><div class="race-card-spend"><div><span class="amt amt-${dir}">${r.details}</span></div></div></div>`;
   }).join('\n');
 
-  const html = `  <div id="view-ledger" style="display:none;">
+  document.getElementById('html-out').value = `  <div id="view-ledger" style="display:none;">
     <div style="display:grid;grid-template-columns:1fr 90px 1fr;padding:0.5rem 1rem;border-bottom:2px solid var(--border-y);gap:12px;">
       <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);">District</div>
       <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);text-align:center;">Total</div>
@@ -159,13 +178,10 @@ ${ledgerRows}
 ${cardRows}
     </div>
   </div>`;
-
-  document.getElementById('html-out').value = html;
 }
 
 function copyHTML() {
-  const ta = document.getElementById('html-out');
-  ta.select();
+  document.getElementById('html-out').select();
   document.execCommand('copy');
   const n = document.getElementById('copy-notice');
   n.textContent = 'Copied to clipboard!';
@@ -174,3 +190,5 @@ function copyHTML() {
 
 renderRows();
 </script>
+</body>
+</html>
