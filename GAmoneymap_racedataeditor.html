@@ -1,0 +1,176 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.wrap { padding: 1rem 0; }
+h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.5rem; }
+.sub { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+.race-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 1.5rem; max-height: 360px; overflow-y: auto; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); }
+.race-row { display: grid; grid-template-columns: 90px 80px 1fr 110px 32px; gap: 8px; align-items: center; padding: 8px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.race-row:last-child { border-bottom: none; }
+.race-row input, .race-row select { font-size: 13px; padding: 4px 8px; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); background: var(--color-background-primary); color: var(--color-text-primary); width: 100%; }
+.header-row { display: grid; grid-template-columns: 90px 80px 1fr 110px 32px; gap: 8px; padding: 8px 12px; background: var(--color-background-secondary); border-radius: var(--border-radius-md) var(--border-radius-md) 0 0; border-bottom: 0.5px solid var(--color-border-secondary); }
+.col-head { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); letter-spacing: 0.05em; text-transform: uppercase; }
+.btn-del { background: none; border: none; cursor: pointer; color: var(--color-text-secondary); font-size: 18px; line-height: 1; padding: 0; }
+.btn-del:hover { color: var(--color-text-danger); }
+.actions { display: flex; gap: 8px; margin-bottom: 1.5rem; }
+button.primary { background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 8px 16px; font-size: 14px; cursor: pointer; color: var(--color-text-primary); }
+button.primary:hover { background: var(--color-background-secondary); }
+.out-label { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px; }
+textarea { width: 100%; height: 180px; font-size: 12px; font-family: var(--font-mono); padding: 10px; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); background: var(--color-background-secondary); color: var(--color-text-primary); resize: vertical; }
+.copy-btn { margin-top: 8px; }
+.tabs { display: flex; gap: 0; margin-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.tab { padding: 8px 16px; font-size: 13px; cursor: pointer; border: none; background: none; color: var(--color-text-secondary); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tab.active { color: var(--color-text-primary); border-bottom-color: var(--color-text-primary); font-weight: 500; }
+.notice { font-size: 12px; color: var(--color-text-success); margin-top: 6px; height: 16px; }
+</style>
+
+<div class="wrap">
+  <h2>Race data editor</h2>
+  <p class="sub">Edit, add, or remove races — then generate updated HTML to paste into your template.</p>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('edit')">Edit races</button>
+    <button class="tab" onclick="switchTab('output')">Generate HTML</button>
+  </div>
+
+  <div id="tab-edit">
+    <div class="race-list">
+      <div class="header-row">
+        <span class="col-head">District</span>
+        <span class="col-head">Total</span>
+        <span class="col-head">Details</span>
+        <span class="col-head">Status</span>
+        <span></span>
+      </div>
+      <div id="race-rows"></div>
+    </div>
+    <div class="actions">
+      <button class="primary" onclick="addRace()">+ Add race</button>
+      <button class="primary" onclick="switchTab('output'); generateHTML()">Generate HTML ↗</button>
+    </div>
+  </div>
+
+  <div id="tab-output" style="display:none;">
+    <div class="out-label">Ledger + Cards HTML — paste into template-map.php</div>
+    <textarea id="html-out" readonly></textarea>
+    <button class="primary copy-btn" onclick="copyHTML()">Copy to clipboard</button>
+    <p class="notice" id="copy-notice"></p>
+  </div>
+</div>
+
+<script>
+const STATUSES = ['won-gen','won-prim','won','lost','active','runoff'];
+const LABELS = {
+  'won-gen':  'Won General',
+  'won-prim': 'Won Primary',
+  'won':      'Won',
+  'lost':     'Lost',
+  'active':   'Active',
+  'runoff':   'Runoff'
+};
+
+const races = [
+  {district:'NY-12', total:'$7.69M', status:'lost',   details:'$7,688,806 opposing Alex Bores (D)'},
+  {district:'IL-02', total:'$1.43M', status:'lost',   details:'$1,430,037 supporting Jesse Jackson Jr. (D)'},
+  {district:'IL-08', total:'$1.14M', status:'won',    details:'$1,138,422 supporting Melissa Bean (D)'},
+  {district:'NY-15', total:'$1.08M', status:'won',    details:'$1,084,411 supporting Ritchie Torres (D)'},
+  {district:'GA-01', total:'$960K',  status:'won',    details:'$960,428 supporting James Kingston (R)'},
+  {district:'MT-01', total:'$877K',  status:'won',    details:'$876,786 supporting Aaron Flint (R)'},
+  {district:'TX-10', total:'$748K',  status:'won',    details:'$748,000 supporting Chris Gober (R)'},
+  {district:'GA-14', total:'$687K',  status:'won',    details:'$687,000 supporting Clayton Fuller (R)'},
+  {district:'KY Senate', total:'$676K', status:'won', details:'$676,370 supporting Andy Barr (R)'},
+  {district:'NJ-08', total:'$650K',  status:'won',    details:'$649,899 supporting Robert Menendez Jr. (D)'},
+  {district:'TX-09', total:'$638K',  status:'won',    details:'$638,000 supporting Alexandra Mealer (R)'},
+  {district:'CA-19', total:'$599K',  status:'won',    details:'$599,280 supporting Jimmy Panetta (D)'},
+  {district:'LA Senate', total:'$578K', status:'runoff', details:'$578,274 supporting Julia Letlow (R)'},
+  {district:'UT-01', total:'$573K',  status:'won',    details:'$573,081 supporting Ben McAdams (D)'},
+  {district:'WA-04', total:'$564K',  status:'active', details:'$563,838 supporting Amanda McKinney (R)'},
+  {district:'NY-25', total:'$522K',  status:'active', details:'$522,100 supporting Joe Morelle (D)'},
+  {district:'SC Senate', total:'$374K', status:'won', details:'$374,287 supporting Lindsey Graham (R)'},
+  {district:'AL Senate', total:'$330K', status:'won', details:'$330,085 supporting Barry Moore (R)'},
+  {district:'OR-04', total:'$292K',  status:'won',    details:'$292,419 supporting Valerie Hoyle (D)'},
+  {district:'NY-09', total:'$290K',  status:'active', details:'$289,695 supporting Yvette Clark (D)'},
+  {district:'GA-10', total:'$262K',  status:'won',    details:'$261,555 supporting Houston Gaines (R)'},
+  {district:'CA-23', total:'$260K',  status:'runoff', details:'$259,682 supporting Jay Obernolte (R)'},
+  {district:'OK Senate', total:'$221K', status:'won', details:'$220,617 supporting Kevin Hern (R)'},
+  {district:'IA-04', total:'$104K',  status:'won',    details:'$103,970 supporting Chris McGowan (R)'},
+];
+
+function renderRows() {
+  const container = document.getElementById('race-rows');
+  container.innerHTML = '';
+  races.forEach((r, i) => {
+    const row = document.createElement('div');
+    row.className = 'race-row';
+    const opts = STATUSES.map(s => `<option value="${s}" ${r.status===s?'selected':''}>${LABELS[s]}</option>`).join('');
+    row.innerHTML = `
+      <input value="${r.district}" onchange="races[${i}].district=this.value" placeholder="District" />
+      <input value="${r.total}" onchange="races[${i}].total=this.value" placeholder="$0K" />
+      <input value="${r.details}" onchange="races[${i}].details=this.value" placeholder="$X opposing/supporting Name (D/R)" />
+      <select onchange="races[${i}].status=this.value">${opts}</select>
+      <button class="btn-del" onclick="deleteRace(${i})" aria-label="Delete">×</button>
+    `;
+    container.appendChild(row);
+  });
+}
+
+function addRace() {
+  races.push({district:'', total:'', status:'active', details:''});
+  renderRows();
+  const list = document.querySelector('.race-list');
+  list.scrollTop = list.scrollHeight;
+}
+
+function deleteRace(i) {
+  races.splice(i, 1);
+  renderRows();
+}
+
+function switchTab(t) {
+  document.getElementById('tab-edit').style.display = t==='edit' ? 'block' : 'none';
+  document.getElementById('tab-output').style.display = t==='output' ? 'block' : 'none';
+  document.querySelectorAll('.tab').forEach((el,i) => el.classList.toggle('active', (i===0&&t==='edit')||(i===1&&t==='output')));
+  if (t==='output') generateHTML();
+}
+
+function generateHTML() {
+  const ledgerRows = races.map(r => {
+    const dir = r.details.includes('opposing') ? 'opposing' : 'supporting';
+    return `    <div class="race-ledger-row"><div><div class="ledger-district">${r.district}</div></div><div class="ledger-total">${r.total}</div><div class="ledger-details"><span class="ledger-badge badge-${r.status}">${LABELS[r.status]}</span><br><span class="amt amt-${dir}">${r.details}</span></div></div>`;
+  }).join('\n');
+
+  const cardRows = races.map(r => {
+    const dir = r.details.includes('opposing') ? 'opposing' : 'supporting';
+    return `      <div class="race-card"><div class="race-card-district">${r.district}</div><div class="race-card-total">${r.total}</div><div class="race-card-badge badge-${r.status}">${LABELS[r.status]}</div><div class="race-card-spend"><div><span class="amt amt-${dir}">${r.details}</span></div></div></div>`;
+  }).join('\n');
+
+  const html = `  <div id="view-ledger" style="display:none;">
+    <div style="display:grid;grid-template-columns:1fr 90px 1fr;padding:0.5rem 1rem;border-bottom:2px solid var(--border-y);gap:12px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);">District</div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);text-align:center;">Total</div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);">Spending detail</div>
+    </div>
+${ledgerRows}
+  </div>
+
+  <div id="view-cards">
+    <div class="race-grid">
+${cardRows}
+    </div>
+  </div>`;
+
+  document.getElementById('html-out').value = html;
+}
+
+function copyHTML() {
+  const ta = document.getElementById('html-out');
+  ta.select();
+  document.execCommand('copy');
+  const n = document.getElementById('copy-notice');
+  n.textContent = 'Copied to clipboard!';
+  setTimeout(() => n.textContent = '', 2000);
+}
+
+renderRows();
+</script>
